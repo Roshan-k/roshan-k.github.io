@@ -1,0 +1,121 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+    font-family: 'Exo 2', sans-serif;
+    background: #FBFFFE;
+
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.container{
+    max-width: 1180px;
+    width:94%;
+    margin: 0 auto;
+}
+header {
+    padding: 20px 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}
+.logo_email {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.mailto {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 15px;
+    text-decoration-line: underline;
+    color: #000000;
+}
+a.mailto img {
+    vertical-align: middle;
+    margin-right: 6px;
+}
+.bg-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(100px);
+    z-index: -1;
+}
+.bg-svg img {
+    width: 100%;
+}
+section.banner {
+    position: relative;
+}
+.main-banner {
+    min-height: 680px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+p{
+font-family: 'Exo 2';
+font-style: normal;
+font-weight: 300;
+font-size: 20px;
+line-height: 34px;
+}
+.banner-heading {
+    max-width: 590px;
+}
+h1 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 92px;
+    line-height: 90px;
+    color: #000000;
+    margin-bottom: 30px;
+}

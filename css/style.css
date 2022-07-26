@@ -30,7 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-    font-family: 'Exo 2', sans-serif;
+    font-family: 'Averta Std';
     background: #FBFFFE;
 
 }
@@ -102,18 +102,19 @@ section.banner {
 }
 
 p{
-font-family: 'Exo 2';
+    font-family: 'Averta Std';
 font-style: normal;
-font-weight: 300;
+font-weight: 400;
 font-size: 20px;
-line-height: 34px;
+line-height: 28px;
 }
 .banner-heading {
     max-width: 590px;
 }
 h1 {
+    font-family: 'Averta Std';
     font-style: normal;
-    font-weight: 600;
+    font-weight: 800;
     font-size: 92px;
     line-height: 90px;
     color: #000000;

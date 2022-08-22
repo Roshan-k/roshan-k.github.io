@@ -277,4 +277,9 @@ a.btn-primary:hover{
 }
 a.btn-primary:hover span.tilt-dot, a.btn-primary:hover::before, a.btn-primary:hover::after {
     opacity: 0;
+    transition: all .3s ease-in-out;
+}
+a.btn-primary:hover svg path {
+    stroke: #FFF;
+    transition: all .3s ease-in-out;
 }

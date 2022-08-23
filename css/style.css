@@ -482,5 +482,23 @@ span.ui-tilt {
 section.footer {
     padding-top: 30px;
 }
+span.ui-tilt:after, span.ui-tilt:before {
+    width: 4px;
+    height: 4px;
+    top: -3px;
+}
+span.ui-tilt:after, span.tilt-dot:after{
+    right: -3px;
+
+}
+span.ui-tilt:before, span.tilt-dot:before{
+    left: -3px;
+
+}
+span.tilt-dot:before, span.tilt-dot:after{
+    width: 4px;
+    height: 4px;
+    bottom: -3px;
+}
 }
   

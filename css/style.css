@@ -476,5 +476,11 @@ h2.heading {
     width: 100%;
     height: auto;
 }
+span.ui-tilt {
+    padding: 4px 7px;
+}
+section.footer {
+    padding-top: 30px;
+}
 }
   

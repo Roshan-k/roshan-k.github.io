@@ -342,11 +342,77 @@ a.btn-primary svg {
     margin-left: 4px;
 }
 
+section.parallax-background {
+    display: block;
+    height: 600px;
+    position: relative;
+}.parallax-inner {
+    background-size: cover;
+}
+
+.main-banner.inner h1 span {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: #747474;
+    display: block;
+}
+.main-banner.inner .banner-heading {
+    margin: auto;
+}
+.main-banner.inner {
+    min-height: unset;
+    text-align: center;
+    padding-top: 120px;
+}
+.main-banner.inner .banner-heading {
+    margin: 0 auto;
+}
+section.screen-showcase {
+    padding: 90px 0;
+}
+section.screen-showcase h2 {
+    font-size: 32px;
+    font-weight: 700;
+}
+section.screen-showcase p {
+    font-size: 18px;
+    color: #BBB;
+}
+.screens h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 70px 0 30px;
+}
+.screens .screens-single {
+    display: flex;
+    margin-top: 110px;
+    justify-content: space-between;
+}
+.screens .screens-single li img {
+    width: 100%;
+}
+.screens .screens-single li {
+    width: 24%;
+    border: solid 8px #fff;
+    box-sizing: border-box;
+    box-shadow: 0 0 20px rgb(0 0 0 / 10%);
+    overflow: hidden;
+    border-radius: 30px;
+}
+.screens .screens-single li:nth-of-type(2n) {
+    position: relative;
+    top: -70px;
+}
+.screens.least ul.screens-single li:not(:last-child) {
+    margin-right: 1%;
+}
+.screens.least ul.screens-single {
+    justify-content: start;
+}
 
 /*** Responsive ****/
-
-
-
 
 @media only screen and (max-width: 1200px) {
     h1 {
@@ -499,6 +565,44 @@ span.tilt-dot:before, span.tilt-dot:after{
     width: 4px;
     height: 4px;
     bottom: -3px;
+}
+section.parallax-background {
+    display: block;
+    height: 190px;
+    position: relative;
+}
+.screens .screens-single {
+    display: flex;
+    margin-top: 110px;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.screens .screens-single li:nth-of-type(2n) {
+    position: relative;
+    top: 0;
+}
+.screens .screens-single li {
+    margin: 10px 0;
+}.screens .screens-single {
+    margin-top: 0;
+    display: block;
+}
+.screens h3 {
+    margin: 30px 0 30px;
+}
+section.screen-showcase {
+    padding: 40px 0 10px;
+}
+
+.screens .screens-single li {
+    margin: 10px 0 0;
+    width: 48%;
+    display: inline-block;
+    border-radius: 17px;
+    border-width: 6px;
+}
+.screens .screens-single li:not(:nth-of-type(2n)) {
+    margin-right: 2%;
 }
 }
   

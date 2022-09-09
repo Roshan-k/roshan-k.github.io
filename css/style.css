@@ -764,5 +764,14 @@ section.screen-showcase p {
 section.cta-gg {
     padding: 10px 0 0;
 }
+.mr-15 {
+    margin-right: 0;
+    margin-bottom: 10px;
+}
+a.btn-primary, a.btn-gost{
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
 }
   

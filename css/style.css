@@ -487,6 +487,64 @@ section.screen-showcase .screens.resize ul.screens-single {
 .screens.resize.half ul.screens-single li {
     width: 49%;
 }
+h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 50px;
+}
+a.btn-gost {
+    color: #02B154;
+    background: #FFFFFF;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid #02B154;
+    display: inline-block;
+    padding: 15px 28px;
+    position: relative;
+    transition: all .3s ease-in-out;
+}
+a.btn-gost:hover{
+    color: #FFF ;
+    background: #02B154;
+
+}
+a.btn-gost:hover svg path{
+    stroke:#FFF;
+    transition: all .3s ease-in-out;
+}
+
+a.btn-gost:hover span.tilt-dot, a.btn-gost:hover::before, a.btn-gost:hover::after, a.btn-gost:hover span.tilt-dot:before, a.btn-gost:hover span.tilt-dot:after {
+    opacity: 0;
+    transition: all .3s ease-in-out;
+}
+a.btn-gost:before, a.btn-gost:after, a.btn-gost span.tilt-dot:before, a.btn-gost span.tilt-dot:after {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border: 1px solid #11B95F;
+    background: #FFF;
+    opacity: 1;
+}
+a.btn-gost:before {
+    content: "";
+    top: -4px;
+    left: -4px;
+}
+a.btn-gost:after {
+    content: "";
+    top: -4px;
+    right: -4px;
+}
+.mr-15 {
+    margin-right: 15px;
+}
+section.cta-gg {
+    padding: 0px 0 50px;
+    text-align: center;
+}
 
 /*** Responsive ****/
 
@@ -702,6 +760,9 @@ section.screen-showcase p {
 }
 .screens.resize.half ul.screens-single li {
     width: 100%;
+}
+section.cta-gg {
+    padding: 10px 0 0;
 }
 }
   

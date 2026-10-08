@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#120E0B"/>
+  <svg x="11" y="15.5" width="42" height="33" viewBox="0 0 132 104">
+    <defs><clipPath id="rk-clip"><rect width="132" height="102"/></clipPath></defs>
+    <g clip-path="url(#rk-clip)" fill="none" stroke="#FF4326" stroke-width="14" stroke-miterlimit="8">
+      <path d="M0 7H52A17 17 0 0 1 52 41H33L74 112"/>
+      <path d="M134 -6L86 51L134 108"/>
+    </g>
+  </svg>
+</svg>

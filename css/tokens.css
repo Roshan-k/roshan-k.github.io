@@ -1,0 +1,95 @@
+/* ==========================================================================
+   TOKENS
+   The portfolio's own identity, set apart from the products it shows: warm
+   soft white paper, a brown-black panel, one red-orange signal, Schibsted Grotesk
+   for statements, Geist for reading, DM Mono for the few things that label.
+   The picture it borrows is a design file: frames, selections, rulers.
+   ========================================================================== */
+
+:root {
+  /* ---- Paper ----------------------------------------------------------- */
+  --paper:   #F6F5F2;
+  --paper-2: #EDECE8;
+
+  /* ---- Deep ------------------------------------------------------------- */
+  --deep:    #120E0B;
+  --deep-2:  #1A1512;
+
+  /* ---- Ink -------------------------------------------------------------- */
+  --ink:     #100E0A;
+  --ivory:   #F4EFE3;
+
+  /* ---- Signal -----------------------------------------------------------
+     Red-orange is the only hue in the interface. It marks the one thing on a
+     screen that wants acting on, and nothing else. ------------------------ */
+  --accent:    #FF4326;   /* fills; dark text on it at 5.56:1 */
+  --accent-2:  #FF5F45;   /* hover fill, a touch lighter; dark text 6.38:1 */
+  --accent-hi: #FF4326;   /* text and marks on the deep grounds, 5.0:1+ */
+  --accent-tx: #AA2614;   /* small text and focus rings on paper, 5.9:1+ */
+
+  /* ---- Rules ------------------------------------------------------------ */
+  --line:    rgba(11, 10, 8, 0.12);
+  --line-2:  rgba(11, 10, 8, 0.2);
+  --line-d:  rgba(244, 239, 227, 0.14);
+  --line-d2: rgba(244, 239, 227, 0.26);
+
+  /* ---- Text on ground --------------------------------------------------- */
+  --ink-60:  rgba(16, 14, 10, 0.7);
+  --ink-45:  rgba(16, 14, 10, 0.62);
+  --iv-55:   rgba(244, 239, 227, 0.6);
+  --iv-40:   rgba(244, 239, 227, 0.52);
+
+  /* ---- Project colour ---------------------------------------------------
+     Used inside the artwork panels only. -------------------------------- */
+  --chartvps-ground:    #04151E;   /* taken from each live product: */
+  --chartvps-key:       #D91515;   /* navy and signal red, square corners */
+  --labelcaster-ground: #FFD600;   /* yellow, navy, pastels */
+  --labelcaster-key:    #294456;
+  --eagl-ground:        #282828;   /* charcoal and gold, dark UI */
+  --eagl-key:           #FFC000;
+  --tpnl-ground:        #F0F0E0;   /* cream and sage lime */
+  --tpnl-key:           #B0C860;
+
+  /* ---- Type -------------------------------------------------------------- */
+  --display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --sans:    "Geist", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono:    "DM Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --t-mega:  clamp(2.75rem, 1.1rem + 6.9vw, 6.66rem);
+  --t-big:   clamp(2.1rem, 1.1rem + 4.2vw, 4.25rem);
+  --t-mid:   clamp(1.6rem, 1.1rem + 2.2vw, 2.75rem);
+  --t-sub:   clamp(1.125rem, 0.98rem + 0.62vw, 1.375rem);
+  --t-lede:  clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --t-body:  0.9375rem;
+  --t-fine:  0.8125rem;
+  --t-mono:  0.8125rem;
+
+  --lh-mega: 0.92;
+  --lh-lede: 1.65;
+
+  --ls-mega: -0.035em;
+  --ls-mono: 0.01em;
+
+  /* ---- Space ------------------------------------------------------------- */
+  --s-1: 0.25rem; --s-2: 0.5rem;  --s-3: 0.75rem; --s-4: 1rem;
+  --s-5: 1.5rem;  --s-6: 2rem;    --s-7: 3rem;    --s-8: 4rem;
+  --s-9: 5.5rem;  --s-10: 7.5rem;
+
+  --band: clamp(3.5rem, 2.2rem + 4.4vw, 6.5rem);
+
+  /* ---- Geometry ---------------------------------------------------------- */
+  /* Sections run the full width of the screen and carry their own ground.
+     Only the content inside them is contained, by this one value. */
+  --container: 1320px;
+  --pad:   clamp(1rem, 0.4rem + 2.2vw, 2.5rem);
+  --gap:   clamp(0.875rem, 0.4rem + 1.3vw, 1.5rem);
+
+  --r: 0;
+
+  /* ---- Motion ------------------------------------------------------------ */
+  --ease:     cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --fast: 140ms;  --base: 260ms;  --slow: 600ms;
+
+  --z-nav: 60; --z-menu: 70;
+}

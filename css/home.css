@@ -1,0 +1,369 @@
+/* ==========================================================================
+   HOME
+   ========================================================================== */
+
+
+
+/* --------------------------------------------------------------------------
+   WORK
+   Four project panels. Each carries a mono header strip, the artwork, and
+   the facts underneath it.
+   -------------------------------------------------------------------------- */
+.work {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+}
+/* Cards in a row share one height; the footer line sits at the bottom of each. */
+.work > li { display: flex; }
+
+.card { position: relative; display: flex; flex-direction: column; width: 100%; overflow: hidden; transition: border-color var(--base) var(--ease); }
+.card:hover { border-color: var(--line-2); }
+/* Hovered or focused, a card is selected the way a frame is in a design file:
+   an accent outline and four square handles. */
+/* One quiet light grey for every card's selection, whatever its colours. */
+.card { --card-sel: rgba(150, 148, 142, 0.45); }
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: inset 0 0 0 1px var(--card-sel);
+  background:
+    linear-gradient(var(--card-sel), var(--card-sel)) 0 0 / 6px 6px no-repeat,
+    linear-gradient(var(--card-sel), var(--card-sel)) 100% 0 / 6px 6px no-repeat,
+    linear-gradient(var(--card-sel), var(--card-sel)) 0 100% / 6px 6px no-repeat,
+    linear-gradient(var(--card-sel), var(--card-sel)) 100% 100% / 6px 6px no-repeat;
+  transition: opacity var(--fast) var(--ease);
+}
+.card:hover::after, .card:focus-visible::after { opacity: 1; }
+
+.card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-2);
+}
+.card__plate { aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid var(--line); background: var(--paper-2); }
+
+/* Brand cards: the head strip and the picture share the product's accent;
+   the facts sit on white beneath. Head text is a dark cut of the same hue. */
+.card--brand { background: #FFFFFF; }
+.card--brand .card__head,
+.card--brand .card__plate { background: var(--brand); border-bottom-color: rgba(0, 0, 0, 0.1); }
+.card--brand .card__head .mono { color: var(--brand-sub); }
+.card--brand .card__head .mono--ink { color: var(--brand-ink); }
+.card--labelcaster { --brand: #2D3C37; --brand-ink: #FFFFFF; --brand-sub: #FFD600; }
+.card--chartvps    { --brand: #F8F4F0; --brand-ink: #04151E; --brand-sub: #C8141A; }
+.card--eagl        { --brand: #262729; --brand-ink: #FFFFFF; --brand-sub: #FEC200; }
+.card--eagl .card__head, .card--eagl .card__plate,
+.card--labelcaster .card__head, .card--labelcaster .card__plate { border-bottom-color: rgba(255, 255, 255, 0.1); }
+.card--tpnl        { --brand: #EEF3DA; --brand-ink: #172006; --brand-sub: #4E6B17; }
+.card__plate svg { width: 100%; height: 100%; transition: transform var(--slow) var(--ease-out); }
+.card:hover .card__plate svg { transform: scale(1.04); }
+
+.card__body { display: flex; flex-direction: column; flex: 1 1 auto; padding: var(--s-5) var(--s-4) var(--s-4); }
+.card__name { display: block; }
+.card__tags { display: block; margin-top: var(--s-2); line-height: 1.7; }
+.card__say { display: block; margin-top: var(--s-3); color: var(--ink-60); font-size: var(--t-fine); line-height: 1.6; }
+.card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-top: auto;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--line);
+}
+.card__say { margin-bottom: var(--s-5); }
+.card__arrow { transition: transform var(--base) var(--ease); }
+.card:hover .card__arrow { transform: translateX(3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover .card__plate svg { transform: none; }
+}
+
+/* --------------------------------------------------------------------------
+   APPROACH + ABOUT
+   -------------------------------------------------------------------------- */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--s-7);
+  align-items: start;
+}
+
+/* --------------------------------------------------------------------------
+   PROCESS SHEET — the hero's six stages, read as a working document. Each
+   column's drawing is simpler than the last; the final column is solid.
+   -------------------------------------------------------------------------- */
+.proc__head {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: var(--s-7);
+  align-items: end;
+  margin-bottom: var(--s-7);
+}
+.proc__head .opener { margin-bottom: 0; }
+.proc__scale {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+  color: var(--ink-45);
+}
+.proc__scale i {
+  flex: 1 1 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ink) 100%);
+  position: relative;
+}
+.proc__scale i::after {
+  content: "";
+  position: absolute;
+  right: 0; top: 50%;
+  width: 6px; height: 6px;
+  border-top: 1px solid var(--ink);
+  border-right: 1px solid var(--ink);
+  transform: translateY(-50%) rotate(45deg);
+}
+.proc__scale span:last-child { color: var(--ink); }
+
+.proc {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  border-top: 1px solid var(--line-2);
+  border-bottom: 1px solid var(--line-2);
+}
+.proc__item {
+  display: flex;
+  flex-direction: column;
+  padding: var(--s-5) var(--s-4) var(--s-4);
+  border-left: 1px solid var(--line);
+  transition: background-color var(--base) var(--ease);
+}
+.proc__item:first-child { border-left: 0; padding-left: 0; }
+.proc__item:hover:not(.proc__item--end) { background: rgba(11, 10, 8, 0.03); }
+.proc__glyph { display: block; width: 100%; max-width: 132px; height: auto; color: var(--ink); margin-bottom: var(--s-6); }
+.proc__no { color: var(--accent-tx); }
+.proc__name { margin-top: var(--s-2); }
+.proc__say { margin-top: var(--s-3); color: var(--ink-60); font-size: var(--t-fine); line-height: 1.6; }
+.proc__out {
+  display: grid;
+  gap: 2px;
+  margin-top: auto;
+  padding-top: var(--s-5);
+}
+.proc__out .mono { color: var(--ink-45); }
+.proc__val { font-size: var(--t-fine); color: var(--ink); }
+
+/* Outcome: the resolved state, a solid block. */
+.proc__item--end { background: var(--deep); color: var(--ivory); border-left: 0; padding-left: var(--s-4); }
+.proc__item--end .proc__glyph { color: var(--ivory); }
+.proc__item--end .proc__no { color: var(--accent-hi); }
+.proc__item--end .proc__say { color: var(--iv-55); }
+.proc__item--end .proc__out .mono { color: var(--iv-40); }
+.proc__item--end .proc__val { color: var(--ivory); }
+
+@media (max-width: 1080px) {
+  .proc { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .proc__item:nth-child(4) { border-left: 0; padding-left: 0; }
+  .proc__item:nth-child(n+4) { border-top: 1px solid var(--line); }
+  .proc__item--end { padding-left: var(--s-4); }
+}
+@media (max-width: 900px) {
+  .proc__head { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
+}
+@media (max-width: 640px) {
+  .proc { grid-template-columns: minmax(0, 1fr); }
+  .proc__item { display: grid; grid-template-columns: 96px minmax(0, 1fr); column-gap: var(--s-4); padding: var(--s-5) 0; border-left: 0; }
+  .proc__item + .proc__item { border-top: 1px solid var(--line); }
+  .proc__glyph { grid-row: 1 / span 4; max-width: 96px; margin: 0; }
+  .proc__out { padding-top: var(--s-3); }
+  .proc__item--end { padding: var(--s-5) var(--s-4); }
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT — a heading beside the bio, then the career as a rising staircase
+   (craft at the bottom, systems at the top), then capabilities as a sheet.
+   -------------------------------------------------------------------------- */
+.about__head {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: var(--s-7);
+  align-items: end;
+}
+.about__head .opener { margin-bottom: 0; }
+
+.traj {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  gap: var(--s-7);
+  align-items: end;
+  margin-top: var(--s-9);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--line-2);
+}
+.traj__years { display: grid; gap: var(--s-3); align-content: end; }
+.traj__big {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(4rem, 2rem + 7vw, 8rem);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+}
+.traj__big::after { content: ""; display: inline-block; width: 0.12em; height: 0.12em; margin-left: 0.04em; border-radius: 50%; background: var(--accent); }
+
+.traj__axis { display: flex; justify-content: space-between; margin-bottom: var(--s-3); color: var(--ink-45); }
+.traj__axis span:last-child { color: var(--ink); }
+.traj__steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: end;
+  height: clamp(15rem, 10rem + 10vw, 21rem);
+}
+/* Each step is taller than the one before: a staircase, rising left to right. */
+.traj__step {
+  --h: calc(36% + var(--i) * 16%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  height: var(--h);
+  padding: var(--s-3) var(--s-3) 0;
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+  background: linear-gradient(180deg, rgba(11, 10, 8, 0.05), rgba(11, 10, 8, 0));
+}
+.traj__step:last-child { border-top: 2px solid var(--accent); background: linear-gradient(180deg, rgba(255, 67, 38, 0.12), rgba(255, 67, 38, 0)); }
+.traj__no { color: var(--accent-tx); }
+.traj__name { font-family: var(--display); font-weight: 300; font-size: var(--t-sub); line-height: 1.15; letter-spacing: -0.015em; }
+.traj__say { color: var(--ink-60); font-size: var(--t-fine); line-height: 1.5; }
+
+.caps { margin-top: var(--s-9); }
+.caps__label { margin-bottom: var(--s-4); color: var(--ink-45); }
+.caps__grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-top: 1px solid var(--line-2);
+  border-bottom: 1px solid var(--line-2);
+}
+.caps__item { padding: var(--s-5) var(--s-4) var(--s-5); border-left: 1px solid var(--line); }
+.caps__item:first-child { border-left: 0; padding-left: 0; }
+.caps__item dt { color: var(--accent-tx); }
+.caps__item dd { margin-top: var(--s-3); font-size: var(--t-fine); line-height: 1.6; color: var(--ink-60); }
+
+@media (max-width: 1080px) {
+  .traj { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); }
+  .caps__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .caps__item:nth-child(4) { border-left: 0; padding-left: 0; }
+  .caps__item:nth-child(n+4) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 900px) {
+  .about__head { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
+}
+/* Narrow: the staircase turns on its side, each bar longer than the last. */
+@media (max-width: 640px) {
+  .traj__steps { grid-template-columns: minmax(0, 1fr); height: auto; gap: var(--s-2); }
+  .traj__step {
+    width: calc(52% + var(--i) * 12%);
+    height: auto;
+    padding: var(--s-3) var(--s-3) var(--s-3);
+    border-top: 0;
+    border-left: 0;
+    border-bottom: 1px solid var(--ink);
+    border-right: 1px solid var(--ink);
+    background: linear-gradient(270deg, rgba(11, 10, 8, 0.05), rgba(11, 10, 8, 0));
+  }
+  .traj__step:last-child { border-top: 0; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); background: linear-gradient(270deg, rgba(255, 67, 38, 0.12), rgba(255, 67, 38, 0)); }
+  .caps__grid { grid-template-columns: minmax(0, 1fr); }
+  .caps__item, .caps__item:nth-child(4) { padding: var(--s-4) 0; border-left: 0; }
+  .caps__item + .caps__item { border-top: 1px solid var(--line); }
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT
+   -------------------------------------------------------------------------- */
+.close { padding-block: clamp(var(--s-7), 5vw, var(--s-9)); }
+.close__mega { margin-top: var(--s-5); max-width: 15ch; color: var(--ivory); }
+.close__mega em { font-style: italic; color: var(--accent-hi); }
+.close__acts { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4); margin-top: var(--s-7); }
+.close__list { margin-top: var(--s-7); max-width: 32rem; }
+
+/* --------------------------------------------------------------------------
+   AI IN DESIGN
+   The same opener as Approach and About, then the stages as a readout-style
+   table, two project panels, and the takeaway on a red rule.
+   -------------------------------------------------------------------------- */
+.ai__head {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: var(--s-7);
+  align-items: end;
+  margin-bottom: var(--s-8);
+}
+.ai__head .opener { margin-bottom: 0; }
+.ai__intro { max-width: 52ch; }
+
+.ai__table { width: 100%; border-collapse: collapse; border-top: 1px solid var(--line-2); text-align: left; }
+.ai__table th, .ai__table td { padding: var(--s-4) var(--s-5) var(--s-4) 0; vertical-align: baseline; }
+.ai__table thead th { padding-block: var(--s-3); font-weight: 400; color: var(--ink-45); }
+.ai__table tr { border-bottom: 1px solid var(--line); }
+.ai__table tbody th { width: 26%; font-family: var(--display); font-weight: 500; font-size: 1.0625rem; color: var(--ink); }
+.ai__table td { font-size: 1rem; line-height: 1.55; color: var(--ink-60); }
+.ai__table td:first-of-type { width: 30%; }
+.ai__table td:last-child { padding-right: 0; color: var(--ink); }
+
+.ai__work { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-5); margin-top: var(--s-8); }
+.ai__card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  transition: border-color var(--base) var(--ease), background-color var(--base) var(--ease);
+}
+.ai__card:hover { border-color: var(--line-2); background: var(--paper-2); }
+.ai__card:focus-visible { outline-offset: 3px; }
+/* The site's hero in the same laptop frame the ChartVPS card uses. */
+.ai__plate { aspect-ratio: 16 / 9; overflow: hidden; border-bottom: 1px solid var(--line); background: var(--paper-2); }
+.ai__plate .laptop { --lw: 74cqw; top: 50%; }
+.ai__card:hover .laptop { transform: translate(-50%, -51.5%); }
+.ai__card-body { display: flex; flex-direction: column; gap: var(--s-3); padding: var(--s-6); }
+.ai__card-top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); }
+.ai__card-name { color: var(--ink); }
+.ai__card-say { font-size: 1rem; line-height: 1.6; color: var(--ink-60); max-width: 44ch; }
+.ai__card-arrow { display: inline-block; transition: transform var(--base) var(--ease); }
+.ai__card:hover .ai__card-arrow, .ai__card:focus-visible .ai__card-arrow { transform: translate(3px, -3px); }
+@media (prefers-reduced-motion: reduce) {
+  .ai__card, .ai__card-arrow, .ai__card .laptop { transition: none; }
+  .ai__card:hover .laptop { transform: translate(-50%, -50%); }
+  .ai__card:hover .ai__card-arrow, .ai__card:focus-visible .ai__card-arrow { transform: none; }
+}
+
+.ai__learned { margin-top: var(--s-8); padding: var(--s-2) 0 var(--s-2) var(--s-6); border-left: 3px solid var(--accent); }
+.ai__learned .mono { display: block; margin-bottom: var(--s-4); color: var(--accent-tx); }
+.ai__learned p:last-child { font-family: var(--display); font-size: var(--t-sub); line-height: 1.5; color: var(--ink); text-wrap: pretty; }
+
+@media (max-width: 900px) {
+  .ai__head { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); margin-bottom: var(--s-7); }
+}
+/* Below tablet the table becomes stacked rows: no sideways scroll. */
+@media (max-width: 760px) {
+  .ai__table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .ai__table, .ai__table tbody, .ai__table tr, .ai__table th, .ai__table td { display: block; width: auto; }
+  .ai__table tbody th, .ai__table td:first-of-type { width: auto; }
+  .ai__table tr { padding-block: var(--s-4); }
+  .ai__table th, .ai__table td, .ai__table td:last-child { padding: 0; }
+  .ai__table tbody th { margin-bottom: var(--s-3); }
+  .ai__table td + td { margin-top: var(--s-3); }
+  .ai__table td::before { content: attr(data-label); display: block; margin-bottom: 2px; font-family: var(--mono); font-size: var(--t-mono); color: var(--ink-45); }
+  .ai__work { grid-template-columns: minmax(0, 1fr); margin-top: var(--s-7); }
+  .ai__card-body { padding: var(--s-5); }
+  .ai__plate { aspect-ratio: 4 / 3; }
+  .ai__plate .laptop { --lw: 84cqw; top: 50%; }
+  .ai__learned { margin-top: var(--s-7); padding-left: var(--s-5); }
+}

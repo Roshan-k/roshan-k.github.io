@@ -1,0 +1,392 @@
+/* ==========================================================================
+   COMPONENTS — navigation, actions, steps, footer
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   NAVIGATION
+   It sits inside the deep panel at the top of the page, the way the product
+   navigation does, rather than floating above the document.
+   -------------------------------------------------------------------------- */
+/* The rule spans the section; the contents stay in the container. */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  border-bottom: 1px solid var(--line-d);
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+  padding-block: var(--s-4);
+}
+.nav__id {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 40px;
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 1.25rem;
+  letter-spacing: -0.005em;
+  color: var(--ivory);
+}
+.nav__id span { color: var(--accent-hi); }
+
+.nav__links { display: flex; align-items: center; gap: clamp(0.875rem, 1.6vw, 1.75rem); font-size: 0.875rem; }
+.nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  transition: color var(--fast) var(--ease);
+}
+.nav__link:hover { color: var(--ivory); }
+.nav__link[aria-current="true"] { color: var(--ivory); }
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0.55rem;
+  width: 100%; height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform var(--base) var(--ease);
+}
+.nav__link:hover::after { transform: scaleX(1); }
+.nav__link[aria-current="true"]::after { transform: scaleX(1); }
+
+.nav__toggle { display: none; align-items: center; gap: var(--s-3); min-height: 40px; font-size: 0.875rem; }
+.nav__bars { display: grid; gap: 4px; width: 18px; }
+.nav__bars span { display: block; height: 1px; background: currentColor; transition: transform var(--base) var(--ease); }
+.nav__toggle[aria-expanded="true"] .nav__bars span:first-child { transform: translateY(2.5px) rotate(45deg); }
+.nav__toggle[aria-expanded="true"] .nav__bars span:last-child  { transform: translateY(-2.5px) rotate(-45deg); }
+
+.nav__panel {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--s-7) var(--pad) var(--s-7);
+  background: var(--deep);
+  color: var(--ivory);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--base) var(--ease), visibility 0s linear var(--base);
+}
+.nav__panel.is-open { visibility: visible; opacity: 1; transition-delay: 0s; }
+.nav__panel-list { border-top: 1px solid var(--line-d); }
+.nav__panel-link {
+  display: grid;
+  grid-template-columns: 2.75rem 1fr;
+  align-items: baseline;
+  gap: var(--s-4);
+  padding-block: var(--s-4);
+  border-bottom: 1px solid var(--line-d);
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(1.75rem, 1.1rem + 2.4vw, 2.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.nav__panel-link .mono { color: var(--accent-hi); }
+.nav__panel .live { color: var(--iv-55); }  /* the menu sits on --deep; mono text defaults to dark ink */
+
+body.is-locked { overflow: hidden; }
+
+/* --------------------------------------------------------------------------
+   ACTIONS
+   -------------------------------------------------------------------------- */
+.act {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 44px;
+  padding: 0 var(--s-4);
+  border: 1px solid transparent;
+  border-radius: var(--r);
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background-color var(--base) var(--ease),
+              border-color var(--base) var(--ease),
+              color var(--base) var(--ease);
+}
+.act__arrow { transition: transform var(--base) var(--ease); }
+
+/* Hovered or focused, a button is selected the way a layer is in a design
+   tool: a 1px outline, four square handles and its size underneath. */
+.act { position: relative; }
+.act::before,
+.act::after { position: absolute; pointer-events: none; opacity: 0; transition: opacity var(--fast) var(--ease); }
+.act::before {
+  content: "";
+  inset: -4px;
+  box-shadow: inset 0 0 0 1px transparent;
+  background:
+    linear-gradient(#FFFFFF, #FFFFFF) left 1px top 1px / 5px 5px no-repeat,
+    linear-gradient(#FFFFFF, #FFFFFF) right 1px top 1px / 5px 5px no-repeat,
+    linear-gradient(#FFFFFF, #FFFFFF) left 1px bottom 1px / 5px 5px no-repeat,
+    linear-gradient(#FFFFFF, #FFFFFF) right 1px bottom 1px / 5px 5px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) left top / 7px 7px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) right top / 7px 7px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) left bottom / 7px 7px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) right bottom / 7px 7px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) left 3px top 3px / calc(100% - 6px) 1px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) left 3px bottom 3px / calc(100% - 6px) 1px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) left 3px top 3px / 1px calc(100% - 6px) no-repeat,
+    linear-gradient(var(--accent), var(--accent)) right 3px top 3px / 1px calc(100% - 6px) no-repeat;
+}
+.act::after {
+  content: attr(data-size);
+  left: 50%; top: calc(100% + 9px);
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: var(--accent);
+  color: var(--deep);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+.act:hover::before, .act:focus-visible::before,
+.act[data-size]:hover::after, .act[data-size]:focus-visible::after { opacity: 1; }
+.act:hover .act__arrow { transform: translateX(3px); }
+
+.act--key { background: var(--accent); color: var(--deep); }
+.act--key:hover { background: var(--accent-2); }
+
+.act--line { border-color: var(--line-2); color: var(--ink); }
+.act--line:hover { border-color: var(--ink); }
+.deep .act--line { border-color: var(--line-d2); color: var(--ivory); }
+.deep .act--line:hover { border-color: var(--ivory); }
+
+.ln { position: relative; display: inline-block; }
+.ln::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%; height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform var(--base) var(--ease);
+}
+.ln:hover::after { transform: scaleX(1); }
+
+.out {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 40px;
+  color: var(--accent-tx);
+}
+.deep .out { color: var(--accent-hi); }
+.out__arrow { transition: transform var(--base) var(--ease); }
+.out:hover .out__arrow { transform: translate(3px, -3px); }
+
+/* The live dot, as the fleet header uses it. */
+.live { display: inline-flex; align-items: center; gap: var(--s-2); }
+.live__dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .live__dot { animation: beat 2.6s var(--ease) infinite; }
+}
+@keyframes beat { 0%, 66%, 100% { opacity: 1; } 84% { opacity: 0.25; } }
+
+/* --------------------------------------------------------------------------
+   CONSOLE
+   The fleet panel, carrying projects instead of servers: a header strip,
+   then one row per entry with its readings underneath.
+   -------------------------------------------------------------------------- */
+.console { border: 1px solid var(--line-d); border-radius: var(--r); background: rgba(244, 239, 227, 0.02); }
+.console__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--line-d);
+}
+
+.console__row { display: block; padding: var(--s-4); border-bottom: 1px solid var(--line-d); transition: background-color var(--base) var(--ease); }
+.console__row:last-child { border-bottom: 0; }
+.console__row:hover { background: rgba(255, 67, 38, 0.06); }
+
+.console__top { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-4); }
+.console__name { font-family: var(--mono); font-size: 0.8125rem; letter-spacing: 0.02em; color: var(--ivory); }
+.console__row:hover .console__name { color: var(--accent-hi); }
+
+.console__read {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-3);
+  margin-top: var(--s-4);
+}
+.console__cell > .mono { display: block; color: var(--iv-40); }
+.console__v { display: block; margin-top: 2px; font-family: var(--mono); font-size: 0.8125rem; color: var(--ivory); }
+
+/* --------------------------------------------------------------------------
+   STEPS — numbered, as the install sequence is
+   -------------------------------------------------------------------------- */
+.steps { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.step {
+  display: grid;
+  grid-template-columns: minmax(0, 3rem) minmax(0, 1fr);
+  column-gap: var(--s-5);
+  align-items: start;
+  padding-block: var(--s-5);
+  border-bottom: 1px solid var(--line);
+}
+.step__no { color: var(--accent-tx); }
+.step__name { margin-bottom: var(--s-2); }
+.step__say { color: var(--ink-60); font-size: var(--t-fine); line-height: 1.62; max-width: 62ch; }
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+.foot { border-top: 1px solid var(--line-d); }
+.foot .container { padding-block: var(--s-5); }
+.foot__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3) var(--s-5);
+}
+.foot__links { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
+.foot__link { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 40px; transition: color var(--fast) var(--ease); }
+.foot__link:hover { color: var(--ivory); }
+.foot__icon { flex: none; width: 16px; height: 16px; }
+
+/* --------------------------------------------------------------------------
+   DEVICE — a phone frame for a real product screenshot. Sized from the plate
+   (--dw, in cqw) so frame, bezel and island scale together. It rises from
+   the bottom of the plate; the lower edge is cropped by the plate.
+   -------------------------------------------------------------------------- */
+.plate--device { position: relative; display: block; container-type: inline-size; }
+.device {
+  --dw: 36cqw;
+  position: absolute;
+  left: 50%; top: 8%;
+  display: block;
+  width: var(--dw);
+  aspect-ratio: 71.6 / 147.6;
+  padding: calc(var(--dw) * 0.034);
+  border-radius: calc(var(--dw) * 0.18);
+  background: #0B0B0C;
+  box-shadow:
+    0 0 0 calc(var(--dw) * 0.011) #8C877F,
+    0 0 0 calc(var(--dw) * 0.017) #3A3834,
+    0 calc(var(--dw) * 0.1) calc(var(--dw) * 0.22) calc(var(--dw) * -0.04) rgba(0, 0, 0, 0.45);
+  transform: translateX(-50%);
+  transition: transform var(--slow) var(--ease-out);
+}
+.device__screen {
+  position: relative;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  border-radius: calc(var(--dw) * 0.148);
+  background: var(--screen, #000); /* each app's own background, so the screen has no seams */
+}
+.device__screen img { display: block; width: 100%; height: auto; }
+.device__island {
+  position: absolute;
+  top: calc(var(--dw) * 0.03); left: 50%;
+  width: calc(var(--dw) * 0.3);
+  height: calc(var(--dw) * 0.088);
+  border-radius: 999px;
+  background: #000;
+  transform: translateX(-50%);
+}
+.device__btn { position: absolute; display: block; width: calc(var(--dw) * 0.016); border-radius: 2px; background: #6E6A64; }
+.device__btn--action { left: calc(var(--dw) * -0.032); top: 17%; height: 4.5%; }
+.device__btn--up     { left: calc(var(--dw) * -0.032); top: 25%; height: 8%; }
+.device__btn--down   { left: calc(var(--dw) * -0.032); top: 35%; height: 8%; }
+.device__btn--power  { right: calc(var(--dw) * -0.032); top: 28%; height: 12%; }
+
+/* Per project: a ground in the product's own accent colour, and the app's
+   background behind the screenshot. */
+.plate--device.plate--labelcaster { --screen: #2D3C37; background: #2D3C37; }
+/* LabelCaster's screenshot has a light top row and a dark bottom row. */
+.plate--labelcaster .device__screen img { clip-path: inset(0.4% 0 0.4% 0); }
+.plate--device.plate--eagl { --screen: #262729; background: #262729; }
+/* Sit higher, so the sign-in line at the foot of the screen stays in view. */
+.plate--device.plate--eagl .device { top: 4%; }
+.plate--device.plate--tpnl { --screen: #FDFFFC; background: #EEF3DA; }
+
+.card:hover .device { transform: translate(-50%, -1.5%); }
+.rec__plate .device { --dw: 22cqw; }
+@media (max-width: 900px) { .rec__plate .device { --dw: 30cqw; } }
+@media (max-width: 560px) { .rec__plate .device { --dw: 40cqw; } .card__plate .device { --dw: 42cqw; top: 7%; } }
+@media (prefers-reduced-motion: reduce) { .card:hover .device { transform: translateX(-50%); } }
+
+/* --------------------------------------------------------------------------
+   LAPTOP — the same idea for a website: lid, bezel, camera and a base in
+   the lid's black, sized from the plate (--lw, in cqw). The screen takes the
+   screenshot's own proportions, so nothing is cropped and nothing is filled.
+   -------------------------------------------------------------------------- */
+.laptop {
+  --lw: 76cqw;
+  position: absolute;
+  left: 50%; top: 52%;
+  display: block;
+  width: calc(var(--lw) * 1.12);
+  transform: translate(-50%, -50%);
+  transition: transform var(--slow) var(--ease-out);
+}
+.laptop__lid {
+  position: relative;
+  display: block;
+  width: var(--lw);
+  margin-inline: auto;
+  padding: calc(var(--lw) * 0.02) calc(var(--lw) * 0.016) calc(var(--lw) * 0.024);
+  border-radius: calc(var(--lw) * 0.026) calc(var(--lw) * 0.026) calc(var(--lw) * 0.006) calc(var(--lw) * 0.006);
+  background: #0B0B0C;
+  box-shadow: 0 0 0 calc(var(--lw) * 0.003) #A19D96;
+}
+.laptop__cam {
+  position: absolute;
+  top: calc(var(--lw) * 0.008); left: 50%;
+  display: block;
+  width: calc(var(--lw) * 0.006); height: calc(var(--lw) * 0.006);
+  border-radius: 50%;
+  background: #26262A;
+  transform: translateX(-50%);
+}
+.laptop__screen { display: block; overflow: hidden; background: var(--screen, #FFF); }
+.laptop__screen img { display: block; width: 100%; height: auto; }
+.laptop__base {
+  position: relative;
+  display: block;
+  height: calc(var(--lw) * 0.03);
+  border-radius: calc(var(--lw) * 0.002) calc(var(--lw) * 0.002) calc(var(--lw) * 0.06) calc(var(--lw) * 0.06) / calc(var(--lw) * 0.002) calc(var(--lw) * 0.002) calc(var(--lw) * 0.022) calc(var(--lw) * 0.022);
+  background: linear-gradient(180deg, #3A3A3E 0%, #1A1A1C 40%, #0B0B0C 100%);
+  box-shadow: 0 calc(var(--lw) * 0.03) calc(var(--lw) * 0.05) calc(var(--lw) * -0.02) rgba(0, 0, 0, 0.4);
+}
+/* the notch that lets the lid open */
+.laptop__base::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 50%;
+  width: 15%; height: 38%;
+  border-radius: 0 0 calc(var(--lw) * 0.008) calc(var(--lw) * 0.008);
+  background: #050506;
+  transform: translateX(-50%);
+}
+
+.card:hover .laptop { transform: translate(-50%, -51.5%); }
+.rec__plate .laptop { --lw: 58cqw; }
+@media (max-width: 900px) { .rec__plate .laptop { --lw: 76cqw; } }
+@media (max-width: 560px) { .rec__plate .laptop, .card__plate .laptop { --lw: 84cqw; } }
+@media (prefers-reduced-motion: reduce) { .card:hover .laptop { transform: translate(-50%, -50%); } }
+
+.plate--device.plate--chartvps { --screen: #F2EEEB; background: #F8F4F0; }

@@ -1,0 +1,453 @@
+/* ==========================================================================
+   tpnl.css — the TPNL case study only.
+   Site identity (fonts, palette, nav, footer, spacing) comes from the shared
+   sheets; everything here is designed for this project: a light page built
+   around phone screens, with the app's pale lime as its feature ground.
+   ========================================================================== */
+
+:root {
+  --tp-lime:  #EEF3DA;   /* the app's pale lime, as used on its cards */
+  --tp-lime-2: #E3EBC6;
+  --tp-olive: #4A6417;   /* labels and marks on paper and lime, 6:1+ */
+  --tp-frame: #17150F;   /* the phone bezel */
+  --tp-lime-hi: #C9DB8E; /* the lime, for marks on the deep ground */
+  --tp-body: 1rem;       /* reading text on this page: a step up from the site's 15px */
+  --tp-lede: clamp(1.0625rem, 0.97rem + 0.4vw, 1.25rem);
+}
+
+.tp { background: var(--paper); font-size: var(--tp-body); }
+.tp-sec { padding-block: var(--band); }
+.tp-sec--lime { background: var(--tp-lime); }
+.tp-sec--grey { background: var(--paper-2); }
+.tp-sec--after { padding-top: 0; }
+.tp-sec--after > .container::before { content: ""; display: block; margin-bottom: var(--band); border-top: 1px solid var(--line-2); }
+.tp-sec--tight { padding-top: 0; }
+
+.tp-label { display: flex; align-items: center; gap: var(--s-3); margin-bottom: var(--s-5); color: var(--tp-olive); }
+.tp-label::before { content: ""; width: 18px; height: 2px; background: currentColor; }
+.tp-h2 { max-width: 20ch; }
+.tp-lede { max-width: 58ch; margin-top: var(--s-5); color: var(--ink-60); font-size: var(--tp-lede); line-height: 1.55; }
+.tp-head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s-7); align-items: end; margin-bottom: var(--s-8); }
+.tp-head .tp-lede { margin-top: 0; }
+.tp-head--stack { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
+.tp-head--stack .tp-h2 { max-width: 26ch; }
+.tp-head--stack .tp-lede { max-width: 64ch; }
+
+/* --------------------------------------------------------------------------
+   PHONE — one frame for every screen, live Android and v2 alike.
+   Screens are shown as supplied; the frame only clips them to the phone.
+   -------------------------------------------------------------------------- */
+.tp-phone { --pw: 240px; display: block; width: var(--pw); max-width: 100%; margin: 0; }
+.tp-phone__body { display: block; padding: 3.4%; border-radius: 15% / 7%; background: var(--tp-frame); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 40px 60px -42px rgba(18, 14, 11, 0.55); }
+.tp-phone__screen { display: block; aspect-ratio: 720 / 1529; overflow: hidden; border-radius: 12% / 5.6%; background: #FFFFFF; }
+.tp-phone__screen img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.tp-phone--bottom .tp-phone__screen img { object-position: bottom; }
+.tp-phone__screen:empty { background: #FBFBF7; }
+.tp-phone figcaption { margin-top: var(--s-4); font-size: var(--tp-body); line-height: 1.55; color: var(--ink-60); }
+.tp-phone figcaption b { display: block; margin-bottom: 2px; font-weight: 500; color: var(--ink); }
+
+/* --------------------------------------------------------------------------
+   HERO
+   -------------------------------------------------------------------------- */
+.tp-hero { padding-block: var(--s-7) 0; }
+.tp-hero__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s-8); align-items: stretch; }
+.tp-hero__top { display: flex; flex-wrap: wrap; align-items: center; gap: 4px var(--s-5); color: var(--ink-60); }
+.tp-hero__top a { color: var(--ink); }
+.tp-hero__top a:hover { color: var(--tp-olive); }
+.tp-hero h1 { margin-top: var(--s-5); }
+.tp-hero__name { margin-top: var(--s-2); font-family: var(--display); font-size: var(--t-sub); color: var(--ink-60); }
+.tp-hero__say { margin-top: var(--s-5); max-width: 22ch; font-family: var(--display); font-size: var(--t-mid); line-height: 1.08; letter-spacing: -0.02em; }
+.tp-hero__lede { margin-top: var(--s-4); max-width: 50ch; color: var(--ink-60); font-size: var(--tp-lede); line-height: 1.55; }
+.tp-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4) var(--s-6); margin-top: var(--s-7); padding-top: var(--s-5); border-top: 1px solid var(--line-2); }
+.tp-facts div { display: grid; gap: 4px; align-content: start; }
+.tp-facts dt { color: var(--ink-45); }
+.tp-facts dd { font-size: var(--tp-body); line-height: 1.5; }
+.tp-facts .is-wide { grid-column: 1 / -1; }
+.tp-stores { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-5); }
+.tp-store { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px; padding: 0 var(--s-4); border: 1px solid var(--ink); font-family: var(--mono); font-size: var(--t-mono); color: var(--ink); }
+.tp-store:hover { background: var(--ink); color: var(--paper); }
+.tp-hero__art { display: grid; place-items: center; padding: var(--s-7) var(--s-6); background: var(--tp-lime); }
+.tp-hero__art .tp-phone { --pw: 280px; }
+
+/* the stages, as the stage picker lists them */
+.tp-stages { margin-top: var(--s-7); padding-block: var(--s-5) var(--s-7); border-top: 1px solid var(--line-2); }
+.tp-stages__cap { color: var(--ink-45); }
+.tp-stages ol { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: var(--s-4); }
+.tp-stages li { position: relative; padding: var(--s-4) var(--s-4) 0 0; border-top: 3px solid var(--tp-lime-2); font-family: var(--display); font-size: var(--t-sub); line-height: 1.25; }
+.tp-stages li.is-on { border-top-color: var(--tp-olive); }
+.tp-stages li span { display: block; margin-top: 4px; font-family: var(--mono); font-size: var(--t-mono); color: var(--tp-olive); }
+
+/* --------------------------------------------------------------------------
+   SECTION INDEX — the same bar as the ChartVPS case study (case.css .cs-nav),
+   repeated here because this page doesn't load case.css.
+   -------------------------------------------------------------------------- */
+.tp-nav { position: sticky; top: var(--nav-h, 4.6rem); z-index: 50; background: var(--paper); border-bottom: 1px solid var(--line); }
+.tp-nav .cs-nav__list { display: flex; gap: var(--s-1); overflow-x: auto; scrollbar-width: none; }
+.tp-nav .cs-nav__list::-webkit-scrollbar { display: none; }
+.tp-nav a { flex: none; display: inline-flex; align-items: center; gap: 0.45em; min-height: 52px; padding: 0 var(--s-3); font-family: var(--mono); font-size: var(--t-mono); color: var(--ink-45); white-space: nowrap; transition: color var(--fast) var(--ease), background-color var(--fast) var(--ease); }
+.tp-nav a:hover { color: var(--ink); }
+.tp-nav a[aria-current="true"] { color: var(--ink); background: var(--paper-2); box-shadow: inset 0 -2px 0 var(--tp-olive); }
+
+/* --------------------------------------------------------------------------
+   01 — the worry
+   -------------------------------------------------------------------------- */
+.tp-worry { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: var(--s-8); align-items: start; margin-top: var(--s-7); }
+.tp-worry > div > .tp-lede:first-child { margin-top: 0; }
+.tp-worry__say { font-family: var(--display); font-size: var(--t-big); line-height: 1.02; letter-spacing: -0.03em; }
+.tp-worry__say em { font-style: italic; color: var(--tp-olive); }
+.tp-source { padding: var(--s-5); border-left: 3px solid var(--tp-olive); background: var(--tp-lime); }
+.tp-source .mono { color: var(--tp-olive); }
+.tp-source p { margin-top: var(--s-2); font-size: var(--tp-body); line-height: 1.6; }
+
+/* --------------------------------------------------------------------------
+   02 — the app before: three screens, each with what its structure asked
+   -------------------------------------------------------------------------- */
+.tp-before { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-6); }
+.tp-before__item { display: grid; gap: var(--s-5); align-content: start; }
+.tp-before__item .tp-phone { --pw: 250px; }
+.tp-notes { display: grid; gap: var(--s-3); counter-reset: n; }
+.tp-notes li { counter-increment: n; display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: var(--s-3); font-size: var(--tp-body); line-height: 1.55; }
+.tp-notes li::before { content: counter(n); display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: var(--t-mono); }
+.tp-notes q { quotes: "\201C" "\201D"; font-weight: 500; }
+
+/* --------------------------------------------------------------------------
+   03 — what had to come across
+   -------------------------------------------------------------------------- */
+.tp-inventory { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--line-2); }
+.tp-inventory li { padding: var(--s-4) var(--s-4) var(--s-4) 0; font-family: var(--display); font-size: var(--t-sub); line-height: 1.2; }
+.tp-inventory li + li { padding-left: var(--s-4); border-left: 1px solid var(--line); }
+.tp-inventory li.is-key { color: var(--tp-olive); }
+.tp-inventory small { display: block; margin-top: var(--s-2); font-family: var(--mono); font-size: var(--t-mono); letter-spacing: var(--ls-mono); color: var(--ink-45); }
+.tp-hard { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-6) var(--s-8); margin-top: var(--s-8); }
+.tp-hard li { display: grid; gap: var(--s-2); padding-top: var(--s-4); border-top: 1px solid var(--line-2); }
+.tp-hard b { font-family: var(--display); font-weight: 400; font-size: var(--t-sub); line-height: 1.3; }
+.tp-hard span { color: var(--ink-60); font-size: var(--tp-body); line-height: 1.6; }
+
+/* --------------------------------------------------------------------------
+   04 — the shift: from content type to stage
+   -------------------------------------------------------------------------- */
+.tp-shift { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: var(--s-6); align-items: stretch; }
+.tp-org { padding: var(--s-6) var(--s-6) var(--s-7); border: 1px solid var(--line-2); }
+.tp-org--now { background: var(--paper); border-color: var(--tp-olive); box-shadow: inset 0 4px 0 var(--tp-olive); }
+.tp-org .mono { color: var(--ink-45); }
+.tp-org--now .mono { color: var(--tp-olive); }
+.tp-org .tp-org__root { margin-top: var(--s-4); padding: var(--s-4) var(--s-5); background: var(--ink); color: var(--paper); font-family: var(--display); font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem); line-height: 1.15; letter-spacing: -0.01em; }
+.tp-org--now .tp-org__root, .tp-org.tp-org--now .tp-org__root { background: var(--tp-olive); }
+.tp-org ul { display: grid; margin-left: var(--s-5); }
+.tp-org li { position: relative; padding: var(--s-3) 0 var(--s-3) var(--s-7); font-family: var(--display); font-size: var(--t-sub); line-height: 1.25; color: var(--ink-60); }
+.tp-org li::before { content: ""; position: absolute; left: 0; top: 50%; width: var(--s-6); height: 1px; background: var(--line-2); }
+.tp-org li::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--line-2); }
+.tp-org li:last-child::after { bottom: 50%; }
+.tp-org--now li { color: var(--ink); }
+.tp-org--now li::before, .tp-org--now li::after { background: var(--tp-olive); }
+.tp-org p:not(.tp-org__root) { margin-top: var(--s-4); color: var(--ink-60); font-size: var(--tp-body); line-height: 1.55; }
+.tp-shift__arrow { align-self: center; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--tp-olive); color: #FFFFFF; font-family: var(--mono); font-size: 1.5rem; }
+
+.tp-thread { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-6); margin-top: var(--s-9); }
+.tp-thread .tp-phone { --pw: 100%; }
+.tp-thread__cap { margin-bottom: var(--s-6); display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-3); }
+.tp-thread__cap b { padding: 2px 10px; background: var(--tp-olive); color: #FFFFFF; font-family: var(--mono); font-weight: 400; font-size: var(--t-mono); }
+
+.tp-navmap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-8); align-items: start; margin-top: var(--s-9); padding-top: var(--s-7); border-top: 1px solid var(--line-2); }
+.tp-navmap h3 { font-family: var(--display); font-weight: 400; font-size: var(--t-mid); line-height: 1.08; letter-spacing: -0.02em; }
+.tp-navmap p { margin-top: var(--s-4); color: var(--ink-60); max-width: 44ch; }
+.tp-levels { display: grid; gap: var(--s-4); }
+.tp-level { display: grid; gap: var(--s-3); }
+.tp-level .mono { color: var(--ink-45); }
+.tp-level ol { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border: 1px solid var(--ink); }
+.tp-level li { padding: var(--s-3) var(--s-2); text-align: center; font-size: var(--tp-body); border-left: 1px solid var(--line-2); background: #FFFFFF; }
+.tp-level li:first-child { border-left: 0; }
+.tp-level li.is-on { background: var(--tp-olive); color: #FFFFFF; }
+.tp-level--sub { padding-left: 20%; }
+.tp-level--sub ol { border-color: var(--tp-olive); }
+
+/* --------------------------------------------------------------------------
+   05 — decisions: a screen and its argument, alternating sides
+   -------------------------------------------------------------------------- */
+.tp-decs { display: grid; gap: var(--s-10); }
+.tp-dec { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--s-8); align-items: center; }
+.tp-dec__screens { display: flex; justify-content: center; gap: var(--s-5); padding: var(--s-7) var(--s-5); background: var(--tp-lime); }
+.tp-dec__screens .tp-phone { --pw: 250px; }
+.tp-dec:nth-child(even) .tp-dec__screens { order: 2; }
+.tp-dec__no { color: var(--tp-olive); }
+.tp-dec h3 { margin-top: var(--s-3); font-family: var(--display); font-weight: 400; font-size: var(--t-mid); line-height: 1.08; letter-spacing: -0.02em; }
+.tp-dec dl { display: grid; gap: var(--s-4); margin-top: var(--s-6); }
+.tp-dec dl > div { display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: var(--s-4); align-items: baseline; padding-top: var(--s-4); border-top: 1px solid var(--line); }
+.tp-dec dt { color: var(--ink-45); }
+.tp-dec dd { font-size: var(--tp-body); line-height: 1.6; }
+.tp-marks { display: grid; gap: var(--s-2); margin-top: var(--s-5); padding-top: var(--s-4); border-top: 1px solid var(--line); }
+.tp-marks .mono { color: var(--tp-olive); }
+.tp-marks ul { display: grid; gap: 6px; }
+.tp-marks li { font-size: 0.9375rem; line-height: 1.5; color: var(--ink-60); }
+.tp-marks li::before { content: "\2014"; margin-right: 8px; color: var(--ink-45); }
+
+/* --------------------------------------------------------------------------
+   06 — a day with the app: filmstrips
+   -------------------------------------------------------------------------- */
+.tp-film { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 3 * var(--s-6)) / 4); gap: var(--s-6); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: var(--s-5); scrollbar-width: thin; }
+.tp-film > * { scroll-snap-align: start; }
+.tp-film .tp-phone { --pw: 100%; }
+.tp-film:focus-visible { outline: 2px solid var(--tp-olive); outline-offset: 4px; }
+.tp-film__title { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-4); margin: var(--s-9) 0 var(--s-5); padding-top: var(--s-4); border-top: 1px solid var(--line-2); }
+.tp-filmset:first-of-type .tp-film__title { margin-top: 0; }
+.tp-film__title h3 { font-family: var(--display); font-weight: 400; font-size: var(--t-sub); }
+.tp-film__title .mono { color: var(--ink-45); }
+
+/* --------------------------------------------------------------------------
+   07 — launched
+   -------------------------------------------------------------------------- */
+.tp-launch { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s-8); align-items: start; }
+.tp-quote { margin: 0; }
+.tp-quote blockquote { max-width: 20ch; font-family: var(--display); font-size: var(--t-mid); line-height: 1.12; letter-spacing: -0.02em; }
+.tp-quote blockquote::before { content: "\201C"; }
+.tp-quote blockquote::after { content: "\201D"; }
+.tp-quote figcaption { margin-top: var(--s-5); color: var(--ink-60); }
+.tp-quote figcaption .mono { color: var(--tp-olive); }
+.tp-ship { display: grid; gap: 0; border-top: 1px solid var(--ink); }
+.tp-ship div { display: grid; gap: 4px; padding-block: var(--s-4); border-bottom: 1px solid var(--line-2); }
+.tp-ship dt { color: var(--ink-45); }
+.tp-ship dd { font-family: var(--display); font-size: var(--t-sub); line-height: 1.3; }
+.tp-ship dd small { display: block; margin-top: 2px; font-family: var(--sans); font-size: var(--tp-body); color: var(--ink-60); }
+.tp-backref { margin-top: var(--s-7); max-width: 60ch; color: var(--ink-60); }
+
+/* --------------------------------------------------------------------------
+   08 — what I learned
+   -------------------------------------------------------------------------- */
+.tp-learned { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-8); }
+.tp-learned li { display: grid; gap: var(--s-3); padding-top: var(--s-4); border-top: 2px solid var(--tp-olive); }
+.tp-learned .mono { color: var(--tp-olive); }
+.tp-learned p { font-family: var(--display); font-size: var(--t-sub); line-height: 1.4; }
+
+/* the site's next-project line, which case.css usually supplies */
+.cs-next__say { margin-top: var(--s-3); color: var(--ink-60); max-width: 40ch; }
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .tp-hero__grid, .tp-worry, .tp-launch, .tp-navmap, .tp-head { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); }
+  .tp-before { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-7) var(--s-5); }
+  .tp-before__item .tp-phone, .tp-thread .tp-phone { --pw: 100%; }
+  .tp-dec { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); }
+  .tp-dec:nth-child(even) .tp-dec__screens { order: 0; }
+  .tp-inventory { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tp-inventory li:nth-child(4) { padding-left: 0; border-left: 0; }
+  .tp-inventory li:nth-child(n+4) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 760px) {
+  .tp-before, .tp-thread { grid-template-columns: minmax(0, 1fr); gap: var(--s-8); }
+  .tp-before__item .tp-phone, .tp-thread .tp-phone { --pw: min(280px, 78vw); justify-self: center; }
+  .tp-before__item .tp-notes { max-width: 34rem; }
+  .tp-shift { grid-template-columns: minmax(0, 1fr); }
+  .tp-shift__arrow { justify-self: center; transform: rotate(90deg); }
+  .tp-hard, .tp-learned { grid-template-columns: minmax(0, 1fr); }
+  .tp-stages ol { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--s-4); }
+  .tp-facts { grid-template-columns: minmax(0, 1fr); }
+  .tp-dec__screens { flex-direction: column; align-items: center; padding: var(--s-6) var(--s-4); gap: var(--s-6); }
+  .tp-dec__screens .tp-phone { --pw: min(260px, 72vw); }
+  .tp-dec dl > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .tp-level--sub { padding-left: 0; }
+  .tp-hero__art .tp-phone { --pw: min(280px, 70vw); }
+  .tp-film { grid-auto-columns: 72%; }
+  .tp-film .tp-phone { --pw: 100%; }
+}
+
+/* numbered markers on the v2 screens, matching the numbered notes below them;
+   they sit over the screenshot and never alter it */
+.tp-phone__screen { position: relative; }
+.tp-pin { position: absolute; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: var(--paper); font-size: var(--t-mono); box-shadow: 0 0 0 2px #FFFFFF; transform: translate(-50%, -50%); }
+.tp-level--menu { padding-left: 20%; }
+.tp-level--menu ol { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); border-color: var(--line-2); }
+.tp-level--menu li:nth-child(3n+1) { border-left: 0; }
+.tp-level--menu li:nth-child(n+4) { border-top: 1px solid var(--line-2); }
+@media (max-width: 760px) { .tp-level--menu { padding-left: 0; } .tp-level--menu ol { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tp-level--menu li:nth-child(3n+1) { border-left: 1px solid var(--line-2); } .tp-level--menu li:nth-child(2n+1) { border-left: 0; } .tp-level--menu li:nth-child(n+3) { border-top: 1px solid var(--line-2); } }
+@media (max-width: 760px) {
+  .tp-level li { padding: var(--s-3) 2px; font-size: var(--t-fine); }
+}
+
+/* --------------------------------------------------------------------------
+   06 — options set aside: rejected screens side by side, the shipped one last
+   -------------------------------------------------------------------------- */
+.tp-optgroup + .tp-optgroup { margin-top: var(--s-9); padding-top: var(--s-7); border-top: 1px solid var(--line-2); }
+/* the heading row shares the phones' four columns, so the note starts on the third phone's edge */
+.tp-optgroup__head { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-6); align-items: baseline; margin-bottom: var(--s-6); }
+.tp-optgroup__head h3 { font-family: var(--display); font-weight: 400; font-size: var(--t-mid); line-height: 1.08; letter-spacing: -0.02em; }
+.tp-optgroup__head p { color: var(--ink-60); max-width: 48ch; }
+.tp-opts { display: grid; gap: var(--s-6); align-items: start; }
+.tp-opts--four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.tp-opts--three { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.tp-opt { display: grid; gap: var(--s-4); align-content: start; margin: 0; }
+.tp-opt .tp-phone { --pw: 100%; }
+.tp-opt figcaption { display: grid; gap: 4px; font-size: var(--tp-body); line-height: 1.55; color: var(--ink-60); }
+.tp-opt figcaption b { font-weight: 500; color: var(--ink); }
+.tp-opt__tag { justify-self: start; padding: 2px 8px; border: 1px solid var(--line-2); color: var(--ink-60); }
+.tp-opt--shipped .tp-opt__tag { border-color: var(--tp-olive); background: var(--tp-olive); color: #FFFFFF; }
+.tp-opt--refined .tp-opt__tag { border-color: var(--tp-olive); color: var(--tp-olive); }
+.tp-opt--rejected .tp-phone__body { opacity: 0.92; }
+@media (max-width: 1080px) {
+  .tp-optgroup__head { grid-template-columns: minmax(0, 1fr); gap: var(--s-3); }
+  .tp-opts--four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tp-opts--three { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: none; }
+}
+@media (max-width: 760px) {
+  .tp-opts--four, .tp-opts--three { grid-template-columns: minmax(0, 1fr); gap: var(--s-8); }
+  .tp-opt .tp-phone { --pw: min(260px, 72vw); justify-self: center; }
+}
+
+/* 01 — my role and how I approached it, kept inside the problem section */
+.tp-approach { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-8); margin-top: var(--s-9); padding-top: var(--s-7); border-top: 1px solid var(--line-2); }
+.tp-approach__say { font-family: var(--display); font-size: var(--t-sub); line-height: 1.4; }
+.tp-approach__p { max-width: 62ch; color: var(--ink-60); line-height: 1.65; }
+.tp-approach__p + .tp-approach__p { margin-top: var(--s-4); }
+.tp-questions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3) var(--s-5); margin-top: var(--s-5); counter-reset: q; }
+.tp-questions li { counter-increment: q; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: var(--s-2); padding-top: var(--s-3); border-top: 1px solid var(--line); font-size: var(--tp-body); line-height: 1.5; }
+.tp-questions li::before { content: counter(q, decimal-leading-zero); font-family: var(--mono); font-size: var(--t-mono); color: var(--tp-olive); }
+@media (max-width: 1080px) { .tp-approach { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); } }
+@media (max-width: 760px) { .tp-questions { grid-template-columns: minmax(0, 1fr); } }
+
+/* 03 — the hardest part: one statement, set apart */
+.tp-hardest { padding: var(--s-2) 0 var(--s-2) var(--s-6); border-left: 3px solid var(--tp-olive); }
+.tp-hardest__say { margin-top: var(--s-4); font-family: var(--display); font-size: var(--t-mid); line-height: 1.12; letter-spacing: -0.02em; }
+.tp-hardest__p { margin-top: var(--s-5); max-width: 70ch; color: var(--ink-60); line-height: 1.65; }
+/* trade-offs read as the judgment call: always the last row */
+.tp-dec dl > div:last-child { border-top: 1px dashed var(--tp-olive); }
+.tp-dec dl > div:last-child dt { color: var(--tp-olive); }
+.tp-dec dl > div:last-child dd { font-weight: 500; }
+@media (max-width: 760px) { .tp-hardest { padding-left: var(--s-5); } }
+
+/* 07 — the strips slide on their own. Without the script they stay plain
+   sideways-scrolling strips, so the controls only appear once it has run. */
+.tp-film__ctrl { display: flex; align-items: center; gap: 6px; }
+.tp-film__ctrl .mono { margin-right: var(--s-3); }
+.tp-film__ctrl button { display: none; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line-2); background: var(--paper); color: var(--ink); font-family: var(--mono); font-size: 0.875rem; cursor: pointer; }
+.tp-film__ctrl button:hover { border-color: var(--ink); }
+.tp-film__ctrl button:focus-visible { outline: 2px solid var(--tp-olive); outline-offset: 2px; }
+.tp-filmset.is-ready .tp-film__ctrl button { display: grid; }
+.tp-filmset.is-ready .tp-film { scrollbar-width: none; padding-bottom: 0; }
+.tp-filmset.is-ready .tp-film::-webkit-scrollbar { display: none; }
+@media (max-width: 1080px) { .tp-film { grid-auto-columns: calc((100% - 2 * var(--s-6)) / 3); } }
+@media (max-width: 760px) { .tp-film { grid-auto-columns: 72%; } }
+
+/* HERO on the deep ground, like the ChartVPS hero. Colours only: the layout
+   above is unchanged, and the lime panel behind the phone stays. */
+.tp-hero { --tp-lime-hi: #C9DB8E; background: var(--deep); color: var(--ivory); }
+.tp-hero :focus-visible { outline-color: var(--tp-lime-hi); }
+.tp-hero__top { color: var(--iv-55); }
+.tp-hero__top a { color: var(--ivory); }
+.tp-hero__top a:hover { color: var(--tp-lime-hi); }
+.tp-hero__name, .tp-hero__lede { color: var(--iv-55); }
+.tp-hero .tp-facts { border-top-color: var(--line-d2); }
+.tp-hero .tp-facts dt { color: var(--iv-40); }
+.tp-hero .tp-store { border-color: var(--line-d2); color: var(--ivory); }
+.tp-hero .tp-store:hover { border-color: var(--ivory); background: var(--ivory); color: var(--deep); }
+.tp-hero .tp-stages { border-top-color: var(--line-d2); }
+.tp-hero .tp-stages__cap { color: var(--iv-40); }
+.tp-hero .tp-stages li { border-top-color: var(--line-d2); }
+.tp-hero .tp-stages li.is-on { border-top-color: var(--tp-lime-hi); }
+.tp-hero .tp-stages li span { color: var(--tp-lime-hi); }
+
+/* 04 — the reasoning behind the shift: six cells, why on the first row and
+   what on the second, ending on the trade-off. Hairlines come from the gap. */
+.tp-reason { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin-top: var(--s-8); border: 1px solid var(--line-2); background: var(--line-2); }
+.tp-reason > div { display: grid; gap: var(--s-3); align-content: start; padding: var(--s-5) var(--s-5) var(--s-6); background: var(--paper); }
+.tp-reason dt { color: var(--ink-60); }
+.tp-reason dd { font-family: var(--display); font-size: var(--t-sub); line-height: 1.35; }
+.tp-reason .is-trade { background: var(--tp-lime-2); }
+.tp-reason .is-trade dt { color: var(--tp-olive); }
+@media (max-width: 1080px) { .tp-reason { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .tp-reason { grid-template-columns: minmax(0, 1fr); } }
+
+/* the hardest part, on the page's one deep band after the hero */
+.tp-band { padding-block: var(--band); background: var(--deep); color: var(--ivory); }
+.tp-band .tp-hardest { border-left-color: var(--tp-lime-hi); }
+.tp-band .tp-label { color: var(--tp-lime-hi); }
+.tp-band .tp-hardest__p { color: var(--iv-55); }
+
+/* 05 — the hypothesis leads each decision (always the second row) */
+.tp-dec dl > div:nth-child(2) dd { font-family: var(--display); font-size: 1.1875rem; line-height: 1.4; }
+
+/* 02 — the old-app screens stay at 250px, where their exports are sharp,
+   and spread so the row ends on the container edge */
+@media (min-width: 1081px) {
+  .tp-before { grid-template-columns: repeat(4, 250px); justify-content: space-between; column-gap: 0; }
+}
+@media (max-width: 1080px) {
+  .tp-thread { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  /* the phone comes straight after the opening lines, before the facts */
+  .tp-hero__grid { gap: 0; }
+  .tp-hero__grid > div:first-child { display: contents; }
+  .tp-hero__art { order: 1; margin-top: var(--s-6); padding: var(--s-6) var(--s-5); }
+  .tp-hero .tp-facts, .tp-hero .tp-stores { order: 2; }
+}
+/* On a phone, rows of screens become swipe rows: one screen and a peek of
+   the next, in place of a full screen each. */
+@media (max-width: 760px) {
+  .tp-before, .tp-thread, .tp-opts--four, .tp-opts--three {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 74%; gap: var(--s-5);
+    overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    margin-right: calc(-1 * var(--pad)); padding-right: var(--pad);
+  }
+  .tp-before::-webkit-scrollbar, .tp-thread::-webkit-scrollbar, .tp-opts::-webkit-scrollbar, .tp-dec__screens::-webkit-scrollbar { display: none; }
+  .tp-before > *, .tp-thread > *, .tp-opts > * { scroll-snap-align: start; }
+  .tp-before__item .tp-phone, .tp-thread .tp-phone, .tp-opt .tp-phone { --pw: 100%; justify-self: stretch; }
+  .tp-dec__screens { flex-direction: row; justify-content: flex-start; align-items: flex-start; gap: var(--s-5); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .tp-dec__screens .tp-phone { flex: none; --pw: 72%; scroll-snap-align: center; }
+  .tp-dec__screens .tp-phone:only-child { margin-inline: auto; }
+}
+
+/* hero facts: the role runs the full width, the three short facts share a row */
+.tp-hero .tp-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: var(--s-6); padding-top: var(--s-4); }
+.tp-hero .tp-facts dd { font-size: 0.9375rem; }
+.tp-hero .tp-facts > div { order: 3; }
+.tp-hero .tp-facts > div:first-child { grid-column: 1 / -1; order: 1; }
+.tp-hero .tp-facts > .is-wide { order: 2; }
+@media (max-width: 760px) { .tp-hero .tp-facts { grid-template-columns: minmax(0, 1fr); } }
+
+.tp-quote blockquote { margin: 0; }
+
+/* eleven sections: tighter tabs, and a fade where the bar scrolls */
+.tp-nav .cs-nav__list { gap: 2px; }
+.tp-nav a { flex: 1 0 auto; justify-content: center; padding: 0 8px; }
+@media (max-width: 1340px) { .tp-nav .cs-nav__list { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent); padding-right: 40px; } }
+/* 07 design system */
+.tp-ds-h { margin-top: var(--s-9); font-family: var(--display); font-weight: 400; font-size: var(--t-mid); line-height: 1.08; letter-spacing: -0.02em; }
+.tp-head + .tp-ds-h { margin-top: 0; }
+.tp-ds-note { margin-top: var(--s-3); max-width: 70ch; color: var(--ink-60); line-height: 1.55; }
+.tp-ds-hex { display: block; font-size: var(--t-mono); color: var(--ink-60); }
+.tp-ds-use { display: block; margin-top: 2px; color: var(--ink-60); font-size: 0.9375rem; line-height: 1.45; }
+.tp-ds-colors { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-6) var(--s-5); margin-top: var(--s-6); }
+.tp-ds-colors li { display: grid; gap: 4px; align-content: start; }
+.tp-ds-colors b { font-weight: 500; }
+.tp-ds-chip { display: block; height: 88px; margin-bottom: var(--s-2); border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(16, 14, 10, 0.14); }
+.tp-ds-sub { margin-top: var(--s-7); font-size: var(--t-mono); color: var(--tp-olive); }
+.tp-ds-scale { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); margin-top: var(--s-3); border-radius: 8px; overflow: hidden; }
+.tp-ds-scale li { display: flex; align-items: flex-end; min-height: 56px; padding: 6px; }
+.tp-ds-scale span { font-size: var(--t-mono); color: #1A1F0E; }
+.tp-ds-scale li:nth-child(n+9) span { color: #FFFFFF; }
+.tp-ds-type { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 var(--s-7); margin-top: var(--s-5); border-top: 1px solid var(--ink); }
+.tp-ds-type li { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: var(--s-4); align-items: center; padding-block: var(--s-4); border-bottom: 1px solid var(--line-2); }
+.tp-ds-ag { font-family: var(--sans); line-height: 1; color: var(--ink); }
+.tp-ds-type b { font-weight: 500; }
+.tp-ds-space { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-6); margin-top: var(--s-5); }
+.tp-ds-space div { padding-top: var(--s-3); border-top: 1px solid var(--ink); }
+.tp-ds-space dt { font-size: var(--t-mono); color: var(--tp-olive); }
+.tp-ds-space dd { margin-top: var(--s-2); }
+.tp-ds-board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-7); margin-top: var(--s-6); padding: var(--s-7); background: #FFFFFF; border: 1px solid var(--line-2); border-radius: 12px; }
+.tp-ds-group { min-width: 0; }
+.tp-ds-group--wide { grid-column: 1 / -1; }
+.tp-ds-group--two { grid-column: span 2; }
+.tp-ds-cmp__note { max-width: 36ch; color: var(--ink-60); font-size: 0.9375rem; line-height: 1.45; }
+.tp-ds-note + .tp-ds-note { margin-top: var(--s-2); }
+.tp-ds-group__name { padding-bottom: var(--s-3); border-bottom: 1px solid var(--line-2); font-size: var(--t-mono); color: var(--tp-olive); }
+.tp-ds-group__items { display: flex; flex-wrap: wrap; gap: var(--s-6) var(--s-8); align-items: flex-start; margin-top: var(--s-5); }
+.tp-ds-cmp { display: grid; gap: var(--s-3); margin: 0; width: max(var(--w), 8rem); max-width: 100%; min-width: 0; }
+.tp-ds-cmp figcaption { font-size: 0.9375rem; font-weight: 500; }
+.tp-ds-cmp img { display: block; width: var(--w); max-width: 100%; height: auto; }
+@media (max-width: 1080px) { .tp-ds-colors { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tp-ds-type { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) {
+  .tp-ds-type, .tp-ds-space { grid-template-columns: minmax(0, 1fr); }
+  .tp-ds-scale { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .tp-ds-scale li:nth-child(n+9) span { color: #FFFFFF; }
+  .tp-ds-board { grid-template-columns: minmax(0, 1fr); padding: var(--s-5); }
+  .tp-ds-group--two { grid-column: auto; }
+}

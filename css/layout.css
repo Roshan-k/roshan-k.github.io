@@ -1,0 +1,163 @@
+/* ==========================================================================
+   LAYOUT — the page, the shell, the panel, and the type roles
+   ========================================================================== */
+
+/* A section spans the viewport and owns its background. Nothing is nested
+   inside an outer wrapper, so a ground can always reach both edges. */
+.section { position: relative; width: 100%; }
+
+/* The only thing that is contained is the content. */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+/* The dark ground. Applies to a section or to a panel inside one. */
+.deep { background: var(--deep); color: var(--ivory); }
+
+/* A panel is the recurring container: 2px radius, a hairline, and either
+   paper or deep as its ground. Everything on the site sits in one. */
+.panel {
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--paper);
+}
+.deep {
+  background: var(--deep);
+  border-color: var(--line-d);
+  color: var(--ivory);
+}
+.panel--raise { background: var(--paper-2); }
+.panel--flat  { background: transparent; }
+
+.band { position: relative; padding-block: var(--band); }
+/* A ruler along the top edge of each band, as a design file's canvas has:
+   a fine tick every 8px, a longer one every 80px. */
+.band::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 9px;
+  background:
+    repeating-linear-gradient(90deg, var(--line-2) 0 1px, transparent 1px 80px) 0 0 / 100% 9px no-repeat,
+    repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 8px) 0 0 / 100% 4px no-repeat;
+  pointer-events: none;
+}
+/* Alternate ground so full-width sections read as bands, edge to edge. */
+.band--raise { background: var(--paper-2); }
+
+/* --------------------------------------------------------------------------
+   TYPE
+   -------------------------------------------------------------------------- */
+.mono {
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: var(--ls-mono);
+  color: var(--ink-45);
+}
+.mono--ink { color: var(--ink); }
+.mono--key { color: var(--accent-tx); }
+.deep .mono { color: var(--iv-40); }
+.deep .mono--ink { color: var(--ivory); }
+.deep .mono--key { color: var(--accent-hi); }
+
+.mega {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: var(--t-mega);
+  line-height: var(--lh-mega);
+  letter-spacing: var(--ls-mega);
+  text-wrap: balance;
+}
+.big {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: var(--t-big);
+  line-height: 0.96;
+  letter-spacing: var(--ls-mega);
+  text-wrap: balance;
+}
+.mid {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: var(--t-mid);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+.sub {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: var(--t-sub);
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+}
+
+.lede {
+  font-size: var(--t-lede);
+  line-height: var(--lh-lede);
+  color: var(--ink-60);
+  max-width: 48ch;
+  text-wrap: pretty;
+}
+.deep .lede { color: var(--iv-55); }
+
+.prose { line-height: 1.68; max-width: 56ch; color: var(--ink-60); text-wrap: pretty; }
+.prose p + p { margin-top: var(--s-4); }
+
+.fine { font-size: var(--t-fine); line-height: 1.55; color: var(--ink-45); }
+.deep .fine { color: var(--iv-40); }
+
+/* --------------------------------------------------------------------------
+   THE SECTION OPENER
+   Mono label, then the statement, then the lede. Used on every band.
+   -------------------------------------------------------------------------- */
+.opener { margin-bottom: var(--s-7); }
+.opener__label { display: block; margin-bottom: var(--s-5); }
+/* Section labels read as frame names, the way the hero's canvas names its frame. */
+.opener__label::before { content: "#"; margin-right: 0.5em; color: var(--accent-tx); }
+.deep .opener__label::before { color: var(--accent-hi); }
+.opener__lede  { margin-top: var(--s-5); }
+/* Heading on the left, its paragraph on the right, meeting at the baseline. */
+.opener--split {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: var(--s-7);
+  align-items: end;
+}
+.opener--split .opener__lede { margin-top: 0; }
+@media (max-width: 900px) {
+  .opener--split { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
+}
+
+/* --------------------------------------------------------------------------
+   THE READOUT
+   A labelled row of values, as the fleet panel uses. Reused for project
+   metadata and specifications alike.
+   -------------------------------------------------------------------------- */
+.readout { border-top: 1px solid var(--line); }
+.deep .readout { border-top-color: var(--line-d); }
+.readout__row {
+  display: grid;
+  grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr);
+  column-gap: var(--s-5);
+  align-items: baseline;
+  padding-block: var(--s-3);
+  border-bottom: 1px solid var(--line);
+}
+.deep .readout__row { border-bottom-color: var(--line-d); }
+.readout__val { font-size: var(--t-fine); color: var(--ink); }
+.deep .readout__val { color: var(--ivory); }
+/* A link on its own row gets a real target; links inside prose do not. */
+.readout__val .ln { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* Reveal: one short move, once. */
+.js .rv { opacity: 0; transform: translate3d(0, 12px, 0);
+  transition: opacity var(--slow) var(--ease-out), transform var(--slow) var(--ease-out); }
+.js .rv.on { opacity: 1; transform: none; }
+.js .rv[data-d="1"] { transition-delay: 70ms; }
+.js .rv[data-d="2"] { transition-delay: 140ms; }
+@media (prefers-reduced-motion: reduce) { .js .rv { opacity: 1; transform: none; } }

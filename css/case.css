@@ -256,7 +256,7 @@
 
 .cs-bar { display: block; height: 4px; background: rgba(244, 239, 227, 0.12); }
 .cs-bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width 1.1s var(--ease-out) 0.2s; }
-.rv.on .cs-bar i, html:not(.js) .cs-bar i { width: calc(var(--v) * 1%); }
+.rv.on .cs-bar i, html:not(.rv-ready) .cs-bar i { width: calc(var(--v) * 1%); }
 @media (prefers-reduced-motion: reduce) { .cs-bar i { transition: none; width: calc(var(--v) * 1%); } }
 .cs-bar__row { display: flex; justify-content: space-between; gap: var(--s-3); }
 

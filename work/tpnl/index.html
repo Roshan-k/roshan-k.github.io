@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Geist:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="../../css/tokens.css?v=tp-01">
 <link rel="stylesheet" href="../../css/base.css?v=tp-01">
-<link rel="stylesheet" href="../../css/layout.css?v=tp-01">
+<link rel="stylesheet" href="../../css/layout.css?v=tp-02">
 <link rel="stylesheet" href="../../css/components.css?v=tp-04">
 <link rel="stylesheet" href="../../css/record.css?v=tp-01">
 <link rel="stylesheet" href="../../css/responsive.css?v=tp-01">
@@ -82,7 +82,7 @@
         <dl class="tp-facts rv" data-d="1">
           <div><dt class="mono">Role</dt><dd>Product designer: I turned the founder&rsquo;s product vision into the full app design, covering how each idea looks and works, and every screen of the rebuild.</dd></div>
           <div><dt class="mono">Timeline</dt><dd>3&ndash;4 months</dd></div>
-          <div class="is-wide"><dt class="mono">Team</dt><dd>The founder, a registered dietitian, as product owner &middot; a product manager, who did design review</dd></div>
+          <div class="is-wide"><dt class="mono">Team</dt><dd>The founder, a registered dietitian, as product owner &middot; a product manager, who did design review &middot; the development team, who built it</dd></div>
           <div><dt class="mono">Platforms</dt><dd>iOS &middot; Android</dd></div>
           <div><dt class="mono">Shipped</dt><dd>Version 3.0, App Store, 28 August 2025</dd></div>
         </dl>
@@ -120,7 +120,7 @@
       <a href="#day">08 A day</a>
       <a href="#launched">09 Launched</a>
       <a href="#learned">10 Learned</a>
-      <a href="#validate">11 Validate next</a>
+      <a href="#validate">11 Measure success</a>
     </div>
   </div>
 </nav>
@@ -148,7 +148,7 @@
       </div>
       <div class="rv" data-d="1">
         <p class="tp-label mono">How I approached it</p>
-        <p class="tp-approach__p">This wasn&rsquo;t a conventional research-led project. I didn&rsquo;t have access to a recruited research panel or a formal usability study. I worked from customer input shared by the founder, the founder&rsquo;s domain expertise, a review of comparable health and nutrition products, and the existing product. I treated these as directional evidence, and framed the decisions as hypotheses rather than validated findings.</p>
+        <p class="tp-approach__p">Evidence base: customer input from the founder&rsquo;s practice, the founder&rsquo;s expertise as a registered dietitian, a review of comparable health and nutrition products, and the existing app. I framed each decision as a hypothesis to test.</p>
         <p class="tp-approach__p">For each decision I asked four questions:</p>
         <ol class="tp-questions">
           <li>What is the person trying to do?</li>
@@ -263,8 +263,8 @@
       <div><dt class="mono">Problem</dt><dd>The old app asked people to pick a content type before searching, and gave everyone the same weekly note.</dd></div>
       <div><dt class="mono">Context</dt><dd>Pregnancy keeps changing. What&rsquo;s safe and useful to eat depends on the stage and the week.</dd></div>
       <div><dt class="mono">Hypothesis</dt><dd>An app that starts from where someone is will serve them better than a library they have to search.</dd></div>
-      <div><dt class="mono">Direction</dt><dd>Set by the founder: the stage and week drive the whole app.</dd></div>
-      <div><dt class="mono">My design</dt><dd>The stage is chosen at onboarding, easy to change later, and carried through every screen.</dd></div>
+      <div><dt class="mono">Brief</dt><dd>Set by the founder: the stage and week drive the whole app.</dd></div>
+      <div><dt class="mono">My design</dt><dd>I made the stage a choice at onboarding, easy to change later, and carried it through every screen.</dd></div>
       <div class="is-trade"><dt class="mono">Trade-off</dt><dd>People have to enter their pregnancy details before they can browse recipes.</dd></div>
     </dl>
 
@@ -295,7 +295,7 @@
     <p class="tp-label mono">05 &middot; Decisions</p>
     <header class="tp-head tp-head--stack">
       <h2 class="big tp-h2 rv" id="decisions-h">Four decisions, each on a screen.</h2>
-      <p class="tp-lede rv" data-d="1">The founder, a registered dietitian, set what the app should do and its main flows. The decisions below are about how I made those ideas work on screen. Each one answers the same question from a different side: what should I eat, right now, at this stage?</p>
+      <p class="tp-lede rv" data-d="1">The founder set what the app should do. I decided how each idea works on screen, and what each screen asks of the person. Each one answers the same question from a different side: what should I eat, right now, at this stage?</p>
     </header>
     <div class="tp-decs">
 
@@ -309,8 +309,8 @@
           <dl>
             <div><dt class="mono">Problem</dt><dd>A recipe tells you how to cook something, not whether it&rsquo;s right for you now.</dd></div>
             <div><dt class="mono">Hypothesis</dt><dd>A recipe can support several decisions at once: is this for me, is it right for my stage, how much do I need, what do I buy, and do I want it in my plan.</dd></div>
-            <div><dt class="mono">Direction</dt><dd>Set by the founder: recipes should show why they suit your stage.</dd></div>
-            <div><dt class="mono">My design</dt><dd>The why-it&rsquo;s-good box sits above the ingredients, and the two actions stay fixed at the bottom.</dd></div>
+            <div><dt class="mono">Brief</dt><dd>Set by the founder: recipes should show why they suit your stage.</dd></div>
+            <div><dt class="mono">My design</dt><dd>I placed the why-it&rsquo;s-good box above the ingredients and fixed the two actions at the bottom.</dd></div>
             <div><dt class="mono">Why</dt><dd>The question people bring is about their stage. The recipe answers it before the ingredient list starts.</dd></div>
             <div><dt class="mono">Trade-off</dt><dd>Some visual simplicity. The screen is more information-dense than a recipe on its own, but people can decide and take the next step without leaving it.</dd></div>
           </dl>
@@ -329,8 +329,8 @@
           <dl>
             <div><dt class="mono">Problem</dt><dd>Searching by dish name only helps if you already know what to cook.</dd></div>
             <div><dt class="mono">Hypothesis</dt><dd>People may not know the name of the recipe they want, but they know their stage, the meal they need and how they feel.</dd></div>
-            <div><dt class="mono">Direction</dt><dd>Set by the founder: search by stage, meal and symptom.</dd></div>
-            <div><dt class="mono">My design</dt><dd>Filters grouped by stage, meal and symptom as chips; the chosen filters stay visible on the results.</dd></div>
+            <div><dt class="mono">Brief</dt><dd>Set by the founder: search by stage, meal and symptom.</dd></div>
+            <div><dt class="mono">My design</dt><dd>I grouped the filters by stage, meal and symptom as chips, and kept the chosen filters visible on the results.</dd></div>
             <div><dt class="mono">Why</dt><dd>It lets search start from what someone already knows about their situation.</dd></div>
             <div><dt class="mono">Trade-off</dt><dd>Some of the simplicity of a plain search box. More controls, in exchange for starting from how someone feels instead of needing to know the recipe.</dd></div>
           </dl>
@@ -349,8 +349,8 @@
           <dl>
             <div><dt class="mono">Problem</dt><dd>Every dietary restriction makes nutrient needs harder to meet.</dd></div>
             <div><dt class="mono">Hypothesis</dt><dd>Explaining the consequence will inform people better than a hard limit, without taking the choice away.</dd></div>
-            <div><dt class="mono">Direction</dt><dd>Set by the founder: warn when too many dietary restrictions are chosen.</dd></div>
-            <div><dt class="mono">My design</dt><dd>A warning instead of a block, shown when a fourth preference is tapped.</dd></div>
+            <div><dt class="mono">Brief</dt><dd>Set by the founder: warn when too many dietary restrictions are chosen.</dd></div>
+            <div><dt class="mono">My design</dt><dd>I designed a warning instead of a block, shown when a fourth preference is tapped.</dd></div>
             <div><dt class="mono">Why</dt><dd>Preferences are personal. The app&rsquo;s job is to flag the nutrition risk, not to overrule the choice.</dd></div>
             <div><dt class="mono">Trade-off</dt><dd>Some control over how predictable the personalised results are. A warning instead of a block keeps the final choice with the user, without extra friction.</dd></div>
           </dl>
@@ -369,8 +369,8 @@
           <dl>
             <div><dt class="mono">Problem</dt><dd>Health questions invite personal answers that an app shouldn&rsquo;t give.</dd></div>
             <div><dt class="mono">Hypothesis</dt><dd>Community discussion and professional help serve different needs, and people should always know which one they are in.</dd></div>
-            <div><dt class="mono">Direction</dt><dd>Set by the founder: be clear about what the app can&rsquo;t advise on.</dd></div>
-            <div><dt class="mono">My design</dt><dd>The HIPAA note sits at the top of the forum, above every topic.</dd></div>
+            <div><dt class="mono">Brief</dt><dd>Set by the founder: be clear about what the app can&rsquo;t advise on.</dd></div>
+            <div><dt class="mono">My design</dt><dd>I placed the HIPAA note at the top of the forum, above every topic.</dd></div>
             <div><dt class="mono">Why</dt><dd>Expert content stays trustworthy when its limits are stated.</dd></div>
             <div><dt class="mono">Trade-off</dt><dd>Some simplicity: the note adds text to the forum, and Nutrition services is an extra step away. In return, community discussion and professional nutrition help stay clearly apart.</dd></div>
           </dl>
@@ -414,7 +414,7 @@
     </div>
 
     <div class="tp-optgroup">
-      <div class="tp-optgroup__head rv"><h3>Moving between weeks</h3><p>Both designs were dropped when the feature itself was dropped. Taking work away was the right call once it no longer served the product.</p></div>
+      <div class="tp-optgroup__head rv"><h3>Moving between weeks</h3><p>Both designs were dropped once the plan followed the person&rsquo;s current week: with the stage and week set at onboarding, jumping between weeks added a choice nobody needed.</p></div>
       <div class="tp-opts tp-opts--three rv">
         <figure class="tp-opt tp-opt--rejected">
           <span class="tp-phone"><span class="tp-phone__body"><span class="tp-phone__screen"><img src="../../assets/work/tpnl-option-week-chips.webp" width="720" height="1766" loading="lazy" alt="Rejected weekly meal plan design: a scrolling row of week chips, Week 8 to Week 12, with Week 10 selected."></span></span></span>
@@ -447,7 +447,7 @@
 
     <h3 class="tp-ds-h rv">Text styles</h3>
     <p class="tp-ds-note rv">All set in Gilroy. Size and line height in px. The &ldquo;Ag&rdquo; samples are set in this site&rsquo;s font, at each style&rsquo;s weight and at twice its size.</p>
-    <ul class="tp-ds-type rv"><li><span class="tp-ds-ag" style="font-weight: 700; font-size: 52px;">Ag</span><span><b>Heading 1</b><span class="tp-ds-hex mono">Gilroy &middot; 700 &middot; 26/Auto</span><span class="tp-ds-use">Main heading</span></span></li><li><span class="tp-ds-ag" style="font-weight: 600; font-size: 40px;">Ag</span><span><b>Heading 2</b><span class="tp-ds-hex mono">Gilroy &middot; SemiBold &middot; 20/Auto</span><span class="tp-ds-use">Sub heading</span></span></li><li><span class="tp-ds-ag" style="font-weight: 600; font-size: 36px;">Ag</span><span><b>Heading 3</b><span class="tp-ds-hex mono">Gilroy &middot; 600 &middot; 18/Auto</span><span class="tp-ds-use">Sub heading</span></span></li><li><span class="tp-ds-ag" style="font-weight: 700; font-size: 32px;">Ag</span><span><b>Heading 4</b><span class="tp-ds-hex mono">Gilroy &middot; 700 &middot; 16/Auto</span><span class="tp-ds-use">Sub heading</span></span></li><li><span class="tp-ds-ag" style="font-weight: 600; font-size: 28px;">Ag</span><span><b>Heading 5</b><span class="tp-ds-hex mono">Gilroy &middot; SemiBold &middot; 14/Auto</span></span></li><li><span class="tp-ds-ag" style="font-weight: 400; font-size: 24px;">Ag</span><span><b>Heading 6</b><span class="tp-ds-hex mono">Gilroy &middot; 400 &middot; 12/Auto</span><span class="tp-ds-use">Small heading</span></span></li><li><span class="tp-ds-ag" style="font-weight: 400; font-size: 32px;">Ag</span><span><b>Body large</b><span class="tp-ds-hex mono">Gilroy &middot; 400 &middot; 16/22</span><span class="tp-ds-use">Large paragraph</span></span></li><li><span class="tp-ds-ag" style="font-weight: 400; font-size: 28px;">Ag</span><span><b>Body small</b><span class="tp-ds-hex mono">Gilroy &middot; 400 &middot; 14/22</span><span class="tp-ds-use">Regular paragraph</span></span></li><li><span class="tp-ds-ag" style="font-weight: 600; font-size: 20px; text-transform: uppercase;">Ag</span><span><b>Tag</b><span class="tp-ds-hex mono">Gilroy &middot; SemiBold &middot; 10/Auto</span><span class="tp-ds-use">Uppercase</span></span></li></ul>
+    <ul class="tp-ds-type rv"><li><span class="tp-ds-ag" style="font-weight: 700; font-size: 52px;">Ag</span><span><b>Heading 1</b><span class="tp-ds-hex mono">Gilroy &middot; 700 &middot; 26/Auto</span><span class="tp-ds-use">Main heading</span></span></li><li><span class="tp-ds-ag" style="font-weight: 600; font-size: 40px;">Ag</span><span><b>Heading 2</b><span class="tp-ds-hex mono">Gilroy &middot; 600 &middot; 20/Auto</span><span class="tp-ds-use">Sub heading</span></span></li><li><span class="tp-ds-ag" style="font-weight: 600; font-size: 36px;">Ag</span><span><b>Heading 3</b><span class="tp-ds-hex mono">Gilroy &middot; 600 &middot; 18/Auto</span><span class="tp-ds-use">Sub heading</span></span></li><li><span class="tp-ds-ag" style="font-weight: 700; font-size: 32px;">Ag</span><span><b>Heading 4</b><span class="tp-ds-hex mono">Gilroy &middot; 700 &middot; 16/Auto</span><span class="tp-ds-use">Sub heading</span></span></li><li><span class="tp-ds-ag" style="font-weight: 600; font-size: 28px;">Ag</span><span><b>Heading 5</b><span class="tp-ds-hex mono">Gilroy &middot; 600 &middot; 14/Auto</span></span></li><li><span class="tp-ds-ag" style="font-weight: 400; font-size: 24px;">Ag</span><span><b>Heading 6</b><span class="tp-ds-hex mono">Gilroy &middot; 400 &middot; 12/Auto</span><span class="tp-ds-use">Small heading</span></span></li><li><span class="tp-ds-ag" style="font-weight: 400; font-size: 32px;">Ag</span><span><b>Body large</b><span class="tp-ds-hex mono">Gilroy &middot; 400 &middot; 16/22</span><span class="tp-ds-use">Large paragraph</span></span></li><li><span class="tp-ds-ag" style="font-weight: 400; font-size: 28px;">Ag</span><span><b>Body small</b><span class="tp-ds-hex mono">Gilroy &middot; 400 &middot; 14/22</span><span class="tp-ds-use">Regular paragraph</span></span></li><li><span class="tp-ds-ag" style="font-weight: 600; font-size: 20px; text-transform: uppercase;">Ag</span><span><b>Tag</b><span class="tp-ds-hex mono">Gilroy &middot; 600 &middot; 10/Auto</span><span class="tp-ds-use">Uppercase</span></span></li></ul>
 
     <h3 class="tp-ds-h rv">Components</h3>
     <p class="tp-ds-note rv">Exported from Figma, grouped by purpose.</p>
@@ -503,7 +503,7 @@
     <p class="tp-label mono">09 &middot; Launched</p>
     <header class="tp-head">
       <h2 class="big tp-h2 rv" id="launched-h">Live on iOS and Android.</h2>
-      <p class="tp-lede rv" data-d="1">The redesign shipped as version 3.0. I didn&rsquo;t have access to post-launch analytics, so this section shows what&rsquo;s public: the release, the rating and early reviews.</p>
+      <p class="tp-lede rv" data-d="1">The redesign shipped as version 3.0. Here is what shipped, and how it was received.</p>
     </header>
     <div class="tp-launch">
       <figure class="tp-quote rv">
@@ -512,11 +512,11 @@
       </figure>
       <dl class="tp-ship rv" data-d="1">
         <div><dt class="mono">Released</dt><dd>Version 3.0 &middot; 28 August 2025<small>On the App Store. The release notes describe the redesign and list its new features.</small></dd></div>
-        <div><dt class="mono">Rating</dt><dd>4.6 from 215 ratings<small>US App Store, as of September 2026.</small></dd></div>
+        <div><dt class="mono">Rating</dt><dd>4.6 overall from 215 ratings<small>US App Store, September 2026.</small></dd></div>
         <div><dt class="mono">Available on</dt><dd>iOS and Android</dd></div>
       </dl>
     </div>
-    <p class="tp-backref rv">One review, a week after launch, describes the problem this project set out to address: the ingredient-by-ingredient Googling in <a class="ln" href="#worry">01</a>.</p>
+    <p class="tp-backref rv">One early review, a week after launch, names the problem the redesign set out to solve: the ingredient-by-ingredient Googling in <a class="ln" href="#worry">01</a>.</p>
   </div>
 </section>
 
@@ -535,10 +535,9 @@
 <!-- 11 VALIDATE NEXT -->
 <section class="tp-sec tp-sec--after" id="validate" aria-labelledby="validate-h">
   <div class="container">
-    <p class="tp-label mono">11 &middot; What I&rsquo;d validate next</p>
+    <p class="tp-label mono">11 &middot; How I&rsquo;d measure success</p>
     <header class="tp-head tp-head--stack">
-      <h2 class="big tp-h2 rv" id="validate-h">Hypotheses, not results.</h2>
-      <p class="tp-lede rv" data-d="1">None of these was tested after launch. If I continued the project, these are the questions I would investigate first.</p>
+      <h2 class="big tp-h2 rv" id="validate-h">Four measures for stage-first navigation.</h2>
     </header>
     <ul class="tp-hard">
       <li class="rv"><b>01 &middot; Stage-first navigation</b><span>Does starting from the pregnancy stage help people find relevant content with less effort than browsing the library?</span></li>
@@ -571,6 +570,6 @@
   </div>
 </footer>
 
-<script src="../../js/main.js?v=tp-03" defer></script>
+<script src="../../js/main.js?v=tp-04" defer></script>
 </body>
 </html>

@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Geist:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="../../css/tokens.css?v=lc-01">
 <link rel="stylesheet" href="../../css/base.css?v=lc-01">
-<link rel="stylesheet" href="../../css/layout.css?v=lc-01">
+<link rel="stylesheet" href="../../css/layout.css?v=lc-02">
 <link rel="stylesheet" href="../../css/components.css?v=lc-04">
 <link rel="stylesheet" href="../../css/record.css?v=lc-01">
 <link rel="stylesheet" href="../../css/responsive.css?v=lc-01">
@@ -79,7 +79,7 @@
         <p class="lc-hero__say rv" data-d="1">From upload <em>to payout.</em></p>
         <p class="lc-hero__lede rv" data-d="1">A music distribution app where labels submit releases, agree on contracts and splits with their artists, and get paid. LabelCaster delivers each release to streaming services such as Spotify and Apple Music. This redesign and rebrand of the existing app makes the business side of music understandable to people who aren&rsquo;t experts.</p>
         <dl class="lc-facts rv" data-d="1">
-          <div class="is-wide"><dt>Role</dt><dd>Product designer &middot; wireframes, visual design and user research</dd></div>
+          <div class="is-wide"><dt>Role</dt><dd>Product designer &middot; wireframes, visual design and survey research</dd></div>
           <div><dt>Platforms</dt><dd>iOS &middot; Android</dd></div>
           <div><dt>Status</dt><dd>Shipped as a private app</dd></div>
         </dl>
@@ -103,7 +103,7 @@
       <a href="#solution">06 Solution</a>
       <a href="#system">07 System</a>
       <a href="#outcome">08 Outcome</a>
-      <a href="#open">09 Open</a>
+      <a href="#open">09 Measures</a>
     </div>
   </div>
 </nav>
@@ -149,15 +149,15 @@
   <div class="container">
     <p class="lc-tag">02 &middot; Evidence</p>
     <h2 class="big lc-h2 rv" id="evidence-h">98 people rated the app. Nobody gave it a five.</h2>
-    <p class="lc-lede rv" data-d="1">I co-wrote a 7-question Google Forms survey with the product manager and the product owner. It was the only research on this project: there were no interviews, no analytics and no competitor review.</p>
+    <p class="lc-lede rv" data-d="1">I co-wrote a 7-question Google Forms survey with the product manager and the product owner. I used it to find what to fix first.</p>
     <div class="lc-survey">
       <figure class="lc-chart rv">
         <figcaption>How would you rate the user-friendliness of LabelCaster interface?<small>98 responses &middot; 1 is the lowest, 5 the highest</small></figcaption>
         <ol class="lc-bars" aria-label="Number of responses for each rating">
           <li style="--v: 10;"><b>10 (10%)</b><i></i></li>
-          <li style="--v: 25;"><b>25 (25%)</b><i></i></li>
+          <li style="--v: 25;"><b>25 (26%)</b><i></i></li>
           <li style="--v: 44;"><b>44 (45%)</b><i></i></li>
-          <li style="--v: 19;"><b>19 (20%)</b><i></i></li>
+          <li style="--v: 19;"><b>19 (19%)</b><i></i></li>
           <li style="--v: 0;" class="is-none"><b>0 (0%)</b><i></i></li>
         </ol>
         <div class="lc-scale" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
@@ -229,7 +229,7 @@
         <dl>
           <div><dt>Problem</dt><dd>Contracts were signed in an external tool and stored outside the app.</dd></div>
           <div><dt>Decision</dt><dd>Read, sign or reject, draw the signature and see it confirmed, without leaving the app.</dd></div>
-          <div class="is-why"><dt>Why</dt><dd>Users asked for it. Before, people had to leave the app and download the contract separately.</dd></div>
+          <div class="is-why"><dt>Why</dt><dd>Signing came up as a frustration in the survey (Pattern 01): people had to leave the app, wait for another tool to load, then download the contract separately.</dd></div>
           <div class="is-trade"><dt>Trade-off</dt><dd>The team had to build and maintain an in-app signing flow on a signing API, instead of using a ready-made signing tool.</dd></div>
         </dl>
         <a class="lc-themes__link" href="#ch-sign">See it in the screens</a>
@@ -241,7 +241,7 @@
           <div><dt>Problem</dt><dd>Uploading 4&ndash;7 tracks meant filling in every detail for each song.</dd></div>
           <div><dt>Decision</dt><dd>Choose the release type first, upload several sound files at once, and name each one in place.</dd></div>
           <div class="is-why"><dt>Why</dt><dd>Naming tracks during upload removes a separate upload step for each file.</dd></div>
-          <div class="is-trade"><dt>Trade-off</dt><dd>Filling in details for each track was still there: users had to enter the data one track at a time.</dd></div>
+          <div class="is-trade"><dt>Trade-off</dt><dd>Bulk upload and naming every title at once shipped; the rest of each track&rsquo;s details, such as its ISRC code, are still entered one track at a time.</dd></div>
         </dl>
         <a class="lc-themes__link" href="#ch-add">See it in the screens</a>
       </article>
@@ -251,6 +251,7 @@
         <dl>
           <div><dt>Problem</dt><dd>Splits and cost-sharing are financial agreements that are easy to get wrong.</dd></div>
           <div><dt>Decision</dt><dd>The label sets the splits, and chooses whether to add recuperation, while creating a contract or uploading a track or album. Each share sits beside its name.</dd></div>
+          <div class="is-why"><dt>Why</dt><dd>Splits are agreed between two parties, so each share sits beside its name where both sides can check it before approval.</dd></div>
           <div class="is-trade"><dt>Trade-off</dt><dd>The shares still need approval: they are sent to the artist, and fixed only after a reply.</dd></div>
         </dl>
         <a class="lc-themes__link" href="#ch-contracts">See it in the screens</a>
@@ -261,7 +262,7 @@
         <dl>
           <div><dt>Problem</dt><dd>ISRC codes, publishing royalties, IPI numbers, splits and recuperation. Most artists and many small labels aren&rsquo;t experts in them.</dd></div>
           <div><dt>Decision</dt><dd>Explain each concept on the screen where it&rsquo;s needed, in plain language.</dd></div>
-          <div class="is-why"><dt>Why</dt><dd>The payout fee, for example, is shown before requesting, so people know the cost before they commit.</dd></div>
+          <div class="is-why"><dt>Why</dt><dd>Most artists and many small labels aren&rsquo;t experts in these terms, so each one is explained where it&rsquo;s used, like the payout fee shown before requesting.</dd></div>
           <div class="is-trade"><dt>Trade-off</dt><dd>More text on screens that were already dense.</dd></div>
         </dl>
       </article>
@@ -388,7 +389,7 @@
   <div class="container">
     <p class="lc-tag">07 &middot; Design system</p>
     <h2 class="big lc-h2 rv" id="system-h">A new look, and one system for both sides.</h2>
-    <p class="lc-lede rv" data-d="1">The redesign introduced a reusable visual and interaction system across the product. The rebrand covered new colors, typography and icons.</p>
+    <p class="lc-lede rv" data-d="1">The redesign introduced a reusable visual and interaction system across the product. I designed the rebrand&rsquo;s typography and icons and built the design system in Figma: color styles, text styles and components. The product owner chose the colors.</p>
     <div class="lc-sys">
       <div class="lc-board lc-look-board rv">
         <div class="lc-row" style="--n: 2;">
@@ -430,7 +431,6 @@
         <li>The payout fee before the request</li>
         <li>A new look and a design system, with a light theme for artists</li>
       </ul></div>
-      <div><p class="lc-outc__h">Not yet known</p><p>No usage results are shown here. Whether these changes worked is what the questions below would test.</p></div>
     </div>
   </div>
 </section>
@@ -438,8 +438,8 @@
 <!-- 09 WHAT REMAINS OPEN -->
 <section class="lc-sec" id="open" aria-labelledby="open-h">
   <div class="container">
-    <p class="lc-tag">09 &middot; What remains open</p>
-    <h2 class="big lc-h2 rv" id="open-h">Four questions still open.</h2>
+    <p class="lc-tag">09 &middot; Measures</p>
+    <h2 class="big lc-h2 rv" id="open-h">How I&rsquo;d measure it.</h2>
     <ol class="lc-open">
       <li class="rv">Does naming tracks during bulk upload make adding an album faster?</li>
       <li class="rv" data-d="1">Do people understand recuperation before they add expenses?</li>
@@ -451,11 +451,11 @@
 
 <section class="lc-sec lc-sec--label" id="back" aria-labelledby="back-h">
   <div class="container">
-    <p class="lc-tag">One thing I&rsquo;d change now</p>
+    <p class="lc-tag">Next iteration: accessibility</p>
     <div class="lc-look">
       <div>
-        <h2 class="big lc-h2 rv" id="back-h">The small text is too faint.</h2>
-        <p class="lc-lede rv" data-d="1">Secondary text is too faint on both themes, and worst on the artist side: sage-green secondary text on white and pale green, at about 1.9:1. On the label side, the dim-dark token reaches 2.8:1. Both are below the 4.5:1 WCAG minimum for body text.</p>
+        <h2 class="big lc-h2 rv" id="back-h">Raising secondary text to 4.5:1.</h2>
+        <p class="lc-lede rv" data-d="1">My audit of the shipped screens found secondary text too faint on both themes, and worst on the artist side: sage-green secondary text on white and pale green, at about 1.9:1. On the label side, the dim-dark token reaches 2.8:1. The next iteration raises every pair to 4.5:1 with a token change.</p>
         <dl class="lc-measure rv" data-d="1">
           <div><dt><i>1</i> &ldquo;6 Tracks | Mira Solenne&rdquo;, #91B9AA on white</dt><dd>2.2:1</dd></div>
           <div><dt><i>2</i> &ldquo;Sort by&rdquo;, #91B9AA on #E1F4E7</dt><dd>1.9:1</dd></div>
@@ -467,7 +467,13 @@
           <span class="lc-token-pair__ratio">2.8:1</span>
         </div>
         <p class="lc-board__note rv">Label side: calculated from the two Figma color styles. All ratios use the WCAG formula.</p>
-        <p class="lc-look__end rv">I&rsquo;d raise it now.</p>
+        <p class="lc-look__end rv">Proposed tokens:</p>
+        <dl class="lc-measure rv" data-d="1">
+          <div><dt>secondary #91B9AA on white</dt><dd>Proposed token <b>#4B7565</b> &rarr; 5.2:1</dd></div>
+          <div><dt>secondary #91B9AA on #E1F4E7</dt><dd>Proposed token <b>#4B7565</b> &rarr; 4.5:1</dd></div>
+          <div><dt>dim-dark #648277 on #2D3C37</dt><dd>Proposed token <b>#8DA89E</b> &rarr; 4.5:1</dd></div>
+        </dl>
+        <p class="lc-board__note rv">Same hue and saturation, only the lightness changes. Ratios use the WCAG formula; one secondary value passes on both artist-side backgrounds.</p>
       </div>
       <div class="lc-row lc-row--contrast rv" data-d="1" style="--n: 2;">
         <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-a-streams.webp?v=9" width="750" height="1624" loading="lazy" alt="Artist side, Streams and data details on a pale green background: a search field, Sort by, and white rows such as Low Tide Radio, 6 Tracks, Mira Solenne, with the secondary text in sage green."><span class="lc-mark" style="left: 24.5%; top: 36.6%" aria-hidden="true">1</span><span class="lc-mark" style="left: 74.5%; top: 24.1%" aria-hidden="true">2</span></span><figcaption><span class="lc-kind">Artist side</span><b>Streams and data</b>Secondary text in sage green.</figcaption></figure>
@@ -497,6 +503,6 @@
   </div>
 </footer>
 
-<script src="../../js/main.js?v=lc-01" defer></script>
+<script src="../../js/main.js?v=lc-02" defer></script>
 </body>
 </html>

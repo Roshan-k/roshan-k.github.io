@@ -66,14 +66,18 @@
   function initReveal() {
     var targets = doc.querySelectorAll(".rv");
     if (!targets.length) return;
-
-    function showAll() {
-      for (var i = 0; i < targets.length; i++) targets[i].classList.add("on");
-    }
     if (reduceMotion.matches || !("IntersectionObserver" in window)) {
-      showAll();
+      for (var k = 0; k < targets.length; k++) targets[k].classList.add("on");
       return;
     }
+
+    var limit = window.innerHeight * 1.1;
+    var pending = [];
+    for (var i = 0; i < targets.length; i++) {
+      if (targets[i].getBoundingClientRect().top < limit) targets[i].classList.add("on");
+      else pending.push(targets[i]);
+    }
+    if (!pending.length) return;
 
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -81,20 +85,24 @@
         entry.target.classList.add("on");
         observer.unobserve(entry.target);
       });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+    }, { rootMargin: "0px 0px 10% 0px", threshold: 0 });
+    pending.forEach(function (el) { observer.observe(el); });
+    doc.documentElement.classList.add("rv-ready");
 
-    for (var i = 0; i < targets.length; i++) observer.observe(targets[i]);
-
-    window.setTimeout(function () {
-      var limit = window.innerHeight * 0.94;
-      for (var j = 0; j < targets.length; j++) {
-        if (targets[j].classList.contains("on")) continue;
-        if (targets[j].getBoundingClientRect().top < limit) {
-          targets[j].classList.add("on");
-          observer.unobserve(targets[j]);
-        }
-      }
-    }, 60);
+    function reveal(el) { el.classList.add("on"); observer.unobserve(el); }
+    function sweep() {
+      var h = window.innerHeight;
+      pending = pending.filter(function (el) {
+        if (el.classList.contains("on")) return false;
+        var r = el.getBoundingClientRect();
+        if (r.top < h * 1.1 && r.bottom > -h * 0.1) { reveal(el); return false; }
+        return true;
+      });
+    }
+    window.addEventListener("load", sweep);
+    window.addEventListener("hashchange", sweep);
+    window.addEventListener("scroll", throttled(sweep), { passive: true });
+    window.setTimeout(function () { pending.forEach(reveal); pending = []; }, 2500);
   }
 
   function initCurrentSection() {

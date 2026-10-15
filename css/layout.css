@@ -131,9 +131,8 @@
 
 .readout__val .ln { display: inline-flex; align-items: center; min-height: 44px; }
 
-.js .rv { opacity: 0; transform: translate3d(0, 12px, 0);
-  transition: opacity var(--slow) var(--ease-out), transform var(--slow) var(--ease-out); }
-.js .rv.on { opacity: 1; transform: none; }
-.js .rv[data-d="1"] { transition-delay: 70ms; }
-.js .rv[data-d="2"] { transition-delay: 140ms; }
-@media (prefers-reduced-motion: reduce) { .js .rv { opacity: 1; transform: none; } }
+.rv-ready .rv:not(.on) { opacity: 0; transform: translate3d(0, 6px, 0); }
+.rv-ready .rv { transition: opacity 280ms var(--ease-out), transform 280ms var(--ease-out); }
+.rv-ready .rv[data-d="1"] { transition-delay: 40ms; }
+.rv-ready .rv[data-d="2"] { transition-delay: 80ms; }
+@media (prefers-reduced-motion: reduce) { .rv-ready .rv, .rv-ready .rv:not(.on) { opacity: 1; transform: none; transition: none; } }

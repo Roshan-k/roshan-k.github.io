@@ -1,21 +1,13 @@
-/* ==========================================================================
-   lc.css — the LabelCaster case study only.
-   Site identity (fonts, palette, header, footer, spacing) comes from the
-   shared sheets. Everything here is built around this project's one idea:
-   one app, two sides. The two greens are the app's own label and artist
-   themes, sampled from the supplied screens.
-   ========================================================================== */
-
 :root {
-  --lc-label:  #364540;  /* the label side's dark theme */
-  --lc-artist: #DFF6E9;  /* the artist side's light theme */
-  --lc-sage:   #99BEAF;  /* the primary button on the label side */
-  --lc-forest: #2C5546;  /* text and marks on paper and mint, 7:1+ */
-  --lc-board:  #273231;  /* the ground the screens were exported on */
-  --lc-flag:   #FFD84D;  /* "needs change" */
+  --lc-label:  #364540;
+  --lc-artist: #DFF6E9;
+  --lc-sage:   #99BEAF;
+  --lc-forest: #2C5546;
+  --lc-board:  #273231;
+  --lc-flag:   #FFD84D;
   --lc-body: 1rem;
   --lc-lede: clamp(1.0625rem, 0.97rem + 0.4vw, 1.25rem);
-  --lc-on-label: rgba(244, 239, 227, 0.76);  /* secondary text on the label green, 5:1+ */
+  --lc-on-label: rgba(244, 239, 227, 0.76);
 }
 
 .lc { background: var(--paper); font-size: var(--lc-body); }
@@ -23,7 +15,6 @@
 .lc-sec--mint { background: var(--lc-artist); }
 .lc-sec--label { background: var(--lc-label); color: var(--ivory); }
 
-/* section label: a square split in two, like the app */
 .lc-tag { display: flex; align-items: center; gap: var(--s-3); margin-bottom: var(--s-5); font-family: var(--mono); font-size: var(--t-mono); letter-spacing: var(--ls-mono); color: var(--lc-forest); }
 .lc-tag::before { content: ""; width: 14px; height: 14px; background: linear-gradient(90deg, var(--lc-label) 50%, var(--lc-sage) 50%); outline: 1px solid var(--lc-label); }
 .lc-sec--label .lc-tag { color: var(--lc-artist); }
@@ -33,15 +24,11 @@
 .lc-sec--label .lc-lede { color: var(--lc-on-label); }
 .lc-sub { font-family: var(--display); font-weight: 400; font-size: var(--t-mid); line-height: 1.1; letter-spacing: -0.02em; }
 
-/* --------------------------------------------------------------------------
-   SCREENS — images are shown as supplied; the frame only clips the corners
-   the export left outside each phone.
-   -------------------------------------------------------------------------- */
 .lc-shot { display: grid; gap: var(--s-3); align-content: start; margin: 0; min-width: 0; }
 .lc-shot__frame { position: relative; display: block; overflow: hidden; border-radius: 14px; background: var(--lc-board); box-shadow: 0 0 0 1px rgba(244, 239, 227, 0.16); }
-/* old-app screenshots and wireframes were exported with a phone shape */
+
 .lc-shot--phone .lc-shot__frame { border-radius: 7.5% / 3.6%; box-shadow: none; }
-/* tall screens: only the first screen-height, cut by the frame, never scaled */
+
 .lc-shot--clip .lc-shot__frame { aspect-ratio: 375 / 812; }
 .lc-shot--clip .lc-shot__frame img { height: 100%; object-fit: cover; object-position: top; }
 .lc-shot--clip .lc-shot__frame::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 12%; background: linear-gradient(to bottom, rgba(39, 50, 49, 0), rgba(39, 50, 49, 0.92)); }
@@ -52,12 +39,8 @@
 .lc-board .lc-shot figcaption b, .lc-sec--label .lc-shot figcaption b { color: var(--ivory); }
 .lc-kind { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: var(--ls-mono); color: var(--lc-sage); }
 
-/* One class for every "this screen still needs replacing" note, so they can
-   all be removed together. It sits across the top of the frame, over the status bar, so the
-   buttons at the bottom of each screen stay visible. */
 .needs-change { position: absolute; z-index: 2; left: 8px; top: 8px; max-width: calc(100% - 16px); padding: 2px 8px; border-radius: 4px; background: var(--lc-flag); color: #1A1600; font-family: var(--mono); font-size: var(--t-mono); line-height: 1.35; }
 
-/* the board the screens sit on: the same ground they were exported on */
 .lc-board { padding: var(--s-6); background: var(--lc-board); color: var(--ivory); }
 .lc-row { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); gap: var(--s-5); align-items: start; }
 .lc-row--pairs { gap: var(--s-5) var(--s-7); }
@@ -65,9 +48,6 @@
 .lc-pair > p { grid-column: 1 / -1; font-family: var(--display); font-size: var(--t-sub); line-height: 1.3; color: var(--ivory); }
 .lc-pair > p span { display: block; margin-bottom: 2px; font-family: var(--mono); font-size: var(--t-mono); color: var(--lc-sage); }
 
-/* --------------------------------------------------------------------------
-   HERO — the site's deep ground, with the app's two sides as the picture
-   -------------------------------------------------------------------------- */
 .lc-hero { padding-block: var(--s-7) var(--s-8); background: var(--deep); color: var(--ivory); }
 .lc-hero__grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--s-8); align-items: center; }
 .lc-hero__top { display: flex; flex-wrap: wrap; align-items: center; gap: 4px var(--s-5); font-family: var(--mono); font-size: var(--t-mono); letter-spacing: var(--ls-mono); color: var(--iv-55); }
@@ -84,10 +64,6 @@
 .lc-facts dt { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: var(--ls-mono); color: var(--iv-40); }
 .lc-facts dd { font-size: 0.9375rem; line-height: 1.5; }
 
-
-/* --------------------------------------------------------------------------
-   SECTION BAR — the same bar as the other case studies
-   -------------------------------------------------------------------------- */
 .lc-nav { position: sticky; top: var(--nav-h, 4.6rem); z-index: 50; background: var(--paper); border-bottom: 1px solid var(--line); }
 .lc-nav .cs-nav__list { display: flex; gap: var(--s-1); overflow-x: auto; scrollbar-width: none; }
 .lc-nav .cs-nav__list::-webkit-scrollbar { display: none; }
@@ -95,9 +71,6 @@
 .lc-nav a:hover { color: var(--ink); }
 .lc-nav a[aria-current="true"] { color: var(--ink); background: var(--paper-2); box-shadow: inset 0 -2px 0 var(--lc-forest); }
 
-/* --------------------------------------------------------------------------
-   01 — two sides and the contract between them
-   -------------------------------------------------------------------------- */
 .lc-deal { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr) minmax(0, 1fr); margin-top: var(--s-8); }
 .lc-deal > div { display: grid; gap: var(--s-3); align-content: start; padding: var(--s-6); }
 .lc-deal__artist { background: var(--lc-artist); }
@@ -111,10 +84,6 @@
 .lc-deal__artist span, .lc-deal__contract span { color: var(--lc-forest); }
 .lc-deal__label span { color: var(--lc-sage); }
 
-
-/* --------------------------------------------------------------------------
-   02 — the old app
-   -------------------------------------------------------------------------- */
 .lc-old { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--s-8); align-items: start; margin-top: var(--s-8); }
 .lc-breaks { display: grid; counter-reset: b; border-top: 1px solid var(--ink); }
 .lc-breaks li { counter-increment: b; display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); gap: var(--s-3); padding-block: var(--s-4); border-bottom: 1px solid var(--line-2); line-height: 1.55; }
@@ -122,9 +91,6 @@
 .lc-breaks b { display: block; font-family: var(--display); font-weight: 400; font-size: var(--t-sub); line-height: 1.3; }
 .lc-breaks span { color: var(--ink-60); }
 
-/* --------------------------------------------------------------------------
-   03 — the survey
-   -------------------------------------------------------------------------- */
 .lc-survey { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s-8); align-items: start; margin-top: var(--s-8); }
 .lc-chart { margin: 0; padding: var(--s-6); background: var(--paper); border: 1px solid var(--line-2); }
 .lc-chart figcaption { font-family: var(--display); font-size: var(--t-sub); line-height: 1.3; }
@@ -153,22 +119,10 @@
 .lc-evidence img { display: block; width: 100%; height: auto; }
 .lc-evidence figcaption { margin-top: var(--s-3); color: var(--ink-60); font-size: 0.9375rem; }
 
-/* --------------------------------------------------------------------------
-   04 — decisions: who decided, what I designed, then the screens
-   -------------------------------------------------------------------------- */
-/* a board only as wide as its screens, so a short row leaves no empty half */
 .lc-board__note { margin-top: var(--s-5); color: var(--iv-55); font-size: 0.9375rem; line-height: 1.55; max-width: 70ch; }
 
-/* --------------------------------------------------------------------------
-   05 — handoff, and what I'd change
-   -------------------------------------------------------------------------- */
-
-/* the site's next-project line, which case.css usually supplies */
 .cs-next__say { margin-top: var(--s-3); color: var(--ink-60); max-width: 40ch; }
 
-/* --------------------------------------------------------------------------
-   RESPONSIVE
-   -------------------------------------------------------------------------- */
 @media (max-width: 1080px) {
   .lc-hero__grid, .lc-old, .lc-survey, .lc-look { grid-template-columns: minmax(0, 1fr); gap: var(--s-7); }
   .lc-themes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -184,7 +138,7 @@
   .lc-bars, .lc-scale { gap: var(--s-2); }
   .lc-bars { height: 200px; }
   .lc-chart { padding: var(--s-5) var(--s-4); }
-  /* rows of screens become swipe rows: one screen and a peek of the next */
+
   .lc-row { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 62%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-right: calc(-1 * var(--s-4)); padding-right: var(--s-4); }
   .lc-row::-webkit-scrollbar { display: none; }
   .lc-row > * { scroll-snap-align: start; }
@@ -192,19 +146,14 @@
 }
 .lc-sec--label .lc-shot figcaption { color: var(--lc-on-label); }
 
-/* ==========================================================================
-   Second pass: the page follows a release from upload to payout.
-   ========================================================================== */
-:root { --lc-yellow: #FFD600; }  /* the app's primary button */
+:root { --lc-yellow: #FFD600; }
 .lc-sec--short { padding-block: var(--s-9); }
 .lc-aside { margin-top: var(--s-6); max-width: 70ch; color: var(--ink-60); line-height: 1.6; }
 
-/* hero: two label-side screens on the board */
 .lc-hero__art { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-5); align-items: start; padding: var(--s-6); background: var(--lc-board); }
 .lc-hero__art .lc-shot:last-child { margin-top: var(--s-8); }
 .lc-hero__say { max-width: 14ch; }
 
-/* 04 — the idea: crops of the screens, each with its exact wording */
 .lc-idea { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--s-5); margin-top: var(--s-8); }
 .lc-idea li { grid-column: span 2; display: grid; gap: var(--s-3); align-content: start; }
 .lc-idea li:nth-child(n+4) { grid-column: span 3; }
@@ -217,7 +166,6 @@
 .lc-idea__where { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: var(--ls-mono); color: var(--lc-sage); }
 .lc-sec--label .lc-board__note { color: var(--lc-on-label); }
 
-/* 05 — the journey: five linked steps */
 .lc-journey { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: var(--s-8); counter-reset: j; }
 .lc-journey li { position: relative; }
 .lc-journey a { display: grid; gap: var(--s-4); height: 100%; padding: var(--s-5); background: var(--lc-label); color: var(--ivory); border-right: 1px solid rgba(244, 239, 227, 0.18); transition: background-color var(--fast) var(--ease); }
@@ -228,7 +176,6 @@
 .lc-journey b { font-family: var(--display); font-weight: 400; font-size: var(--t-sub); line-height: 1.2; }
 .lc-journey li:not(:last-child)::after { content: "\2192"; position: absolute; right: -0.6em; top: var(--s-5); z-index: 1; display: grid; place-items: center; width: 1.2em; height: 40px; color: var(--lc-yellow); font-family: var(--mono); }
 
-/* 06 — chapters */
 .lc-chs { display: grid; gap: var(--s-10); margin-top: var(--s-8); }
 .lc-ch { scroll-margin-top: 9rem; }
 .lc-ch__head { display: flex; align-items: center; gap: var(--s-4); padding-top: var(--s-4); border-top: 2px solid var(--ink); }
@@ -249,13 +196,11 @@
 .lc-row { row-gap: var(--s-7); }
 .lc-row--after { margin-top: var(--s-7); padding-top: var(--s-6); border-top: 1px solid rgba(244, 239, 227, 0.16); }
 
-/* 07 — a sideways gallery */
 .lc-gallery { display: grid; grid-auto-flow: column; grid-auto-columns: 250px; gap: var(--s-5); margin-top: var(--s-7); padding: var(--s-6) max(var(--pad), calc((100vw - 1320px) / 2 + var(--pad))); overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: max(var(--pad), calc((100vw - 1320px) / 2 + var(--pad))); background: var(--lc-board); scrollbar-color: var(--lc-sage) transparent; }
 .lc-gallery > * { scroll-snap-align: start; }
 .lc-gallery .lc-shot figcaption { color: var(--lc-on-label); }
 .lc-gallery:focus-visible { outline: 2px solid var(--lc-forest); outline-offset: -4px; }
 
-/* 09 — looking back: the measured spots, marked on the screens */
 .lc-look { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--s-8); align-items: start; }
 .lc-look .lc-row { max-width: 560px; }
 .lc-measure { display: grid; margin-top: var(--s-6); border-top: 1px solid rgba(244, 239, 227, 0.3); }
@@ -266,7 +211,6 @@
 .lc-mark { position: absolute; z-index: 1; transform: translate(-50%, -50%); box-shadow: 0 0 0 2px var(--lc-board); }
 .lc-look__end { margin-top: var(--s-6); font-family: var(--display); font-size: var(--t-mid); line-height: 1.1; letter-spacing: -0.02em; }
 
-/* 10 — open questions */
 .lc-open { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--s-8); margin-top: var(--s-8); counter-reset: q; border-top: 1px solid var(--ink); }
 .lc-open li { counter-increment: q; display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: var(--s-3); padding-block: var(--s-5); border-bottom: 1px solid var(--line-2); font-family: var(--display); font-size: var(--t-sub); line-height: 1.35; }
 .lc-open li::before { content: counter(q, decimal-leading-zero); font-family: var(--mono); font-size: var(--t-mono); color: var(--lc-forest); padding-top: 0.35em; }
@@ -290,7 +234,6 @@
   .lc-look .lc-row { max-width: none; }
 }
 
-/* 04 — a new look */
 .lc-themes__link { justify-self: start; margin-top: var(--s-2); font-family: var(--mono); font-size: var(--t-mono); letter-spacing: var(--ls-mono); color: var(--lc-forest); text-decoration: underline; text-underline-offset: 3px; }
 .lc-themes__link:hover { color: var(--ink); }
 .lc-look-rows { margin-top: var(--s-7); grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
@@ -311,7 +254,6 @@
 @media (max-width: 1080px) { .lc-look-rows { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 760px) { .lc-palette { grid-template-columns: minmax(0, 1fr); } .lc-look-board { max-width: none; } }
 
-/* 05 — design system */
 .lc-ds-h { margin-top: var(--s-9); }
 .lc-ds-note { margin-top: var(--s-3); max-width: 70ch; color: var(--ink-60); font-size: 0.9375rem; line-height: 1.55; }
 .lc-ds-mono { display: block; font-family: var(--mono); font-size: var(--t-mono); letter-spacing: var(--ls-mono); color: var(--ink-60); }
@@ -325,7 +267,7 @@
 .lc-ds-type__ag { font-family: var(--sans); line-height: 1; color: var(--ink); }
 .lc-ds-type b { font-weight: 500; }
 .lc-ds-type__use { display: block; margin-top: 2px; font-size: 0.9375rem; line-height: 1.45; color: var(--ink-60); }
-/* a Figma-style canvas: page styling only, the components are the exported images */
+
 .lc-ds-group { min-width: 0; }
 .lc-ds-canvas { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-7); margin-top: var(--s-6); padding: var(--s-7) max(var(--pad), calc((100vw - 1320px) / 2 + var(--pad))); background: #2D3C37; }
 .lc-ds-group__name { padding-bottom: var(--s-3); border-bottom: 1px solid rgba(255, 255, 255, 0.14); font-family: var(--mono); font-size: var(--t-mono); letter-spacing: var(--ls-mono); color: rgba(255, 255, 255, 0.72); }
@@ -354,13 +296,11 @@
 .lc-ds-iter__text { margin-top: var(--s-2); max-width: 62ch; font-size: 0.9375rem; line-height: 1.55; color: rgba(255, 255, 255, 0.8); }
 .lc-ds-iter__shipped { display: flex; flex-wrap: wrap; gap: var(--s-6); align-items: flex-start; min-width: 0; }
 
-/* twelve sections: tighter tabs so the whole bar fits on desktop */
 .lc-nav a { flex: 1 0 auto; justify-content: center; padding: 0 10px; }
 @media (max-width: 1366px) { .lc-nav .cs-nav__list { gap: 2px; } .lc-nav a { padding: 0 6px; } }
-/* where twelve tabs can't fit, the bar scrolls; the fade says there is more */
+
 @media (max-width: 1190px) { .lc-nav .cs-nav__list { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent); padding-right: 40px; } .lc-nav a { flex: none; } }
 
-/* curated structure */
 .lc-problem-h { margin-top: 0; }
 .lc-old .lc-breaks { margin-top: var(--s-6); }
 .lc-numbers--three { grid-template-columns: minmax(0, 1fr); }
@@ -454,7 +394,7 @@
 @media (max-width: 1080px) {
   .lc-sys, .lc-outc { grid-template-columns: minmax(0, 1fr); gap: var(--s-7); }
   .lc-journey--desc { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .lc-journey--desc p { grid-column: 2; } /* under the step name, not in the badge column */
+  .lc-journey--desc p { grid-column: 2; }
 }
 @media (max-width: 900px) {
   .lc-pats, .lc-decs, .lc-own { grid-template-columns: minmax(0, 1fr); }

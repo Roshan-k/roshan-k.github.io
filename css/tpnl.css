@@ -1,17 +1,10 @@
-/* ==========================================================================
-   tpnl.css — the TPNL case study only.
-   Site identity (fonts, palette, nav, footer, spacing) comes from the shared
-   sheets; everything here is designed for this project: a light page built
-   around phone screens, with the app's pale lime as its feature ground.
-   ========================================================================== */
-
 :root {
-  --tp-lime:  #EEF3DA;   /* the app's pale lime, as used on its cards */
+  --tp-lime:  #EEF3DA;
   --tp-lime-2: #E3EBC6;
-  --tp-olive: #4A6417;   /* labels and marks on paper and lime, 6:1+ */
-  --tp-frame: #17150F;   /* the phone bezel */
-  --tp-lime-hi: #C9DB8E; /* the lime, for marks on the deep ground */
-  --tp-body: 1rem;       /* reading text on this page: a step up from the site's 15px */
+  --tp-olive: #4A6417;
+  --tp-frame: #17150F;
+  --tp-lime-hi: #C9DB8E;
+  --tp-body: 1rem;
   --tp-lede: clamp(1.0625rem, 0.97rem + 0.4vw, 1.25rem);
 }
 
@@ -33,10 +26,6 @@
 .tp-head--stack .tp-h2 { max-width: 26ch; }
 .tp-head--stack .tp-lede { max-width: 64ch; }
 
-/* --------------------------------------------------------------------------
-   PHONE — one frame for every screen, live Android and v2 alike.
-   Screens are shown as supplied; the frame only clips them to the phone.
-   -------------------------------------------------------------------------- */
 .tp-phone { --pw: 240px; display: block; width: var(--pw); max-width: 100%; margin: 0; }
 .tp-phone__body { display: block; padding: 3.4%; border-radius: 15% / 7%; background: var(--tp-frame); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 40px 60px -42px rgba(18, 14, 11, 0.55); }
 .tp-phone__screen { display: block; aspect-ratio: 720 / 1529; overflow: hidden; border-radius: 12% / 5.6%; background: #FFFFFF; }
@@ -46,9 +35,6 @@
 .tp-phone figcaption { margin-top: var(--s-4); font-size: var(--tp-body); line-height: 1.55; color: var(--ink-60); }
 .tp-phone figcaption b { display: block; margin-bottom: 2px; font-weight: 500; color: var(--ink); }
 
-/* --------------------------------------------------------------------------
-   HERO
-   -------------------------------------------------------------------------- */
 .tp-hero { padding-block: var(--s-7) 0; }
 .tp-hero__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s-8); align-items: stretch; }
 .tp-hero__top { display: flex; flex-wrap: wrap; align-items: center; gap: 4px var(--s-5); color: var(--ink-60); }
@@ -69,7 +55,6 @@
 .tp-hero__art { display: grid; place-items: center; padding: var(--s-7) var(--s-6); background: var(--tp-lime); }
 .tp-hero__art .tp-phone { --pw: 280px; }
 
-/* the stages, as the stage picker lists them */
 .tp-stages { margin-top: var(--s-7); padding-block: var(--s-5) var(--s-7); border-top: 1px solid var(--line-2); }
 .tp-stages__cap { color: var(--ink-45); }
 .tp-stages ol { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: var(--s-4); }
@@ -77,10 +62,6 @@
 .tp-stages li.is-on { border-top-color: var(--tp-olive); }
 .tp-stages li span { display: block; margin-top: 4px; font-family: var(--mono); font-size: var(--t-mono); color: var(--tp-olive); }
 
-/* --------------------------------------------------------------------------
-   SECTION INDEX — the same bar as the ChartVPS case study (case.css .cs-nav),
-   repeated here because this page doesn't load case.css.
-   -------------------------------------------------------------------------- */
 .tp-nav { position: sticky; top: var(--nav-h, 4.6rem); z-index: 50; background: var(--paper); border-bottom: 1px solid var(--line); }
 .tp-nav .cs-nav__list { display: flex; gap: var(--s-1); overflow-x: auto; scrollbar-width: none; }
 .tp-nav .cs-nav__list::-webkit-scrollbar { display: none; }
@@ -88,9 +69,6 @@
 .tp-nav a:hover { color: var(--ink); }
 .tp-nav a[aria-current="true"] { color: var(--ink); background: var(--paper-2); box-shadow: inset 0 -2px 0 var(--tp-olive); }
 
-/* --------------------------------------------------------------------------
-   01 — the worry
-   -------------------------------------------------------------------------- */
 .tp-worry { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: var(--s-8); align-items: start; margin-top: var(--s-7); }
 .tp-worry > div > .tp-lede:first-child { margin-top: 0; }
 .tp-worry__say { font-family: var(--display); font-size: var(--t-big); line-height: 1.02; letter-spacing: -0.03em; }
@@ -99,9 +77,6 @@
 .tp-source .mono { color: var(--tp-olive); }
 .tp-source p { margin-top: var(--s-2); font-size: var(--tp-body); line-height: 1.6; }
 
-/* --------------------------------------------------------------------------
-   02 — the app before: three screens, each with what its structure asked
-   -------------------------------------------------------------------------- */
 .tp-before { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-6); }
 .tp-before__item { display: grid; gap: var(--s-5); align-content: start; }
 .tp-before__item .tp-phone { --pw: 250px; }
@@ -110,9 +85,6 @@
 .tp-notes li::before { content: counter(n); display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: var(--t-mono); }
 .tp-notes q { quotes: "\201C" "\201D"; font-weight: 500; }
 
-/* --------------------------------------------------------------------------
-   03 — what had to come across
-   -------------------------------------------------------------------------- */
 .tp-inventory { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--line-2); }
 .tp-inventory li { padding: var(--s-4) var(--s-4) var(--s-4) 0; font-family: var(--display); font-size: var(--t-sub); line-height: 1.2; }
 .tp-inventory li + li { padding-left: var(--s-4); border-left: 1px solid var(--line); }
@@ -123,9 +95,6 @@
 .tp-hard b { font-family: var(--display); font-weight: 400; font-size: var(--t-sub); line-height: 1.3; }
 .tp-hard span { color: var(--ink-60); font-size: var(--tp-body); line-height: 1.6; }
 
-/* --------------------------------------------------------------------------
-   04 — the shift: from content type to stage
-   -------------------------------------------------------------------------- */
 .tp-shift { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: var(--s-6); align-items: stretch; }
 .tp-org { padding: var(--s-6) var(--s-6) var(--s-7); border: 1px solid var(--line-2); }
 .tp-org--now { background: var(--paper); border-color: var(--tp-olive); box-shadow: inset 0 4px 0 var(--tp-olive); }
@@ -161,9 +130,6 @@
 .tp-level--sub { padding-left: 20%; }
 .tp-level--sub ol { border-color: var(--tp-olive); }
 
-/* --------------------------------------------------------------------------
-   05 — decisions: a screen and its argument, alternating sides
-   -------------------------------------------------------------------------- */
 .tp-decs { display: grid; gap: var(--s-10); }
 .tp-dec { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--s-8); align-items: center; }
 .tp-dec__screens { display: flex; justify-content: center; gap: var(--s-5); padding: var(--s-7) var(--s-5); background: var(--tp-lime); }
@@ -181,9 +147,6 @@
 .tp-marks li { font-size: 0.9375rem; line-height: 1.5; color: var(--ink-60); }
 .tp-marks li::before { content: "\2014"; margin-right: 8px; color: var(--ink-45); }
 
-/* --------------------------------------------------------------------------
-   06 — a day with the app: filmstrips
-   -------------------------------------------------------------------------- */
 .tp-film { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 3 * var(--s-6)) / 4); gap: var(--s-6); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: var(--s-5); scrollbar-width: thin; }
 .tp-film > * { scroll-snap-align: start; }
 .tp-film .tp-phone { --pw: 100%; }
@@ -193,9 +156,6 @@
 .tp-film__title h3 { font-family: var(--display); font-weight: 400; font-size: var(--t-sub); }
 .tp-film__title .mono { color: var(--ink-45); }
 
-/* --------------------------------------------------------------------------
-   07 — launched
-   -------------------------------------------------------------------------- */
 .tp-launch { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s-8); align-items: start; }
 .tp-quote { margin: 0; }
 .tp-quote blockquote { max-width: 20ch; font-family: var(--display); font-size: var(--t-mid); line-height: 1.12; letter-spacing: -0.02em; }
@@ -210,20 +170,13 @@
 .tp-ship dd small { display: block; margin-top: 2px; font-family: var(--sans); font-size: var(--tp-body); color: var(--ink-60); }
 .tp-backref { margin-top: var(--s-7); max-width: 60ch; color: var(--ink-60); }
 
-/* --------------------------------------------------------------------------
-   08 — what I learned
-   -------------------------------------------------------------------------- */
 .tp-learned { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-8); }
 .tp-learned li { display: grid; gap: var(--s-3); padding-top: var(--s-4); border-top: 2px solid var(--tp-olive); }
 .tp-learned .mono { color: var(--tp-olive); }
 .tp-learned p { font-family: var(--display); font-size: var(--t-sub); line-height: 1.4; }
 
-/* the site's next-project line, which case.css usually supplies */
 .cs-next__say { margin-top: var(--s-3); color: var(--ink-60); max-width: 40ch; }
 
-/* --------------------------------------------------------------------------
-   RESPONSIVE
-   -------------------------------------------------------------------------- */
 @media (max-width: 1080px) {
   .tp-hero__grid, .tp-worry, .tp-launch, .tp-navmap, .tp-head { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); }
   .tp-before { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-7) var(--s-5); }
@@ -252,8 +205,6 @@
   .tp-film .tp-phone { --pw: 100%; }
 }
 
-/* numbered markers on the v2 screens, matching the numbered notes below them;
-   they sit over the screenshot and never alter it */
 .tp-phone__screen { position: relative; }
 .tp-pin { position: absolute; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: var(--paper); font-size: var(--t-mono); box-shadow: 0 0 0 2px #FFFFFF; transform: translate(-50%, -50%); }
 .tp-level--menu { padding-left: 20%; }
@@ -265,11 +216,8 @@
   .tp-level li { padding: var(--s-3) 2px; font-size: var(--t-fine); }
 }
 
-/* --------------------------------------------------------------------------
-   06 — options set aside: rejected screens side by side, the shipped one last
-   -------------------------------------------------------------------------- */
 .tp-optgroup + .tp-optgroup { margin-top: var(--s-9); padding-top: var(--s-7); border-top: 1px solid var(--line-2); }
-/* the heading row shares the phones' four columns, so the note starts on the third phone's edge */
+
 .tp-optgroup__head { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-6); align-items: baseline; margin-bottom: var(--s-6); }
 .tp-optgroup__head h3 { font-family: var(--display); font-weight: 400; font-size: var(--t-mid); line-height: 1.08; letter-spacing: -0.02em; }
 .tp-optgroup__head p { color: var(--ink-60); max-width: 48ch; }
@@ -294,7 +242,6 @@
   .tp-opt .tp-phone { --pw: min(260px, 72vw); justify-self: center; }
 }
 
-/* 01 — my role and how I approached it, kept inside the problem section */
 .tp-approach { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-8); margin-top: var(--s-9); padding-top: var(--s-7); border-top: 1px solid var(--line-2); }
 .tp-approach__say { font-family: var(--display); font-size: var(--t-sub); line-height: 1.4; }
 .tp-approach__p { max-width: 62ch; color: var(--ink-60); line-height: 1.65; }
@@ -305,18 +252,15 @@
 @media (max-width: 1080px) { .tp-approach { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); } }
 @media (max-width: 760px) { .tp-questions { grid-template-columns: minmax(0, 1fr); } }
 
-/* 03 — the hardest part: one statement, set apart */
 .tp-hardest { padding: var(--s-2) 0 var(--s-2) var(--s-6); border-left: 3px solid var(--tp-olive); }
 .tp-hardest__say { margin-top: var(--s-4); font-family: var(--display); font-size: var(--t-mid); line-height: 1.12; letter-spacing: -0.02em; }
 .tp-hardest__p { margin-top: var(--s-5); max-width: 70ch; color: var(--ink-60); line-height: 1.65; }
-/* trade-offs read as the judgment call: always the last row */
+
 .tp-dec dl > div:last-child { border-top: 1px dashed var(--tp-olive); }
 .tp-dec dl > div:last-child dt { color: var(--tp-olive); }
 .tp-dec dl > div:last-child dd { font-weight: 500; }
 @media (max-width: 760px) { .tp-hardest { padding-left: var(--s-5); } }
 
-/* 07 — the strips slide on their own. Without the script they stay plain
-   sideways-scrolling strips, so the controls only appear once it has run. */
 .tp-film__ctrl { display: flex; align-items: center; gap: 6px; }
 .tp-film__ctrl .mono { margin-right: var(--s-3); }
 .tp-film__ctrl button { display: none; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line-2); background: var(--paper); color: var(--ink); font-family: var(--mono); font-size: 0.875rem; cursor: pointer; }
@@ -328,8 +272,6 @@
 @media (max-width: 1080px) { .tp-film { grid-auto-columns: calc((100% - 2 * var(--s-6)) / 3); } }
 @media (max-width: 760px) { .tp-film { grid-auto-columns: 72%; } }
 
-/* HERO on the deep ground, like the ChartVPS hero. Colours only: the layout
-   above is unchanged, and the lime panel behind the phone stays. */
 .tp-hero { --tp-lime-hi: #C9DB8E; background: var(--deep); color: var(--ivory); }
 .tp-hero :focus-visible { outline-color: var(--tp-lime-hi); }
 .tp-hero__top { color: var(--iv-55); }
@@ -346,8 +288,6 @@
 .tp-hero .tp-stages li.is-on { border-top-color: var(--tp-lime-hi); }
 .tp-hero .tp-stages li span { color: var(--tp-lime-hi); }
 
-/* 04 — the reasoning behind the shift: six cells, why on the first row and
-   what on the second, ending on the trade-off. Hairlines come from the gap. */
 .tp-reason { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin-top: var(--s-8); border: 1px solid var(--line-2); background: var(--line-2); }
 .tp-reason > div { display: grid; gap: var(--s-3); align-content: start; padding: var(--s-5) var(--s-5) var(--s-6); background: var(--paper); }
 .tp-reason dt { color: var(--ink-60); }
@@ -357,30 +297,25 @@
 @media (max-width: 1080px) { .tp-reason { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 760px) { .tp-reason { grid-template-columns: minmax(0, 1fr); } }
 
-/* the hardest part, on the page's one deep band after the hero */
 .tp-band { padding-block: var(--band); background: var(--deep); color: var(--ivory); }
 .tp-band .tp-hardest { border-left-color: var(--tp-lime-hi); }
 .tp-band .tp-label { color: var(--tp-lime-hi); }
 .tp-band .tp-hardest__p { color: var(--iv-55); }
 
-/* 05 — the hypothesis leads each decision (always the second row) */
 .tp-dec dl > div:nth-child(2) dd { font-family: var(--display); font-size: 1.1875rem; line-height: 1.4; }
 
-/* 02 — the old-app screens stay at 250px, where their exports are sharp,
-   and spread so the row ends on the container edge */
 @media (min-width: 1081px) {
   .tp-before { grid-template-columns: repeat(4, 250px); justify-content: space-between; column-gap: 0; }
 }
 @media (max-width: 1080px) {
   .tp-thread { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  /* the phone comes straight after the opening lines, before the facts */
+
   .tp-hero__grid { gap: 0; }
   .tp-hero__grid > div:first-child { display: contents; }
   .tp-hero__art { order: 1; margin-top: var(--s-6); padding: var(--s-6) var(--s-5); }
   .tp-hero .tp-facts, .tp-hero .tp-stores { order: 2; }
 }
-/* On a phone, rows of screens become swipe rows: one screen and a peek of
-   the next, in place of a full screen each. */
+
 @media (max-width: 760px) {
   .tp-before, .tp-thread, .tp-opts--four, .tp-opts--three {
     grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 74%; gap: var(--s-5);
@@ -395,7 +330,6 @@
   .tp-dec__screens .tp-phone:only-child { margin-inline: auto; }
 }
 
-/* hero facts: the role runs the full width, the three short facts share a row */
 .tp-hero .tp-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: var(--s-6); padding-top: var(--s-4); }
 .tp-hero .tp-facts dd { font-size: 0.9375rem; }
 .tp-hero .tp-facts > div { order: 3; }
@@ -405,11 +339,10 @@
 
 .tp-quote blockquote { margin: 0; }
 
-/* eleven sections: tighter tabs, and a fade where the bar scrolls */
 .tp-nav .cs-nav__list { gap: 2px; }
 .tp-nav a { flex: 1 0 auto; justify-content: center; padding: 0 8px; }
 @media (max-width: 1340px) { .tp-nav .cs-nav__list { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent); padding-right: 40px; } }
-/* 07 design system */
+
 .tp-ds-h { margin-top: var(--s-9); font-family: var(--display); font-weight: 400; font-size: var(--t-mid); line-height: 1.08; letter-spacing: -0.02em; }
 .tp-head + .tp-ds-h { margin-top: 0; }
 .tp-ds-note { margin-top: var(--s-3); max-width: 70ch; color: var(--ink-60); line-height: 1.55; }

@@ -1,27 +1,14 @@
-/* ==========================================================================
-   HOME
-   ========================================================================== */
-
-
-
-/* --------------------------------------------------------------------------
-   WORK
-   Four project panels. Each carries a mono header strip, the artwork, and
-   the facts underneath it.
-   -------------------------------------------------------------------------- */
 .work {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--gap);
 }
-/* Cards in a row share one height; the footer line sits at the bottom of each. */
+
 .work > li { display: flex; }
 
 .card { position: relative; display: flex; flex-direction: column; width: 100%; overflow: hidden; transition: border-color var(--base) var(--ease); }
 .card:hover { border-color: var(--line-2); }
-/* Hovered or focused, a card is selected the way a frame is in a design file:
-   an accent outline and four square handles. */
-/* One quiet light grey for every card's selection, whatever its colours. */
+
 .card { --card-sel: rgba(150, 148, 142, 0.45); }
 .card::after {
   content: "";
@@ -51,8 +38,6 @@
 }
 .card__plate { aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid var(--line); background: var(--paper-2); }
 
-/* Brand cards: the head strip and the picture share the product's accent;
-   the facts sit on white beneath. Head text is a dark cut of the same hue. */
 .card--brand { background: #FFFFFF; }
 .card--brand .card__head,
 .card--brand .card__plate { background: var(--brand); border-bottom-color: rgba(0, 0, 0, 0.1); }
@@ -88,9 +73,6 @@
   .card:hover .card__plate svg { transform: none; }
 }
 
-/* --------------------------------------------------------------------------
-   APPROACH + ABOUT
-   -------------------------------------------------------------------------- */
 .split {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
@@ -98,10 +80,6 @@
   align-items: start;
 }
 
-/* --------------------------------------------------------------------------
-   PROCESS SHEET — the hero's six stages, read as a working document. Each
-   column's drawing is simpler than the last; the final column is solid.
-   -------------------------------------------------------------------------- */
 .proc__head {
   display: grid;
   grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
@@ -162,7 +140,6 @@
 .proc__out .mono { color: var(--ink-45); }
 .proc__val { font-size: var(--t-fine); color: var(--ink); }
 
-/* Outcome: the resolved state, a solid block. */
 .proc__item--end { background: var(--deep); color: var(--ivory); border-left: 0; padding-left: var(--s-4); }
 .proc__item--end .proc__glyph { color: var(--ivory); }
 .proc__item--end .proc__no { color: var(--accent-hi); }
@@ -188,10 +165,6 @@
   .proc__item--end { padding: var(--s-5) var(--s-4); }
 }
 
-/* --------------------------------------------------------------------------
-   ABOUT — a heading beside the bio, then the career as a rising staircase
-   (craft at the bottom, systems at the top), then capabilities as a sheet.
-   -------------------------------------------------------------------------- */
 .about__head {
   display: grid;
   grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
@@ -227,7 +200,7 @@
   align-items: end;
   height: clamp(15rem, 10rem + 10vw, 21rem);
 }
-/* Each step is taller than the one before: a staircase, rising left to right. */
+
 .traj__step {
   --h: calc(36% + var(--i) * 16%);
   display: flex;
@@ -266,7 +239,7 @@
 @media (max-width: 900px) {
   .about__head { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
 }
-/* Narrow: the staircase turns on its side, each bar longer than the last. */
+
 @media (max-width: 640px) {
   .traj__steps { grid-template-columns: minmax(0, 1fr); height: auto; gap: var(--s-2); }
   .traj__step {
@@ -285,20 +258,12 @@
   .caps__item + .caps__item { border-top: 1px solid var(--line); }
 }
 
-/* --------------------------------------------------------------------------
-   CONTACT
-   -------------------------------------------------------------------------- */
 .close { padding-block: clamp(var(--s-7), 5vw, var(--s-9)); }
 .close__mega { margin-top: var(--s-5); max-width: 15ch; color: var(--ivory); }
 .close__mega em { font-style: italic; color: var(--accent-hi); }
 .close__acts { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4); margin-top: var(--s-7); }
 .close__list { margin-top: var(--s-7); max-width: 32rem; }
 
-/* --------------------------------------------------------------------------
-   AI IN DESIGN
-   The same opener as Approach and About, then the stages as a readout-style
-   table, two project panels, and the takeaway on a red rule.
-   -------------------------------------------------------------------------- */
 .ai__head {
   display: grid;
   grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
@@ -328,7 +293,7 @@
 }
 .ai__card:hover { border-color: var(--line-2); background: var(--paper-2); }
 .ai__card:focus-visible { outline-offset: 3px; }
-/* The site's hero in the same laptop frame the ChartVPS card uses. */
+
 .ai__plate { aspect-ratio: 16 / 9; overflow: hidden; border-bottom: 1px solid var(--line); background: var(--paper-2); }
 .ai__plate .laptop { --lw: 74cqw; top: 50%; }
 .ai__card:hover .laptop { transform: translate(-50%, -51.5%); }
@@ -351,7 +316,7 @@
 @media (max-width: 900px) {
   .ai__head { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); margin-bottom: var(--s-7); }
 }
-/* Below tablet the table becomes stacked rows: no sideways scroll. */
+
 @media (max-width: 760px) {
   .ai__table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .ai__table, .ai__table tbody, .ai__table tr, .ai__table th, .ai__table td { display: block; width: auto; }

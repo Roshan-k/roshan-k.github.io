@@ -1,9 +1,3 @@
-/* ==========================================================================
-   main.js
-   The document works without it. This adds the mobile menu, one short
-   entrance, and the current-section marker.
-   ========================================================================== */
-
 (function () {
   "use strict";
 
@@ -12,9 +6,6 @@
     ? window.matchMedia("(prefers-reduced-motion: reduce)")
     : { matches: false };
 
-  /* Coalesce bursts of events. A frame callback is the right primitive, but
-     frames can be starved in a background tab, so a timer runs alongside and
-     the queue can never wedge. */
   function throttled(fn) {
     var queued = false;
     function run() {
@@ -94,8 +85,6 @@
 
     for (var i = 0; i < targets.length; i++) observer.observe(targets[i]);
 
-    /* Anything already on screen plays its entrance straight away. On a timer,
-       not a frame callback: content must never be left invisible. */
     window.setTimeout(function () {
       var limit = window.innerHeight * 0.94;
       for (var j = 0; j < targets.length; j++) {
@@ -140,18 +129,6 @@
     sections.forEach(function (section) { observer.observe(section); });
   }
 
-
-  /* ------------------------------------------------------------------------
-     HERO CANVAS — how the work gets made, in about fourteen seconds
-       1 Evidence    six sources land on the board             0.0 – 2.0s
-       2 Understand  they level out under the pattern each shows 2.0 – 4.0s
-       3 Define      everything collapses into one problem       4.0 – 6.0s
-       4 Structure   the problem moves up; a flow is laid out    6.0 – 8.0s
-       5 Design      the frame appears, components are placed    8.0 – 11.2s
-       6 Outcome     the tooling leaves; the product remains    11.2 – 14.0s
-     It plays once and rests on the Outcome; Replay runs it again.
-     Without JavaScript, or with reduced motion, the Outcome is all there is.
-     ---------------------------------------------------------------------- */
   function initCanvas() {
     var cv = doc.querySelector("[data-canvas]");
     if (!cv) return;
@@ -179,7 +156,6 @@
     function clear() { timers.forEach(window.clearTimeout); timers = []; }
     function num(el, prop) { return parseFloat(el.style.getPropertyValue("--" + prop)) || 0; }
 
-    /* 1–5 are the workspace; 6 is the Outcome, which carries no stage class. */
     function stage(n) {
       for (var i = 1; i <= 5; i++) cv.classList.toggle("is-s" + i, i === n);
       cv.classList.toggle("is-ws", n < 6);
@@ -191,7 +167,6 @@
       if (label && labels[n]) label.innerHTML = labels[n];
     }
 
-    /* Geometry of a frame component, from its layout values. */
     function box(el) {
       var c = cv.getBoundingClientRect();
       var f = frame.getBoundingClientRect();
@@ -244,14 +219,14 @@
       cursor.style.top = c.height * 0.94 + "px";
       cursor.classList.remove("is-on");
     }
-    /* Point at any element on the canvas, by its current box. */
+
     function cursorAt(el, fx, fy) {
       if (!el) return;
       var c = cv.getBoundingClientRect();
       var r = el.getBoundingClientRect();
       cursorTo(r.left - c.left + r.width * (fx || 0.7), r.top - c.top + r.height * (fy || 0.6));
     }
-    /* Point at a frame component, lifted or placed. */
+
     function cursorAtPart(el, lifted) {
       var b = box(el);
       var dx = lifted ? num(el, "dx") * b.unit : 0;
@@ -274,8 +249,6 @@
       guideH.classList.toggle("is-on", !!on);
     }
 
-    /* 6 — Outcome: selection, guides, panel, tools and cursor leave;
-       the frame settles in the centre as the product. */
     function outcome() {
       select(null);
       guides(null, false);
@@ -286,7 +259,6 @@
       if (replay) replay.hidden = false;
     }
 
-    /* Straight to the end: everything placed, the Outcome showing. */
     function finish() {
       clear();
       notes.forEach(function (n) { n.classList.add("is-in"); });
@@ -297,7 +269,6 @@
     function run() {
       clear();
 
-      /* reset */
       notes.forEach(function (n) { n.classList.remove("is-in"); });
       parts.forEach(function (p) { p.classList.add("is-waiting"); p.classList.remove("is-dragging", "is-selected"); });
       cv.classList.remove("is-building");
@@ -305,24 +276,19 @@
       guides(null, false);
       stage(1);
 
-      /* 1 — Evidence: sources land, one after another */
       notes.forEach(function (n, i) {
         later(function () { n.classList.add("is-in"); cursorAt(n, 0.78, 0.72); }, 250 + i * 190);
       });
 
-      /* 2 — Understand: aligned under the patterns */
       later(function () { stage(2); }, 2000);
       later(function () { cursorAt(cv.querySelector('.bd__cl[data-c="b"]'), 0.6, 0.4); }, 2900);
 
-      /* 3 — Define: collapse into one problem */
       later(function () { stage(3); }, 4000);
       later(function () { cursorAt(cv.querySelector(".bd__prob"), 0.86, 0.8); }, 4900);
 
-      /* 4 — Structure: the flow beneath */
       later(function () { stage(4); }, 6000);
       later(function () { cursorAt(cv.querySelector(".bd__node--key"), 0.7, 0.7); }, 7100);
 
-      /* 5 — Design: the frame appears and is built */
       later(function () {
         stage(5);
         cv.classList.add("is-building");
@@ -348,7 +314,6 @@
       });
       later(function () { select(last); cursorAtPart(last, false); }, t);
 
-      /* 6 — Outcome, where it rests */
       later(outcome, 11200);
     }
 
@@ -366,8 +331,6 @@
     }), { passive: true });
   }
 
-  /* Case study index: sticks under the header, marks the section in view and
-     keeps that link visible in the strip. */
   function initCaseNav() {
     var nav = doc.querySelector("[data-case-nav]");
     if (!nav) return;
@@ -407,7 +370,6 @@
     sections.forEach(function (section) { observer.observe(section); });
   }
 
-  /* Buttons show their size when selected, as a design tool does. */
   function initSizes() {
     function measure(event) {
       var el = event.currentTarget;
@@ -420,10 +382,6 @@
     });
   }
 
-  /* Case-study slideshow. The strip scrolls on its own; this adds arrows,
-     a progress bar, a caption per screen and autoplay, which pauses on
-     hover, on focus, off screen, on request, and never starts when the
-     reader prefers reduced motion. */
   function initCarousels() {
     Array.prototype.forEach.call(doc.querySelectorAll("[data-carousel]"), function (root) {
       var track = root.querySelector(".cs-carousel__track");
@@ -461,8 +419,7 @@
 
       function go(i, user) {
         index = (i + count) % count;
-        /* Ignore the scroll events this move causes, or the halfway point
-           of a smooth scroll would be read as a swipe back. */
+
         steering = true;
         window.clearTimeout(steerTimer);
         steerTimer = window.setTimeout(function () { steering = false; }, 900);
@@ -497,7 +454,6 @@
         if (e.key === "ArrowLeft") { e.preventDefault(); go(index - 1, true); }
       });
 
-      /* Swipes move the strip directly; follow them. */
       track.addEventListener("scroll", throttled(function () {
         if (steering) return;
         var i = Math.round(track.scrollLeft / track.clientWidth);
@@ -523,11 +479,6 @@
     });
   }
 
-  /* Phone strips. Each strip is a sideways-scrolling row; this steps it one
-     screen at a time, on its own and from the arrows, and returns to the
-     start after the last screen. Autoplay follows the slideshow's rules:
-     it pauses on hover, on focus, off screen and on request, and never
-     starts when the reader prefers reduced motion. */
   function initFilms() {
     Array.prototype.forEach.call(doc.querySelectorAll("[data-film]"), function (root) {
       var track = root.querySelector(".tp-film");
@@ -551,7 +502,6 @@
       function pad(n) { return (n < 10 ? "0" : "") + n; }
       function left(i) { return items[i].offsetLeft - items[0].offsetLeft; }
 
-      /* How far the strip can move depends on how many screens fit. */
       function measure() {
         var max = track.scrollWidth - track.clientWidth;
         last = 0;
@@ -601,7 +551,6 @@
         if (e.key === "ArrowLeft") { e.preventDefault(); go(index - 1, true); }
       });
 
-      /* Swipes move the strip directly; follow them. */
       track.addEventListener("scroll", throttled(function () {
         if (steering) return;
         var i = 0;

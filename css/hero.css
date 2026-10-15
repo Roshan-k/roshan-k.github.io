@@ -1,0 +1,593 @@
+/* ==========================================================================
+   HERO
+   Left: the statement. Right: the work itself, happening.
+
+   The picture is a design canvas: a frame, and interface components being
+   placed into it one at a time. Built in HTML and CSS, sized in its own unit
+   (--u = 1/1000 of the canvas width) so every part scales together.
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--deep);
+}
+
+/* The text column stays within the container's left half, clear of the art. */
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  min-height: clamp(34rem, 37.5vw + 6rem, 50rem);
+  padding-block: clamp(var(--s-7), 5vw, var(--s-9));
+}
+.hero__text { max-width: min(38rem, 48%); }
+/* The text layer spans the full width above the art; only the text itself
+   takes clicks, so the canvas controls beneath it (Replay) stay reachable. */
+.hero__inner { pointer-events: none; }
+.hero__text { pointer-events: auto; }
+
+.hero__mega {
+  margin-top: var(--s-5);
+  color: var(--ivory);
+  font-size: clamp(2.35rem, 0.85rem + 3.9vw, 4.75rem);
+}
+.hero__mega em { font-style: italic; color: var(--accent-hi); }
+.hero__lede { margin-top: var(--s-6); max-width: 44ch; }
+.hero__acts { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); margin-top: var(--s-7); }
+
+/* --------------------------------------------------------------------------
+   THE CANVAS
+   Pinned right, bleeding off the edge, feathered into the ground.
+   -------------------------------------------------------------------------- */
+.hero__art {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 45vw;
+  width: 55vw;
+  transform: translateY(-50%);
+  container-type: inline-size;
+  pointer-events: none;
+}
+
+.cv {
+  --u: calc(100cqw / 1000);
+  --sel: var(--accent);
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1114 / 789;
+  font-family: var(--sans);
+  /* the dot grid of a design canvas */
+  background: radial-gradient(circle, rgba(244, 239, 227, 0.08) calc(var(--u) * 1.1), transparent calc(var(--u) * 1.5)) 0 0 / calc(var(--u) * 22) calc(var(--u) * 22);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%), linear-gradient(0deg, transparent 0%, #000 7%), linear-gradient(180deg, transparent 0%, #000 5%);
+  -webkit-mask-composite: source-in;
+          mask-image: linear-gradient(90deg, transparent 0%, #000 8%), linear-gradient(0deg, transparent 0%, #000 7%), linear-gradient(180deg, transparent 0%, #000 5%);
+          mask-composite: intersect;
+}
+
+/* --- Frame --------------------------------------------------------------- */
+.cv__label {
+  position: absolute;
+  left: 7%; top: 6.4%;
+  display: flex;
+  gap: calc(var(--u) * 10);
+  font-family: var(--mono);
+  font-size: calc(var(--u) * 10.5);
+  letter-spacing: 0.04em;
+  color: var(--iv-55);
+}
+.cv__label b { font-weight: 400; color: var(--sel); }
+
+.cv__frame {
+  position: absolute;
+  left: 7%; top: 11%;
+  width: 64%; height: 80%;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow:
+    0 0 0 1px rgba(244, 239, 227, 0.14),
+    0 calc(var(--u) * 30) calc(var(--u) * 90) rgba(0, 0, 0, 0.55);
+}
+.cv__frame.is-active { box-shadow: 0 0 0 1px var(--sel), 0 calc(var(--u) * 30) calc(var(--u) * 90) rgba(0, 0, 0, 0.55); }
+
+/* Layout columns, visible while components are being placed. */
+.cv__cols {
+  position: absolute;
+  inset: 0 4%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.8%;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+.cv__cols i { background: rgba(255, 67, 38, 0.07); }
+.cv.is-building .cv__cols { opacity: 1; }
+
+/* --- Components ------------------------------------------------------------
+   Placed by percentage of the frame. While waiting they sit off their spot;
+   while dragged they are lifted; placed, they rest. ------------------------ */
+.cmp {
+  position: absolute;
+  left: calc(var(--x) * 1%);
+  top: calc(var(--y) * 1%);
+  width: calc(var(--w) * 1%);
+  height: calc(var(--h) * 1%);
+  transition: transform 0.5s var(--ease-out), opacity 0.25s var(--ease), box-shadow 0.4s var(--ease);
+}
+.cmp.is-waiting  { opacity: 0; transform: translate(calc(var(--dx) * var(--u)), calc(var(--dy) * var(--u))); }
+.cmp.is-dragging { opacity: 1; transform: translate(calc(var(--dx) * var(--u)), calc(var(--dy) * var(--u)));
+  box-shadow: 0 calc(var(--u) * 16) calc(var(--u) * 34) rgba(11, 10, 8, 0.28); }
+
+/* Selection: outline, four handles, size badge. */
+.sel { display: none; position: absolute; inset: calc(var(--u) * -3); border: calc(var(--u) * 1.6) solid var(--sel); }
+.cmp.is-selected .sel { display: block; }
+.sel b {
+  position: absolute;
+  width: calc(var(--u) * 7); height: calc(var(--u) * 7);
+  background: #FFFFFF;
+  border: calc(var(--u) * 1.4) solid var(--sel);
+}
+.sel b:nth-child(1) { left: calc(var(--u) * -4.5); top: calc(var(--u) * -4.5); }
+.sel b:nth-child(2) { right: calc(var(--u) * -4.5); top: calc(var(--u) * -4.5); }
+.sel b:nth-child(3) { left: calc(var(--u) * -4.5); bottom: calc(var(--u) * -4.5); }
+.sel b:nth-child(4) { right: calc(var(--u) * -4.5); bottom: calc(var(--u) * -4.5); }
+.sel__size {
+  position: absolute;
+  left: 50%; top: 100%;
+  transform: translate(-50%, calc(var(--u) * 7));
+  padding: calc(var(--u) * 1.5) calc(var(--u) * 5);
+  border-radius: calc(var(--u) * 2);
+  background: var(--sel);
+  color: var(--deep);
+  font-family: var(--mono);
+  font-size: calc(var(--u) * 9);
+  white-space: nowrap;
+}
+
+/* --- Component contents: a small, plausible landing page ------------------ */
+.c-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-inline: 3.5%;
+  border-bottom: 1px solid rgba(16, 14, 10, 0.1);
+}
+.c-nav__logo { display: flex; align-items: center; gap: calc(var(--u) * 6); }
+.c-nav__logo i { width: calc(var(--u) * 11); height: calc(var(--u) * 11); border-radius: 50%; background: var(--ink); }
+.c-nav__logo span { width: calc(var(--u) * 40); height: calc(var(--u) * 5); background: var(--ink); }
+.c-nav__links { display: flex; gap: calc(var(--u) * 12); }
+.c-nav__links i { width: calc(var(--u) * 24); height: calc(var(--u) * 4); background: rgba(16, 14, 10, 0.35); }
+.c-nav__btn { width: calc(var(--u) * 46); height: calc(var(--u) * 15); border-radius: calc(var(--u) * 2); background: var(--ink); }
+
+.c-title {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: calc(var(--u) * 33);
+  line-height: 0.96;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.c-title em { font-style: italic; color: var(--accent-2); }
+
+.c-lede { display: flex; flex-direction: column; justify-content: center; gap: calc(var(--u) * 6); }
+.c-lede i { height: calc(var(--u) * 4.5); background: rgba(16, 14, 10, 0.24); }
+.c-lede i:nth-child(2) { width: 92%; }
+.c-lede i:nth-child(3) { width: 64%; }
+
+.c-btn {
+  display: flex; align-items: center; justify-content: center; gap: calc(var(--u) * 6);
+  border-radius: calc(var(--u) * 2);
+  background: var(--accent);
+  color: var(--deep);
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: calc(var(--u) * 9);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.c-img {
+  border-radius: calc(var(--u) * 3);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60' preserveAspectRatio='none'%3E%3Cpath d='M0 60 L34 24 L52 40 L78 14 L120 60 Z' fill='rgba(244,239,227,0.22)'/%3E%3C/svg%3E") bottom / 100% 58% no-repeat,
+    radial-gradient(circle at 76% 26%, rgba(255, 67, 38, 0.55) 0 calc(var(--u) * 6), transparent calc(var(--u) * 7)),
+    linear-gradient(170deg, #2B2620, #14120E);
+}
+
+.c-card {
+  display: flex; flex-direction: column; gap: calc(var(--u) * 7);
+  padding: 5%;
+  border: 1px solid rgba(16, 14, 10, 0.12);
+  border-radius: calc(var(--u) * 3);
+  background: #FFFFFF;
+}
+.c-card__head { display: flex; justify-content: space-between; }
+.c-card__head i { width: 36%; height: calc(var(--u) * 4.5); background: rgba(16, 14, 10, 0.55); }
+.c-card__head b { width: 16%; height: calc(var(--u) * 4.5); background: rgba(255, 67, 38, 0.8); }
+.c-card svg { flex: 1 1 auto; width: 100%; min-height: 0; }
+
+.c-list { display: flex; flex-direction: column; justify-content: space-between; }
+.c-list__row {
+  display: flex; align-items: center; gap: calc(var(--u) * 8);
+  padding-block: calc(var(--u) * 5);
+  border-bottom: 1px solid rgba(16, 14, 10, 0.1);
+}
+.c-list__row i { width: calc(var(--u) * 8); height: calc(var(--u) * 8); border-radius: 50%; background: rgba(16, 14, 10, 0.5); flex: none; }
+.c-list__row span { flex: 1 1 auto; height: calc(var(--u) * 4.5); background: rgba(16, 14, 10, 0.24); }
+.c-list__row b { width: 16%; height: calc(var(--u) * 4.5); background: rgba(16, 14, 10, 0.12); }
+
+/* --- Guides: appear as a component snaps --------------------------------- */
+.cv__guide { position: absolute; background: var(--sel); opacity: 0; transition: opacity 0.15s var(--ease); }
+.cv__guide--v { width: 1px; }
+.cv__guide--h { height: 1px; }
+.cv__guide.is-on { opacity: 0.9; }
+
+/* --- Cursor, with a name tag ------------------------------------------------ */
+.cv__cursor {
+  position: absolute;
+  left: 60%; top: 60%;
+  z-index: 3;
+  display: flex; align-items: flex-start;
+  opacity: 0;
+  transition: left 0.5s var(--ease-out), top 0.5s var(--ease-out), opacity 0.3s var(--ease);
+}
+.cv__cursor.is-on { opacity: 1; }
+.cv__cursor svg { width: calc(var(--u) * 17); height: auto; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
+.cv__who {
+  margin: calc(var(--u) * 14) 0 0 calc(var(--u) * 2);
+  padding: calc(var(--u) * 2) calc(var(--u) * 6);
+  border-radius: calc(var(--u) * 2);
+  background: var(--sel);
+  color: var(--deep);
+  font-family: var(--mono);
+  font-size: calc(var(--u) * 9);
+  font-weight: 600;
+}
+
+/* --- Properties panel: reads the selected component ----------------------- */
+.cv__inspect {
+  position: absolute;
+  left: 76%; top: 11%;
+  width: 26%;
+  padding: calc(var(--u) * 14);
+  border: 1px solid var(--line-d);
+  border-radius: calc(var(--u) * 4);
+  background: #161410;
+  font-family: var(--mono);
+  font-size: calc(var(--u) * 9.5);
+  color: var(--iv-55);
+}
+.cv__inspect-name { color: var(--ivory); font-size: calc(var(--u) * 10.5); margin-bottom: calc(var(--u) * 12); }
+.cv__fields { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u) * 6); }
+.cv__field {
+  display: flex; gap: calc(var(--u) * 6);
+  padding: calc(var(--u) * 5) calc(var(--u) * 6);
+  border-radius: calc(var(--u) * 2);
+  background: rgba(244, 239, 227, 0.05);
+}
+.cv__field em { font-style: normal; color: var(--iv-40); }
+.cv__field b { font-weight: 400; color: var(--ivory); }
+.cv__row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: calc(var(--u) * 12);
+  padding-top: calc(var(--u) * 10);
+  border-top: 1px solid var(--line-d);
+}
+.cv__swatch { display: inline-flex; align-items: center; gap: calc(var(--u) * 6); color: var(--ivory); }
+.cv__swatch i { width: calc(var(--u) * 10); height: calc(var(--u) * 10); border-radius: calc(var(--u) * 2); background: var(--fillc, var(--accent)); border: 1px solid var(--line-d2); }
+
+/* --- Toolbar --------------------------------------------------------------- */
+.cv__tools {
+  position: absolute;
+  left: 39%; bottom: 1.5%;
+  transform: translateX(-50%);
+  display: flex; gap: calc(var(--u) * 4);
+  padding: calc(var(--u) * 5);
+  border: 1px solid var(--line-d);
+  border-radius: calc(var(--u) * 5);
+  background: #161410;
+  z-index: 2;
+}
+.cv__tools i {
+  display: grid; place-items: center;
+  width: calc(var(--u) * 22); height: calc(var(--u) * 22);
+  border-radius: calc(var(--u) * 3);
+  color: var(--iv-55);
+}
+.cv__tools i.is-on { background: var(--sel); color: var(--deep); }
+.cv__tools svg { width: 55%; height: 55%; }
+
+/* Reveal the canvas itself: opacity only, so it never fights the centring. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero__art { animation: art-in 0.9s var(--ease-out) both; }
+}
+@keyframes art-in { from { opacity: 0; } }
+
+/* --------------------------------------------------------------------------
+   NARROWER SCREENS — the statement first, then the picture, full width
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .hero { display: flex; flex-direction: column; }
+  .hero__inner { order: 1; min-height: 0; padding-bottom: var(--s-5); }
+  .hero__text { max-width: 40rem; }
+  .hero__art {
+    order: 2;
+    position: relative;
+    top: auto; left: auto;
+    width: 100%;
+    transform: none;
+    margin-bottom: var(--s-6);
+  }
+}
+
+/* ==========================================================================
+   PROCESS STAGES
+   Evidence → Understand → Define → Structure → Design → Outcome.
+   While the process runs the canvas carries .is-ws (workspace) plus one of
+   .is-s1 … .is-s5. With neither, it shows the Outcome: the finished product,
+   the design tooling gone. That is also the no-JS and reduced-motion view.
+   ========================================================================== */
+
+/* Let the step rail sit at the very top without being feathered away. */
+.cv {
+  background: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 5%), linear-gradient(0deg, transparent 0%, #000 7%);
+          mask-image: linear-gradient(90deg, transparent 0%, #000 5%), linear-gradient(0deg, transparent 0%, #000 7%);
+}
+/* The dot grid, on its own layer so the Outcome can quiet it. */
+.cv::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(244, 239, 227, 0.08) calc(var(--u) * 1.1), transparent calc(var(--u) * 1.5)) 0 0 / calc(var(--u) * 22) calc(var(--u) * 22);
+  opacity: 0.3;
+  transition: opacity 0.9s var(--ease);
+}
+.cv.is-ws::before { opacity: 1; }
+
+/* --- Workspace tooling: present while working, gone in the Outcome ------- */
+.cv__label { top: 7.4%; opacity: 0; transition: opacity 0.5s var(--ease); }
+.cv.is-ws .cv__label { opacity: 1; }
+
+.cv__tools { opacity: 0; transform: translate(-50%, calc(var(--u) * 12)); transition: opacity 0.5s var(--ease), transform 0.6s var(--ease-out); }
+.cv.is-ws .cv__tools { opacity: 1; transform: translateX(-50%); }
+
+.cv__inspect { opacity: 0; transform: translateX(calc(var(--u) * 28)); transition: opacity 0.5s var(--ease), transform 0.7s var(--ease-out); }
+.cv.is-s5 .cv__inspect { opacity: 1; transform: none; }
+
+/* The frame: in the workspace it sits beside the panel; as the product it
+   moves to the centre, loses its outline and gains a browser bar. */
+.cv__frame {
+  transform: translateX(17.1875%);
+  box-shadow: 0 calc(var(--u) * 36) calc(var(--u) * 100) rgba(0, 0, 0, 0.6);
+  transition: transform 0.9s var(--ease-out), opacity 0.6s var(--ease), box-shadow 0.6s var(--ease);
+}
+.cv.is-ws .cv__frame { transform: none; box-shadow: 0 0 0 1px rgba(244, 239, 227, 0.14), 0 calc(var(--u) * 30) calc(var(--u) * 90) rgba(0, 0, 0, 0.55); }
+.cv.is-ws .cv__frame.is-active { box-shadow: 0 0 0 1px var(--sel), 0 calc(var(--u) * 30) calc(var(--u) * 90) rgba(0, 0, 0, 0.55); }
+.cv.is-s1 .cv__frame, .cv.is-s2 .cv__frame, .cv.is-s3 .cv__frame, .cv.is-s4 .cv__frame { opacity: 0; }
+
+.cv__chrome {
+  position: absolute;
+  left: 0; right: 0; bottom: 100%;
+  display: flex; align-items: center; gap: calc(var(--u) * 5);
+  height: calc(var(--u) * 20);
+  padding-inline: calc(var(--u) * 9);
+  border-radius: calc(var(--u) * 4) calc(var(--u) * 4) 0 0;
+  background: #1C1915;
+  transition: opacity 0.6s var(--ease) 0.3s, transform 0.6s var(--ease-out) 0.3s;
+}
+.cv__chrome i { width: calc(var(--u) * 6); height: calc(var(--u) * 6); border-radius: 50%; background: var(--iv-40); }
+.cv__chrome span { width: 34%; height: calc(var(--u) * 9); margin-inline: auto; border-radius: calc(var(--u) * 2); background: rgba(244, 239, 227, 0.07); }
+.cv.is-ws .cv__chrome { opacity: 0; transform: translateY(calc(var(--u) * 8)); transition-delay: 0s; }
+
+/* --- Step rail: a timeline, not a menu ----------------------------------- */
+.cv__steps {
+  position: absolute;
+  left: 7%; top: 1.6%;
+  display: flex;
+  gap: calc(var(--u) * 16);
+  font-family: var(--mono);
+  font-size: calc(var(--u) * 10);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--iv-55);
+}
+.cv__steps li { display: flex; align-items: center; gap: calc(var(--u) * 5); padding-bottom: calc(var(--u) * 5); border-bottom: calc(var(--u) * 1.6) solid transparent; transition: color 0.3s var(--ease), border-color 0.3s var(--ease); }
+.cv__steps b { font-weight: 400; color: var(--iv-40); }
+.cv__steps li.is-todo { color: rgba(244, 239, 227, 0.28); }
+.cv__steps li.is-todo b { color: rgba(244, 239, 227, 0.2); }
+.cv__steps li.is-now, .cv__steps li.is-now b { color: var(--accent-hi); }
+.cv__steps li.is-now { border-bottom-color: var(--accent-hi); }
+
+/* --- Board: the thinking, in the region the frame will take -------------- */
+.bd {
+  position: absolute;
+  left: 7%; top: 11%;
+  width: 64%; height: 80%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s var(--ease), visibility 0s linear 0.6s;
+}
+.cv.is-s1 .bd, .cv.is-s2 .bd, .cv.is-s3 .bd, .cv.is-s4 .bd { opacity: 1; visibility: visible; transition-delay: 0s; }
+
+/* 01 Evidence — six sources, gathered loosely. */
+.nt {
+  --r: var(--r1);
+  --s: 1;
+  position: absolute;
+  left: calc(var(--x1) * 1%);
+  top: calc(var(--y1) * 1%);
+  width: calc(var(--w1) * 1%);
+  height: calc(var(--h1) * 1%);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 5);
+  padding: calc(var(--u) * 8);
+  border-radius: calc(var(--u) * 3);
+  transform: rotate(calc(var(--r) * 1deg)) scale(var(--s));
+  box-shadow: 0 calc(var(--u) * 8) calc(var(--u) * 20) rgba(0, 0, 0, 0.35);
+  transition: left 0.7s var(--ease-out), top 0.7s var(--ease-out), width 0.7s var(--ease-out), height 0.7s var(--ease-out),
+              transform 0.7s var(--ease-out), opacity 0.5s var(--ease);
+  overflow: hidden;
+}
+.nt:not(.is-in) { opacity: 0; --s: 0.92; }
+.nt--dark  { background: #1C1915; border: 1px solid var(--line-d); color: var(--iv-55); }
+.nt--paper { background: var(--paper); color: rgba(16, 14, 10, 0.55); }
+.nt--line  { background: transparent; border: 1px dashed var(--line-d2); color: var(--iv-55); }
+.nt__tag { font-family: var(--mono); font-size: calc(var(--u) * 8.5); letter-spacing: 0.08em; text-transform: uppercase; }
+.nt__viz { flex: 1 1 auto; width: 100%; min-height: 0; }
+.nt__l { display: block; height: calc(var(--u) * 4); background: currentColor; opacity: 0.55; }
+.nt__l--s { width: 60%; }
+.nt__heat { flex: 1 1 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: calc(var(--u) * 3); }
+.nt__heat i { border-radius: calc(var(--u) * 1.5); background: rgba(255, 67, 38, var(--a)); }
+
+/* 02 Understand — the same cards, level and aligned under the pattern each shows. */
+.cv.is-s2 .nt {
+  --r: 0;
+  left: calc(var(--x2) * 1%);
+  top: calc(var(--y2) * 1%);
+  width: 28%;
+  height: 26%;
+}
+.bd__cl {
+  position: absolute;
+  left: calc(var(--x) * 1%); top: 2%;
+  width: 28%;
+  padding-bottom: calc(var(--u) * 5);
+  font-family: var(--mono);
+  font-size: calc(var(--u) * 9.5);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+.bd__cl::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--iv-55);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease-out);
+}
+.cv.is-s2 .bd__cl { opacity: 1; transition-delay: 0.45s; }
+.cv.is-s2 .bd__cl::after { transform: none; transition-delay: 0.6s; }
+
+/* 03 Define — everything collapses into one statement. Fewer things, not more. */
+.cv.is-s3 .nt {
+  --r: 0;
+  --s: 0.7;
+  left: 36%; top: 30%;
+  width: 28%; height: 24%;
+  opacity: 0;
+}
+.bd__prob {
+  position: absolute;
+  left: 22%; top: 30%;
+  width: 56%;
+  display: flex; flex-direction: column; gap: calc(var(--u) * 8);
+  padding: calc(var(--u) * 14);
+  border-radius: calc(var(--u) * 3);
+  background: var(--paper);
+  box-shadow: 0 0 0 calc(var(--u) * 1.6) var(--accent), 0 calc(var(--u) * 14) calc(var(--u) * 30) rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.5s var(--ease), transform 0.7s var(--ease-out), top 0.7s var(--ease-out);
+}
+.bd__prob-tag { align-self: flex-start; padding: calc(var(--u) * 1.5) calc(var(--u) * 5); border-radius: calc(var(--u) * 2); background: var(--accent); color: var(--deep); font-family: var(--mono); font-size: calc(var(--u) * 8.5); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.bd__prob-say { font-family: var(--display); font-weight: 300; font-size: calc(var(--u) * 21); line-height: 1.1; letter-spacing: -0.005em; color: var(--ink); }
+.bd__prob-from { font-family: var(--mono); font-size: calc(var(--u) * 8.5); letter-spacing: 0.08em; text-transform: uppercase; color: rgba(16, 14, 10, 0.5); }
+.cv.is-s3 .bd__prob { opacity: 1; transform: none; transition-delay: 0.35s; }
+
+/* 04 Structure — the problem becomes the brief; a flow is laid out beneath. */
+.cv.is-s4 .nt, .cv.is-s4 .bd__cl { opacity: 0; transition-delay: 0s; }
+.cv.is-s4 .bd__prob { opacity: 1; transform: none; top: 4%; }
+.bd__node {
+  position: absolute;
+  left: calc(var(--x) * 1%); top: 40%;
+  width: 20%; height: 15%;
+  display: grid; place-items: center;
+  border: 1px solid var(--line-d2);
+  border-radius: calc(var(--u) * 3);
+  background: #1C1915;
+  font-family: var(--mono);
+  font-size: calc(var(--u) * 9.5);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  opacity: 0;
+  transform: translateY(calc(var(--u) * 8));
+  transition: opacity 0.4s var(--ease), transform 0.5s var(--ease-out);
+}
+.bd__node--key { border-color: var(--accent); }
+.bd__link {
+  position: absolute;
+  left: calc(var(--x) * 1% + 0.6%); top: 47.5%;
+  width: 4.8%; height: 1px;
+  background: var(--iv-55);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.bd__link::after {
+  content: "";
+  position: absolute;
+  right: -1px; top: 50%;
+  width: calc(var(--u) * 5); height: calc(var(--u) * 5);
+  border-top: 1px solid var(--iv-55);
+  border-right: 1px solid var(--iv-55);
+  transform: translateY(-50%) rotate(45deg);
+}
+.bd__flow-note { position: absolute; left: 4%; top: 62%; font-family: var(--mono); font-size: calc(var(--u) * 9.5); letter-spacing: 0.06em; text-transform: uppercase; color: var(--iv-55); opacity: 0; transition: opacity 0.4s var(--ease); }
+.cv.is-s4 .bd__node { opacity: 1; transform: none; transition-delay: calc(0.45s + var(--i) * 0.28s); }
+.cv.is-s4 .bd__link { transform: none; transition-delay: calc(0.3s + var(--i) * 0.28s); }
+.cv.is-s4 .bd__flow-note { opacity: 1; transition-delay: 1.5s; }
+
+/* --- Replay: at the end of the timeline ------------------------------------ */
+.cv__replay {
+  position: absolute;
+  right: 7%; top: 0;
+  z-index: 4;
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  min-height: 32px;
+  padding: 0 var(--s-3);
+  border: 1px solid var(--line-d2);
+  border-radius: var(--r);
+  background: rgba(11, 10, 8, 0.8);
+  color: var(--ivory);
+  pointer-events: auto;
+  transition: border-color var(--base) var(--ease);
+}
+.cv__replay::before { content: ""; position: absolute; inset: -6px 0; } /* 44px hit area */
+.cv__replay:hover { border-color: var(--ivory); }
+.cv__replay[hidden] { display: none; }
+
+/* Stacked, the canvas has no spare corner: the control sits beneath it. */
+@media (max-width: 1080px) {
+  .cv__replay { position: relative; right: auto; margin: var(--s-4) var(--pad) 0; min-height: 44px; }
+}
+
+/* --------------------------------------------------------------------------
+   PHONES — a simpler composition: no side panel or toolbar, the frame and
+   board take the full width, and the rail names only the current step.
+   -------------------------------------------------------------------------- */
+@media (max-width: 760px) {
+  .cv {
+    --u: calc(100cqw / 620);
+    aspect-ratio: 1 / 1.04;
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+  .cv__steps { left: 4%; right: 4%; top: 0; flex-wrap: wrap; gap: 4px 12px; font-size: 10px; }
+  .cv__steps li { gap: 5px; padding-bottom: 5px; border-bottom-width: 1.5px; }
+  .js .cv__steps li:not(.is-now) span { display: none; }
+  .cv__label { left: 4%; top: 7.5%; font-size: 10px; }
+  .cv__frame, .bd { left: 4%; top: 15%; width: 92%; height: 78%; }
+  .cv__frame { transform: none; }
+  .cv__inspect, .cv__tools { display: none; }
+  .nt__tag, .bd__cl, .bd__node, .bd__flow-note, .bd__prob-from, .bd__prob-tag { font-size: clamp(8px, calc(var(--u) * 12), 11px); }
+  .bd__node { letter-spacing: 0.02em; }
+}
+

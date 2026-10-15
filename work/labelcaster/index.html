@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LabelCaster &mdash; Roshan Kumar</title>
+<meta name="description" content="Case study: redesigning LabelCaster, a music distribution app where labels submit releases, agree on contracts and splits with their artists, and get paid. LabelCaster delivers each release to streaming services.">
+<meta name="theme-color" content="#120E0B">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LabelCaster — Roshan Kumar">
+<meta property="og:description" content="From upload to payout.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Geist:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../css/tokens.css?v=lc-01">
+<link rel="stylesheet" href="../../css/base.css?v=lc-01">
+<link rel="stylesheet" href="../../css/layout.css?v=lc-01">
+<link rel="stylesheet" href="../../css/components.css?v=lc-02">
+<link rel="stylesheet" href="../../css/record.css?v=lc-01">
+<link rel="stylesheet" href="../../css/responsive.css?v=lc-01">
+<link rel="stylesheet" href="../../css/lc.css?v=lc-30">
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="nav__panel" id="menu" data-menu-panel aria-hidden="true">
+  <nav class="nav__panel-list" aria-label="Projects">
+    <a class="nav__panel-link" href="../chartvps/index.html"><span class="mono">01</span> ChartVPS</a>
+    <a class="nav__panel-link" href="../tpnl/index.html"><span class="mono">02</span> TPNL</a>
+    <a class="nav__panel-link" href="../labelcaster/index.html"><span class="mono">03</span> LabelCaster</a>
+    <a class="nav__panel-link" href="../eagl/index.html"><span class="mono">04</span> Eagl</a>
+    <a class="nav__panel-link" href="../../index.html"><span class="mono">&larr;</span> Index</a>
+  </nav>
+  <p class="mono live"><span class="live__dot" aria-hidden="true"></span>Open to opportunities</p>
+</div>
+
+<header class="section deep nav" data-nav>
+  <div class="container nav__inner">
+    <a class="nav__id" href="../../index.html">Roshan Kumar<span>.</span></a>
+    <nav class="nav__links mono" aria-label="Sections">
+      <a class="nav__link" href="../../index.html#work">Work</a>
+      <a class="nav__link" href="../../index.html#approach">Approach</a>
+      <a class="nav__link" href="../../index.html#about">About</a>
+      <a class="nav__link" href="../../index.html#contact">Contact</a>
+    </nav>
+    <button class="nav__toggle mono" type="button" data-menu-toggle aria-expanded="false" aria-controls="menu">
+      <span data-menu-label>Menu</span>
+      <span class="nav__bars" aria-hidden="true"><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="lc">
+
+<!-- HERO -->
+<section class="lc-hero" aria-labelledby="lc-title">
+  <div class="container">
+    <div class="lc-hero__grid">
+      <div>
+        <div class="lc-hero__top">
+          <a href="../../index.html#work"><span aria-hidden="true">&larr;</span> All work</a>
+          <span>03 / 04 &middot; Music distribution &middot; Mobile app</span>
+        </div>
+        <h1 class="big rv" id="lc-title">LabelCaster</h1>
+        <p class="lc-hero__say rv" data-d="1">From upload <em>to payout.</em></p>
+        <p class="lc-hero__lede rv" data-d="1">A music distribution app where labels submit releases, agree on contracts and splits with their artists, and get paid. LabelCaster delivers each release to streaming services such as Spotify and Apple Music. This redesign and rebrand of the existing app makes the business side of music understandable to people who aren&rsquo;t experts.</p>
+        <dl class="lc-facts rv" data-d="1">
+          <div class="is-wide"><dt>Role</dt><dd>Product designer &middot; wireframes, visual design and user research</dd></div>
+          <div><dt>Platforms</dt><dd>iOS &middot; Android</dd></div>
+          <div><dt>Status</dt><dd>Shipped as a private app</dd></div>
+        </dl>
+      </div>
+      <div class="lc-hero__art rv" data-d="1">
+        <figure class="lc-shot lc-shot--clip"><span class="lc-shot__frame"><img src="../../assets/work/lc-album-overview.webp?v=9" width="750" height="2294" alt="Album overview for Low Tide Radio: the album, then four tracks, each with its ISRC and ISWC codes, its artists and a contract status: Unsigned, Signed, Pending, Rejected. Save as draft and Next buttons."></span></figure>
+        <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-contract-overview.webp?v=9" width="750" height="1624" alt="Contract Overview for Low Tide Radio: Mira Solenne and Oskar Veld with a 40% share each, Tallgrass Audio with 20%, start and end dates, and a Download button. The logo is blurred."></span></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="lc-nav" aria-label="Case study sections" data-case-nav>
+  <div class="container">
+    <div class="cs-nav__list">
+      <a href="#problem">01 Problem</a>
+      <a href="#evidence">02 Evidence</a>
+      <a href="#role">03 Contribution</a>
+      <a href="#workflow">04 Workflow</a>
+      <a href="#decisions">05 Decisions</a>
+      <a href="#solution">06 Solution</a>
+      <a href="#system">07 System</a>
+      <a href="#outcome">08 Outcome</a>
+      <a href="#open">09 Open</a>
+    </div>
+  </div>
+</nav>
+
+<!-- 01 PROBLEM -->
+<section class="lc-sec" id="problem" aria-labelledby="problem-h">
+  <div class="container">
+    <p class="lc-tag">01 &middot; Problem</p>
+    <h2 class="big lc-h2 rv" id="problem-h">Artists and labels use the same app, from opposite sides of a contract.</h2>
+    <div class="lc-deal rv" role="img" aria-label="Artists on one side, labels on the other, and the contract between them.">
+      <div class="lc-deal__artist"><span>One side</span><b>Artists</b><p>Contribute to releases, review and sign agreements, and receive royalties.</p></div>
+      <div class="lc-deal__contract"><span>Between them</span><b>The contract</b><p>Sent by one side, signed or rejected by the other.</p></div>
+      <div class="lc-deal__label"><span>Other side</span><b>Labels</b><p>Manage releases, agreements, splits and approvals. Join by invitation.</p></div>
+    </div>
+    <p class="lc-aside lc-aside--flow rv">Labels submit releases to LabelCaster, which delivers them to streaming services.</p>
+    <p class="lc-aside rv">The artist side uses the same screens in a light theme. Except where marked, the rest of this page shows the label side.</p>
+
+    <div class="lc-old">
+      <div>
+        <h3 class="lc-sub lc-problem-h rv">Signing a contract meant leaving the app.</h3>
+        <p class="lc-lede rv">The clearest of four problems in the old app. Three of them broke the path through a release; the fourth was that both sides saw one interface.</p>
+        <ol class="lc-breaks rv">
+          <li><div><b>Signing happened outside the app</b><span>Contracts were signed in an external tool, and the signed contract had to be kept in external storage.</span></div></li>
+          <li><div><b>Navigation dead ends</b><span>People got stuck on a screen with no way back.</span></div></li>
+          <li><div><b>A complicated multi-track upload</b><span>Each song needed its own details, such as its name and ISRC code.</span></div></li>
+          <li><div><b>One look for both sides</b><span>Labels and artists saw the same interface.</span></div></li>
+        </ol>
+      </div>
+      <div class="lc-board rv" data-d="1">
+        <div class="lc-row" style="--n: 3;">
+          <figure class="lc-shot lc-shot--phone"><span class="lc-shot__frame"><img src="../../assets/work/lc-old-contract-overview.webp?v=9" width="648" height="1265" loading="lazy" alt="Old app Contract Overview: the two parties with a 50% share each, start and end dates, and Sign Contract and Done buttons. The label name is blurred."></span><figcaption><b>Contract Overview</b>The signing step itself ran in the external tool.</figcaption></figure>
+          <figure class="lc-shot lc-shot--phone"><span class="lc-shot__frame"><img src="../../assets/work/lc-old-upload-track.webp?v=9" width="648" height="1224" loading="lazy" alt="Old app Upload Track sheet: Upload Single Track, Upload EP (4-6 Tracks), Upload Album (More than 7+ tracks), and a Proceed button."></span><figcaption><b>Upload Track</b>A single track, an EP or an album.</figcaption></figure>
+          <figure class="lc-shot lc-shot--phone"><span class="lc-shot__frame"><img src="../../assets/work/lc-old-welcome.webp?v=9" width="648" height="1444" loading="lazy" alt="Old app welcome screen with three buttons: I want to be signed, I want to start a label, Add a label or catalogue. The logo is blurred."></span><figcaption><b>Welcome</b>One way in for both sides.</figcaption></figure>
+        </div>
+        <p class="lc-board__note">The old app. The logo and one label name are blurred.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 EVIDENCE -->
+<section class="lc-sec lc-sec--mint" id="evidence" aria-labelledby="evidence-h">
+  <div class="container">
+    <p class="lc-tag">02 &middot; Evidence</p>
+    <h2 class="big lc-h2 rv" id="evidence-h">98 people rated the app. Nobody gave it a five.</h2>
+    <p class="lc-lede rv" data-d="1">I co-wrote a 7-question Google Forms survey with the product manager and the product owner. It was the only research on this project: there were no interviews, no analytics and no competitor review.</p>
+    <div class="lc-survey">
+      <figure class="lc-chart rv">
+        <figcaption>How would you rate the user-friendliness of LabelCaster interface?<small>98 responses &middot; 1 is the lowest, 5 the highest</small></figcaption>
+        <ol class="lc-bars" aria-label="Number of responses for each rating">
+          <li style="--v: 10;"><b>10 (10%)</b><i></i></li>
+          <li style="--v: 25;"><b>25 (25%)</b><i></i></li>
+          <li style="--v: 44;"><b>44 (45%)</b><i></i></li>
+          <li style="--v: 19;"><b>19 (20%)</b><i></i></li>
+          <li style="--v: 0;" class="is-none"><b>0 (0%)</b><i></i></li>
+        </ol>
+        <div class="lc-scale" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+        <p class="lc-chart__note">The average is about 2.7 out of 5, worked out from these counts. Redrawn from the Google Forms results.</p>
+      </figure>
+      <dl class="lc-numbers rv" data-d="1">
+        <div><dt>150</dt><dd>users it was sent to: labels and artists who had used the app for more than 4 months</dd></div>
+        <div><dt>98</dt><dd>of them responded</dd></div>
+        <div><dt>0</dt><dd>rated the app&rsquo;s user-friendliness 5 out of 5</dd></div>
+      </dl>
+    </div>
+
+    <figure class="lc-evidence rv">
+      <img src="../../assets/work/lc-survey-frustrating.webp" width="1100" height="444" loading="lazy" alt="Google Forms results for &ldquo;What do you find most frustrating about LabelCaster?&rdquo;, 98 responses, including the responses about signing and navigation quoted below.">
+      <figcaption>One of the seven questions, as the answers appeared in Google Forms. Responses are quoted exactly as written.</figcaption>
+    </figure>
+
+    <h3 class="lc-sub lc-pat-h rv">What the answers pointed to</h3>
+    <ol class="lc-pats">
+      <li class="rv"><span class="lc-pats__no">Pattern 01</span><b>Signing felt like a different product.</b><blockquote>Signing process is too frustrating, It takes you to a whole new world with lots of time wastage on loading.</blockquote><a class="lc-themes__link" href="#d-sign">Decision 01: bring signing into the app</a></li>
+      <li class="rv" data-d="1"><span class="lc-pats__no">Pattern 02</span><b>People lost their way between tasks.</b><blockquote>Sometime I stuck navigation around the screens, unable to go back or explore any feature.</blockquote><a class="lc-themes__link" href="#d-back">Decision 05: a way back from every screen</a></li>
+      <li class="rv"><span class="lc-pats__no">Pattern 03</span><b>Upload repeated the same work for every track.</b><p>Each song needed its own details: name, ISRC code and more. Artwork came up too:</p><blockquote>Uploading custom Artwork, demo song upload without artwork</blockquote><a class="lc-themes__link" href="#d-upload">Decision 02: name tracks during upload</a></li>
+      <li class="rv" data-d="1"><span class="lc-pats__no">Pattern 04</span><b>Two roles, one look.</b><blockquote>Diffrent apps for label and artist</blockquote><blockquote>Yes I have, please change color to some more exciting colors. Its too boring right now.</blockquote><a class="lc-themes__link" href="#system">07: a new look and a design system</a></li>
+    </ol>
+    <p class="lc-board__note rv">Survey responses, quoted exactly as written.</p>
+  </div>
+</section>
+
+<!-- 03 CONTRIBUTION -->
+<section class="lc-sec lc-sec--label lc-sec--short" id="role" aria-labelledby="role-h">
+  <div class="container">
+    <p class="lc-tag">03 &middot; My contribution</p>
+    <h2 class="big lc-h2 rv" id="role-h">From wireframe to shipped screen, and the system behind it.</h2>
+    <ul class="lc-own rv" data-d="1">
+      <li><b>The workflow and its screens</b><span>Wireframes and final screens for the five steps of a release. Signing is shown wireframe next to final.</span></li>
+      <li><b>The visual language</b><span>The rebrand&rsquo;s typography and icons, and the Figma design system: color styles, text styles and components.</span></li>
+      <li><b>The survey</b><span>Seven questions, co-written with the product manager and the product owner.</span></li>
+    </ul>
+    <p class="lc-credit rv">The product owner provided the colors, the list of release types and the artist side&rsquo;s light theme. Typography and icons were agreed with the product owner and the product manager. The team replaced the external signing tool with signing inside the app.</p>
+    <p class="lc-credit lc-credit--team rv">Team: a product manager, four developers and the client&rsquo;s product owner.</p>
+  </div>
+</section>
+
+<!-- 04 WORKFLOW -->
+<section class="lc-sec" id="workflow" aria-labelledby="workflow-h">
+  <div class="container">
+    <p class="lc-tag">04 &middot; The workflow</p>
+    <h2 class="big lc-h2 rv" id="workflow-h">Five steps, from a sound file to a payout.</h2>
+    <p class="lc-lede rv" data-d="1">The redesign is organized around the work a release has to move through: adding music, agreeing terms, signing, completing publishing information, and tracking earnings.</p>
+    <ol class="lc-journey lc-journey--desc rv">
+      <li><a href="#ch-add"><span>A</span><b>Add music</b><p>Pick the release type, upload the files, name each track.</p></a></li>
+      <li><a href="#ch-contracts"><span>B</span><b>Contracts &amp; splits</b><p>Choose a contract type, set every share, add costs if needed.</p></a></li>
+      <li><a href="#ch-sign"><span>C</span><b>Sign</b><p>Read, then sign or reject, inside the app.</p></a></li>
+      <li><a href="#ch-publishing-info"><span>D</span><b>Publishing info</b><p>Complete the composition details and publishing splits required for the release.</p></a></li>
+      <li><a href="#ch-earn"><span>E</span><b>Earn &amp; cash out</b><p>Follow earnings, then request a payout.</p></a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 05 DECISIONS -->
+<section class="lc-sec lc-sec--mint" id="decisions" aria-labelledby="decisions-h">
+  <div class="container">
+    <p class="lc-tag">05 &middot; Key decisions</p>
+    <h2 class="big lc-h2 rv" id="decisions-h">Five decisions carry the redesign.</h2>
+    <div class="lc-decs">
+      <article class="lc-dec rv" id="d-sign">
+        <p class="lc-dec__no">01 &middot; Step C</p>
+        <h3 class="lc-dec__h">Bring signing into the app.</h3>
+        <dl>
+          <div><dt>Problem</dt><dd>Contracts were signed in an external tool and stored outside the app.</dd></div>
+          <div><dt>Decision</dt><dd>Read, sign or reject, draw the signature and see it confirmed, without leaving the app.</dd></div>
+          <div class="is-why"><dt>Why</dt><dd>Users asked for it. Before, people had to leave the app and download the contract separately.</dd></div>
+          <div class="is-trade"><dt>Trade-off</dt><dd>The team had to build and maintain an in-app signing flow on a signing API, instead of using a ready-made signing tool.</dd></div>
+        </dl>
+        <a class="lc-themes__link" href="#ch-sign">See it in the screens</a>
+      </article>
+      <article class="lc-dec rv" data-d="1" id="d-upload">
+        <p class="lc-dec__no">02 &middot; Step A</p>
+        <h3 class="lc-dec__h">Name tracks during upload.</h3>
+        <dl>
+          <div><dt>Problem</dt><dd>Uploading 4&ndash;7 tracks meant filling in every detail for each song.</dd></div>
+          <div><dt>Decision</dt><dd>Choose the release type first, upload several sound files at once, and name each one in place.</dd></div>
+          <div class="is-why"><dt>Why</dt><dd>Naming tracks during upload removes a separate upload step for each file.</dd></div>
+          <div class="is-trade"><dt>Trade-off</dt><dd>Filling in details for each track was still there: users had to enter the data one track at a time.</dd></div>
+        </dl>
+        <a class="lc-themes__link" href="#ch-add">See it in the screens</a>
+      </article>
+      <article class="lc-dec rv" id="d-splits">
+        <p class="lc-dec__no">03 &middot; Step B</p>
+        <h3 class="lc-dec__h">Set the shares where the agreement is made.</h3>
+        <dl>
+          <div><dt>Problem</dt><dd>Splits and cost-sharing are financial agreements that are easy to get wrong.</dd></div>
+          <div><dt>Decision</dt><dd>The label sets the splits, and chooses whether to add recuperation, while creating a contract or uploading a track or album. Each share sits beside its name.</dd></div>
+          <div class="is-trade"><dt>Trade-off</dt><dd>The shares still need approval: they are sent to the artist, and fixed only after a reply.</dd></div>
+        </dl>
+        <a class="lc-themes__link" href="#ch-contracts">See it in the screens</a>
+      </article>
+      <article class="lc-dec rv" data-d="1" id="d-explain">
+        <p class="lc-dec__no">04 &middot; Every step</p>
+        <h3 class="lc-dec__h">Explain the business where it happens.</h3>
+        <dl>
+          <div><dt>Problem</dt><dd>ISRC codes, publishing royalties, IPI numbers, splits and recuperation. Most artists and many small labels aren&rsquo;t experts in them.</dd></div>
+          <div><dt>Decision</dt><dd>Explain each concept on the screen where it&rsquo;s needed, in plain language.</dd></div>
+          <div class="is-why"><dt>Why</dt><dd>The payout fee, for example, is shown before requesting, so people know the cost before they commit.</dd></div>
+          <div class="is-trade"><dt>Trade-off</dt><dd>More text on screens that were already dense.</dd></div>
+        </dl>
+      </article>
+    </div>
+    <div class="lc-board lc-dec-board rv">
+      <p class="lc-dec-board__h">Decision 04, in the words on the screens</p>
+      <ul class="lc-idea" aria-label="Places where the app explains a concept, cropped from the screens">
+        <li class="rv"><span class="lc-idea__img"><img src="../../assets/work/lc-crop-invite.webp?v=9" width="1125" height="382" loading="lazy" alt="From the Add Track screen. Invite Featured Artist: Only invite Featured Artist to include him/her in a contract with a split. This is not a shout-out, it&rsquo;s a financial invitation."></span><blockquote>This is not a shout-out, it&rsquo;s a financial invitation.</blockquote><span class="lc-idea__where">Inviting a featured artist</span></li>
+        <li class="rv"><span class="lc-idea__img"><img src="../../assets/work/lc-crop-split.webp?v=9" width="1125" height="384" loading="lazy" alt="From the Publishing screen. Total split (must be 100%), with Mira&rsquo;s share at 70% and Oskar&rsquo;s share at 30%."></span><blockquote>Total split (must be 100%)</blockquote><span class="lc-idea__where">Splitting publishing royalties</span></li>
+        <li class="rv"><span class="lc-idea__img"><img src="../../assets/work/lc-crop-taxes.webp?v=9" width="1125" height="442" loading="lazy" alt="From the Add Expense screen. An Amount field, then Note: Register the full amount including taxes, and a Next button."></span><blockquote>Note: Register the full amount including taxes</blockquote><span class="lc-idea__where">Adding an expense</span></li>
+        <li class="rv"><span class="lc-idea__img"><img src="../../assets/work/lc-crop-recuperation.webp?v=9" width="1125" height="808" loading="lazy" alt="From the Recuperation screen: the paragraph that explains recuperation."></span><blockquote>Recuperation is an optional extra agreement between a Label and Artists on how to share the costs for producing the music.</blockquote><span class="lc-idea__where">Before the expense form</span></li>
+        <li class="rv"><span class="lc-idea__img"><img src="../../assets/work/lc-crop-help.webp?v=9" width="1125" height="438" loading="lazy" alt="From the Dashboard: Total earnings and Payouts, each with a question-mark help icon."></span><p class="lc-idea__say">A &ldquo;?&rdquo; beside each figure</p><span class="lc-idea__where">Help icons on the dashboard</span></li>
+      </ul>
+      <p class="lc-board__note">Cropped from the final screens. The wording is quoted exactly.</p>
+    </div>
+    <div class="lc-decs lc-decs--after">
+      <article class="lc-dec lc-dec--wide rv" id="d-back">
+        <div class="lc-dec__text">
+          <p class="lc-dec__no">05 &middot; Every screen</p>
+          <h3 class="lc-dec__h">A way back from every screen.</h3>
+          <dl>
+            <div><dt>Problem</dt><dd>People got stuck on a screen with no way back. Screens were overcrowded.</dd></div>
+            <div><dt>Decision</dt><dd>Every part of the app went into one main navigation menu, and every screen got a back button.</dd></div>
+            <div class="is-why"><dt>Why</dt><dd>&ldquo;Sometime I stuck navigation around the screens, unable to go back or explore any feature.&rdquo; <cite>Survey response</cite></dd></div>
+          </dl>
+        </div>
+        <div class="lc-board lc-dec__shots">
+          <div class="lc-row" style="--n: 2;">
+            <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-menu.webp?v=9" width="750" height="1624" loading="lazy" alt="The menu: Dashboard, Distribution centre, Contracts, Publishing, Notifications &amp; messages, Profile, Settings, Logout."></span><figcaption><b>Menu</b>Every part of the app in one place.</figcaption></figure>
+            <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-contract-details.webp?v=9" width="750" height="2120" loading="lazy" alt="Contract details for Low Tide Radio: Mira Solenne as main artist and Oskar Veld as featured artist, contract title, expiry and effective dates, a label share of 20% and two artist shares of 40%, Save as draft and Send contract."></span><figcaption><b>Contract details</b>A back button under the title.</figcaption></figure>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 06 SOLUTION -->
+<section class="lc-sec" id="solution" aria-labelledby="solution-h">
+  <div class="container">
+    <p class="lc-tag">06 &middot; Solution</p>
+    <h2 class="big lc-h2 rv" id="solution-h">The five steps, in the shipped screens.</h2>
+    <div class="lc-chs">
+
+      <article class="lc-ch" id="ch-add">
+        <header class="lc-ch__head rv"><span class="lc-ch__no">A</span><h3 class="lc-sub">Add music</h3></header>
+        <p class="lc-step__say rv">Release type first, then every track named as it uploads.</p>
+        <p class="lc-step__more rv">Several sound files share one screen, and a sheet names each one without leaving the list. The album overview then shows each track&rsquo;s contract status.</p>
+        <div class="lc-board rv">
+          <div class="lc-row" style="--n: 4;">
+            <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-add-music-ep.webp?v=9" width="750" height="1624" loading="lazy" alt="Add Music, with Upload EP (2-4 tracks) selected: Upload single (1 Track), Upload EP (2-4 tracks), Upload Album (More than 4 tracks), Upload Mixtape/Compilation (Various artists album), Upload Back Catalogue, and a Next button."></span><figcaption><b>Add Music</b>The release type comes first.</figcaption></figure>
+            <figure class="lc-shot lc-shot--clip"><span class="lc-shot__frame"><img src="../../assets/work/lc-bulk-upload.webp?v=9" width="750" height="3248" loading="lazy" alt="Add Track, bulk upload: four named sound files, each with a Set track name button, then shared fields such as Primary Language, Producer and Featured Artist with Split."></span><figcaption><b>Bulk upload</b>Top of the screen shown.</figcaption></figure>
+            <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-set-track-name.webp?v=9" width="750" height="1626" loading="lazy" alt="Track Name sheet over the bulk upload: a Name of track field and a Save button."></span><figcaption><b>Set track name</b>Named in place.</figcaption></figure>
+            <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-album-overview.webp?v=9" width="750" height="2294" loading="lazy" alt="Album overview for Low Tide Radio: the album, then four tracks, each with its ISRC and ISWC codes, its artists and a contract status: Unsigned, Signed, Pending, Rejected. Save as draft and Next buttons."></span><figcaption><b>Album overview</b>A contract status on every track.</figcaption></figure>
+          </div>
+        </div>
+      </article>
+
+      <article class="lc-ch" id="ch-contracts">
+        <header class="lc-ch__head rv"><span class="lc-ch__no">B</span><h3 class="lc-sub">Contracts and splits</h3></header>
+        <p class="lc-step__say rv">Each share sits beside its name.</p>
+        <p class="lc-step__more rv">The two contract types are explained side by side. Recuperation is explained before the expense form, and &ldquo;Send Artist for Approval&rdquo; is the last step.</p>
+        <div class="lc-board rv">
+          <div class="lc-row" style="--n: 4;">
+            <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-contract-template.webp?v=9" width="750" height="1784" loading="lazy" alt="Create contract: two options side by side, Create new contract using Labelcaster technology, and Distribute with existing contract but create automated splits."></span><figcaption><b>Contract type</b></figcaption></figure>
+            <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-contract-details.webp?v=9" width="750" height="2120" loading="lazy" alt="Contract details for Low Tide Radio: Mira Solenne as main artist and Oskar Veld as featured artist, contract title, expiry and effective dates, a label share of 20% and two artist shares of 40%, Save as draft and Send contract."></span><figcaption><b>Contract details</b>Shares beside names.</figcaption></figure>
+            <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-recuperation-explainer.webp?v=9" width="750" height="1784" loading="lazy" alt="Recuperation: a paragraph explaining that recuperation is an optional extra agreement on how to share the costs of producing the music, with an Open Expenses button."></span><figcaption><b>Recuperation</b>Explained first.</figcaption></figure>
+            <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-expenses-list.webp?v=9" width="750" height="1784" loading="lazy" alt="Recuperation: Artist&rsquo;s Expenses with Studio recording and Mixing and mastering at &euro;140 each, a total of &euro;280, Label&rsquo;s Expenses, and a Send Artist for Approval button."></span><figcaption><b>Expenses</b>Then sent for approval.</figcaption></figure>
+          </div>
+        </div>
+      </article>
+
+      <article class="lc-ch" id="ch-sign">
+        <header class="lc-ch__head rv"><span class="lc-ch__no">C</span><h3 class="lc-sub">Sign</h3></header>
+        <p class="lc-step__say rv">Read, sign, signed. Inside the app.</p>
+        <p class="lc-step__more rv">Each step from wireframe to final. The contracts list then shows Signed, Pending or Rejected on every contract.</p>
+        <div class="lc-board rv">
+          <div class="lc-row lc-row--pairs" style="--n: 3;">
+            <div class="lc-pair"><p><span>Step 1</span>Read, then sign or reject</p><figure class="lc-shot lc-shot--phone"><span class="lc-shot__frame"><img src="../../assets/work/lc-wf-sign-contract.webp?v=9" width="698" height="1432" loading="lazy" alt="Wireframe, Sign contract: the contract text with Reject and Sign buttons."></span><figcaption><span class="lc-kind">Wireframe</span></figcaption></figure><figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-sign-contract.webp?v=9" width="750" height="1784" loading="lazy" alt="Sign contract: the distribution agreement for Low Tide Radio, with Reject and Sign buttons."></span><figcaption><span class="lc-kind">Final</span></figcaption></figure></div>
+            <div class="lc-pair"><p><span>Step 2</span>Draw the signature</p><figure class="lc-shot lc-shot--phone"><span class="lc-shot__frame"><img src="../../assets/work/lc-wf-signature-pad.webp?v=9" width="698" height="1426" loading="lazy" alt="Wireframe, Sign contract: the contract text above an empty signature box, with Clear signature and Accept signature buttons."></span><figcaption><span class="lc-kind">Wireframe</span></figcaption></figure><figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-sign-pad.webp?v=9" width="750" height="1784" loading="lazy" alt="Sign contract: a signature pad over the contract, with Clear signature and Accept signature buttons."></span><figcaption><span class="lc-kind">Final</span></figcaption></figure></div>
+            <div class="lc-pair"><p><span>Step 3</span>Signed</p><figure class="lc-shot lc-shot--phone"><span class="lc-shot__frame"><img src="../../assets/work/lc-wf-contract-signed.webp?v=9" width="698" height="1435" loading="lazy" alt="Wireframe, Sign contract: a check mark, Contract signed, and Download and Send to email buttons."></span><figcaption><span class="lc-kind">Wireframe</span></figcaption></figure><figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-sign-signed.webp?v=9" width="750" height="1784" loading="lazy" alt="Sign contract: a check mark, Contract signed, and Download and Send to email buttons."></span><figcaption><span class="lc-kind">Final</span></figcaption></figure></div>
+          </div>
+          <div class="lc-row lc-row--after" style="--n: 4;">
+            <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-contracts.webp?v=9" width="750" height="1624" loading="lazy" alt="Contracts list: Low Tide Radio (Signed), Quiet Engines (Pending), Second Summer (Rejected) and North of Here (Signed)."></span><figcaption><b>Contracts list</b>A status on every contract.</figcaption></figure>
+          </div>
+        </div>
+      </article>
+
+      <article class="lc-ch" id="ch-publishing-info">
+        <header class="lc-ch__head rv"><span class="lc-ch__no">D</span><h3 class="lc-sub">Publishing information</h3></header>
+        <p class="lc-step__say rv">Complete the composition details and publishing splits required for the release.</p>
+        <p class="lc-step__more rv">An IPI number can be applied for inside the app.</p>
+        <div class="lc-board rv">
+          <div class="lc-row" style="--n: 4;">
+            <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-royalty-info.webp?v=9" width="750" height="2406" loading="lazy" alt="Publishing: an explanation of music publishing and its three royalties, Master Recording, Performance and Mechanical, with a Next button."></span><figcaption><b>Royalty info</b></figcaption></figure>
+            <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-publish-info.webp?v=9" width="750" height="2308" loading="lazy" alt="Publishing information for the track Saltwater Static: written by Mira Solenne, IPI Number and ISWC Number buttons, Apply for IPI, and Total split (must be 100%) with shares of 70% and 30%."></span><figcaption><b>Publish info</b>Writers and their split.</figcaption></figure>
+            <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-apply-ipi.webp?v=9" width="750" height="2308" loading="lazy" alt="Apply for IPI: apply as a US or non-US citizen, date of birth, an identity document upload, a signature pad, and Cancel and Submit buttons."></span><figcaption><b>Apply for IPI</b></figcaption></figure>
+          </div>
+        </div>
+      </article>
+
+      <article class="lc-ch" id="ch-earn">
+        <header class="lc-ch__head rv"><span class="lc-ch__no">E</span><h3 class="lc-sub">Earn and cash out</h3></header>
+        <p class="lc-step__say rv">The fee is shown before the payout is requested.</p>
+        <p class="lc-step__more rv">A &ldquo;?&rdquo; explains every dashboard figure. Payout history can be downloaded as a PDF, or to Google Drive or Dropbox.</p>
+        <div class="lc-board rv">
+          <div class="lc-row" style="--n: 4;">
+            <figure class="lc-shot lc-shot--clip"><span class="lc-shot__frame"><img src="../../assets/work/lc-dashboard.webp?v=9" width="750" height="4046" loading="lazy" alt="Dashboard: total earnings, payouts, turn-over and cash balance, each with a question-mark help icon, a Request payout button, a Revenue Report button and Top Tracks."></span><figcaption><b>Dashboard</b>Top of the screen shown.</figcaption></figure>
+            <figure class="lc-shot lc-shot--clip"><span class="lc-shot__frame"><img src="../../assets/work/lc-streams-track.webp?v=9" width="750" height="2556" loading="lazy" alt="Saltwater Static, from Low Tide Radio: the same four figures for this track, then a streams chart by service and top countries."></span><figcaption><b>Track</b>Streams by service. Top of the screen shown.</figcaption></figure>
+            <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-payout-request.webp?v=9" width="750" height="1624" loading="lazy" alt="Request payout: a balance of &euro;298, an amount of &euro; 145, a Request payout button, and the line PayPal will charge 0.30 euro + 3.4% of total amount."></span><figcaption><b>Request payout</b>The fee sits under the button.</figcaption></figure>
+          </div>
+          <div class="lc-row lc-row--pairs lc-row--after" style="--n: 3;">
+            <div class="lc-pair"><p><span>Payout history</span>Every payout, with its status</p><figure class="lc-shot lc-shot--phone"><span class="lc-shot__frame"><img src="../../assets/work/lc-wf-payout-history.webp?v=9" width="698" height="1434" loading="lazy" alt="Wireframe, Payout history: two payouts with date, time, amount in USD and a status of Complete or Pending, and a download icon."></span><figcaption><span class="lc-kind">Wireframe</span></figcaption></figure><figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-payout-history.webp?v=9" width="750" height="1624" loading="lazy" alt="Payout history: six payouts with date, time, amount and a status of Success, Pending or Failed, and a download icon."></span><figcaption><span class="lc-kind">Final</span></figcaption></figure></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- 07 DESIGN SYSTEM -->
+<section class="lc-sec lc-sec--mint" id="system" aria-labelledby="system-h">
+  <div class="container">
+    <p class="lc-tag">07 &middot; Design system</p>
+    <h2 class="big lc-h2 rv" id="system-h">A new look, and one system for both sides.</h2>
+    <p class="lc-lede rv" data-d="1">The redesign introduced a reusable visual and interaction system across the product. The rebrand covered new colors, typography and icons.</p>
+    <div class="lc-sys">
+      <div class="lc-board lc-look-board rv">
+        <div class="lc-row" style="--n: 2;">
+          <figure class="lc-shot lc-shot--phone"><span class="lc-shot__frame"><img src="../../assets/work/lc-old-distribution-center.webp?v=9" width="648" height="1225" loading="lazy" alt="Old app Distribution Center: an Add new album button and a list of albums with a status, such as Shared or Edit Draft."></span><figcaption><span class="lc-kind">Old app</span><b>Distribution Center</b></figcaption></figure>
+          <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-distribution.webp?v=9" width="750" height="1624" loading="lazy" alt="Distribution center: a search field and four releases; under Low Tide Radio, the tracks Saltwater static, Harbour lights and Paper boats. Small secondary text such as Locked by contract and View contract."></span><figcaption><span class="lc-kind">Redesign</span><b>Distribution center</b></figcaption></figure>
+        </div>
+      </div>
+      <div class="rv" data-d="1">
+        <div class="lc-palette lc-palette--sys" role="group" aria-label="Old colors and key color styles">
+          <div><p class="lc-palette__name">Old app</p><ul><li><span class="lc-swatch__chip" style="background: #14131A;"></span><b>Black</b><span class="lc-swatch__hex">#14131A</span></li><li><span class="lc-swatch__chip" style="background: #4C5B63;"></span><b>Grey</b><span class="lc-swatch__hex">#4C5B63</span></li><li><span class="lc-swatch__chip" style="background: #C60124;"></span><b>Red</b><span class="lc-swatch__hex">#C60124</span></li></ul></div>
+          <div><p class="lc-palette__name">Redesign &middot; 6 of 10 color styles</p><ul><li><span class="lc-swatch__chip" style="background: #2D3C37;"></span><b>background</b><span class="lc-swatch__hex">#2D3C37</span><span class="lc-swatch__use">Main background color</span></li><li><span class="lc-swatch__chip" style="background: #91B9AA;"></span><b>secondary</b><span class="lc-swatch__hex">#91B9AA</span><span class="lc-swatch__use">Use this for secondary CTA, background and border stroke for input fields</span></li><li><span class="lc-swatch__chip" style="background: #FFD700;"></span><b>gold</b><span class="lc-swatch__hex">#FFD700</span><span class="lc-swatch__use">Use this color for CTA primary and to highlight elements</span></li><li><span class="lc-swatch__chip" style="background: #AFFFAF;"></span><b>green</b><span class="lc-swatch__hex">#AFFFAF</span><span class="lc-swatch__use">Success color</span></li><li><span class="lc-swatch__chip" style="background: #ED5E6F;"></span><b>danger</b><span class="lc-swatch__hex">#ED5E6F</span><span class="lc-swatch__use">Alert color</span></li><li><span class="lc-swatch__chip" style="background: #E1F4E7;"></span><b>light-background</b><span class="lc-swatch__hex">#E1F4E7</span><span class="lc-swatch__use">The artist side&rsquo;s background</span></li></ul></div>
+        </div>
+        <p class="lc-ds-note">Old colors sampled from screenshots of the old app. New colors are the Figma color styles, named by token.</p>
+        <p class="lc-palette__name lc-sys__type-h">Type &middot; 4 of 11 text styles, all in Pragmatica</p>
+        <ul class="lc-ds-type lc-ds-type--sys"><li><span class="lc-ds-type__ag" style="font-weight: 700; font-size: 56px;">Ag</span><span><b>Heading large</b><span class="lc-ds-mono">Pragmatica &middot; 700 &middot; 28/16</span></span></li><li><span class="lc-ds-type__ag" style="font-weight: 500; font-size: 44px;">Ag</span><span><b>Heading 2</b><span class="lc-ds-mono">Pragmatica &middot; 500 &middot; 22/16</span></span></li><li><span class="lc-ds-type__ag" style="font-weight: 500; font-size: 26px;">Ag</span><span><b>Body</b><span class="lc-ds-mono">Pragmatica &middot; 500 &middot; 13/20</span></span></li><li><span class="lc-ds-type__ag" style="font-weight: 700; font-size: 28px;">Ag</span><span><b>Stat</b><span class="lc-ds-mono">Pragmatica &middot; 700 &middot; 14/Auto</span></span></li></ul>
+        <p class="lc-ds-note">&ldquo;Ag&rdquo; set in this site&rsquo;s font at twice each style&rsquo;s size.</p>
+      </div>
+    </div>
+  </div>
+  <div class="lc-ds-canvas rv">
+    <div class="lc-ds-group"><p class="lc-ds-group__name">Representative components, exported from Figma</p><div class="lc-ds-group__items"><figure class="lc-ds-cmp" style="--w: 345px;"><figcaption class="lc-ds-cmp__name">Primary button</figcaption><img src="../../assets/work/lc-ds-cta-main.svg?v=6" width="345" height="48" loading="lazy" alt="Primary button component"></figure><figure class="lc-ds-cmp" style="--w: 90px;"><figcaption class="lc-ds-cmp__name">Release status</figcaption><img src="../../assets/work/lc-ds-release-status.svg?v=6" width="90" height="88" loading="lazy" alt="Release status component"></figure><figure class="lc-ds-cmp" style="--w: 335px;"><figcaption class="lc-ds-cmp__name">Album card</figcaption><img src="../../assets/work/lc-ds-album-card.svg?v=6" width="335" height="201" loading="lazy" alt="Album card component"></figure><figure class="lc-ds-cmp" style="--w: 415px;"><figcaption class="lc-ds-cmp__name">Player bar</figcaption><img src="../../assets/work/lc-ds-playbar.svg?v=6" width="415" height="105" loading="lazy" alt="Player bar component"></figure><figure class="lc-ds-cmp" style="--w: 325px;"><figcaption class="lc-ds-cmp__name">Add Music dialog</figcaption><img src="../../assets/work/lc-ds-add-music-dialog.svg?v=6" width="325" height="349" loading="lazy" alt="Add Music dialog component"></figure></div></div>
+    <div class="lc-ds-split"><div class="lc-ds-iter"><p class="lc-ds-iter__h">Song list: names before progress</p><p class="lc-ds-iter__text">A progress bar beside every song left too little room for long song names. Instead of cropping the names, the bar was removed and playback progress moved to the player bar.</p><div class="lc-ds-group__items"><figure class="lc-ds-cmp lc-ds-cmp--half" style="--w: 333px;"><figcaption class="lc-ds-cmp__name">First version</figcaption><img src="../../assets/work/lc-ds-song-list-v1.svg?v=6" width="333" height="558" loading="lazy" alt="First version component"></figure><figure class="lc-ds-cmp lc-ds-cmp--half" style="--w: 333px;"><figcaption class="lc-ds-cmp__name">Shipped</figcaption><img src="../../assets/work/lc-ds-song-list.svg?v=6" width="333" height="558" loading="lazy" alt="Shipped component"></figure></div></div><div class="lc-ds-group lc-ds-inputs"><p class="lc-ds-group__name">Input fields</p><div class="lc-ds-group__items"><figure class="lc-ds-cmp" style="--w: 345px;"><figcaption class="lc-ds-cmp__name">Input with icon</figcaption><img src="../../assets/work/lc-ds-input-icon.svg?v=6" width="345" height="61" loading="lazy" alt="Input with icon component"></figure><figure class="lc-ds-cmp" style="--w: 375px;"><figcaption class="lc-ds-cmp__name">Input with share</figcaption><img src="../../assets/work/lc-ds-input-share.svg?v=6" width="375" height="164" loading="lazy" alt="Input with share component"></figure><figure class="lc-ds-cmp" style="--w: 375px;"><figcaption class="lc-ds-cmp__name">Search bar</figcaption><img src="../../assets/work/lc-ds-search.svg?v=6" width="375" height="200" loading="lazy" alt="Search bar component"></figure></div></div></div>
+  </div>
+</section>
+
+<!-- 08 OUTCOME -->
+<section class="lc-sec lc-sec--label lc-sec--short" id="outcome" aria-labelledby="outcome-h">
+  <div class="container">
+    <p class="lc-tag">08 &middot; Outcome</p>
+    <h2 class="big lc-h2 rv" id="outcome-h">The redesign went live as a private app.</h2>
+    <p class="lc-lede rv" data-d="1">Access was given to approved accounts only. The app isn&rsquo;t listed publicly in the stores.</p>
+    <p class="lc-outc__lead rv" data-d="1">The redesign brought the core release workflow into one product experience: adding music, agreeing splits, signing, publishing information and getting paid. It also set up one visual and interaction system for both sides of the label&ndash;artist relationship.</p>
+    <div class="lc-outc rv" data-d="1">
+      <div><p class="lc-outc__h">What shipped</p><ul>
+        <li>Signing inside the app</li>
+        <li>A way back from every screen</li>
+        <li>Tracks named during upload</li>
+        <li>Shares beside names, recuperation explained first</li>
+        <li>The payout fee before the request</li>
+        <li>A new look and a design system, with a light theme for artists</li>
+      </ul></div>
+      <div><p class="lc-outc__h">Not yet known</p><p>No usage results are shown here. Whether these changes worked is what the questions below would test.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 WHAT REMAINS OPEN -->
+<section class="lc-sec" id="open" aria-labelledby="open-h">
+  <div class="container">
+    <p class="lc-tag">09 &middot; What remains open</p>
+    <h2 class="big lc-h2 rv" id="open-h">Four questions still open.</h2>
+    <ol class="lc-open">
+      <li class="rv">Does naming tracks during bulk upload make adding an album faster?</li>
+      <li class="rv" data-d="1">Do people understand recuperation before they add expenses?</li>
+      <li class="rv">Does showing the payout fee first reduce surprise at cash-out?</li>
+      <li class="rv" data-d="1">How often do splits fail to add up to 100% on the first try?</li>
+    </ol>
+  </div>
+</section>
+
+<section class="lc-sec lc-sec--label" id="back" aria-labelledby="back-h">
+  <div class="container">
+    <p class="lc-tag">One thing I&rsquo;d change now</p>
+    <div class="lc-look">
+      <div>
+        <h2 class="big lc-h2 rv" id="back-h">The small text is too faint.</h2>
+        <p class="lc-lede rv" data-d="1">Secondary text is too faint on both themes, and worst on the artist side: sage-green secondary text on white and pale green, at about 1.9:1. On the label side, the dim-dark token reaches 2.8:1. Both are below the 4.5:1 WCAG minimum for body text.</p>
+        <dl class="lc-measure rv" data-d="1">
+          <div><dt><i>1</i> &ldquo;6 Tracks | Mira Solenne&rdquo;, #91B9AA on white</dt><dd>2.2:1</dd></div>
+          <div><dt><i>2</i> &ldquo;Sort by&rdquo;, #91B9AA on #E1F4E7</dt><dd>1.9:1</dd></div>
+        </dl>
+        <p class="lc-board__note rv">Artist side: measured on the exported Streams and data screen.</p>
+        <div class="lc-token-pair rv" data-d="1" role="img" aria-label="dim-dark #648277 on background #2D3C37: 2.8 to 1">
+          <span class="lc-token-pair__chips" aria-hidden="true"><i style="background: #648277;"></i><i style="background: #2D3C37;"></i></span>
+          <span class="lc-token-pair__meta"><b>dim-dark #648277</b> on <b>background #2D3C37</b></span>
+          <span class="lc-token-pair__ratio">2.8:1</span>
+        </div>
+        <p class="lc-board__note rv">Label side: calculated from the two Figma color styles. All ratios use the WCAG formula.</p>
+        <p class="lc-look__end rv">I&rsquo;d raise it now.</p>
+      </div>
+      <div class="lc-row lc-row--contrast rv" data-d="1" style="--n: 2;">
+        <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-a-streams.webp?v=9" width="750" height="1624" loading="lazy" alt="Artist side, Streams and data details on a pale green background: a search field, Sort by, and white rows such as Low Tide Radio, 6 Tracks, Mira Solenne, with the secondary text in sage green."><span class="lc-mark" style="left: 24.5%; top: 36.6%" aria-hidden="true">1</span><span class="lc-mark" style="left: 74.5%; top: 24.1%" aria-hidden="true">2</span></span><figcaption><span class="lc-kind">Artist side</span><b>Streams and data</b>Secondary text in sage green.</figcaption></figure>
+        <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-distribution.webp?v=9" width="750" height="1624" loading="lazy" alt="Distribution center: a search field and four releases; under Low Tide Radio, the tracks Saltwater static, Harbour lights and Paper boats. Small secondary text such as Locked by contract and View contract."></span><figcaption><span class="lc-kind">Label side</span><b>Distribution center</b>Secondary text such as &ldquo;Locked by contract&rdquo;.</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section band--raise">
+  <div class="container">
+    <a class="onward" href="../eagl/index.html">
+      <div class="onward__row"><span class="mono">Next project</span><span class="mono mono--key">04 / 04</span></div>
+      <div class="onward__row"><span class="onward__name mid">Eagl</span><span class="onward__arrow mono mono--key" aria-hidden="true">&rarr;</span></div>
+    </a>
+  </div>
+</section>
+</main>
+
+<footer class="section deep foot">
+  <div class="container foot__row mono">
+    <p>&copy; <span data-year>2026</span> Roshan Kumar</p>
+    <nav class="foot__links" aria-label="Elsewhere">
+      <a class="foot__link" href="https://www.linkedin.com/in/kroshan93" target="_blank" rel="nofollow noopener noreferrer"><svg class="foot__icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn<span class="sr"> (opens in a new tab)</span></a>
+      <a class="foot__link" href="mailto:kroshan.kc@gmail.com"><svg class="foot__icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></g></svg>Email</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="../../js/main.js?v=lc-01" defer></script>
+</body>
+</html>

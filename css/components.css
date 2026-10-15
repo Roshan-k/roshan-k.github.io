@@ -33,6 +33,7 @@
   color: var(--ivory);
 }
 .nav__id span { color: var(--accent-hi); }
+.nav__logo { flex: none; width: auto; height: 1.1em; margin-right: 0.25rem; color: var(--accent-hi); }
 
 .nav__links { display: flex; align-items: center; gap: clamp(0.875rem, 1.6vw, 1.75rem); font-size: 0.875rem; }
 .nav__link {

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 104" width="132" height="104">
+  <title>RK</title>
+  <defs><clipPath id="rk-clip"><rect width="132" height="102"/></clipPath></defs>
+  <g clip-path="url(#rk-clip)" fill="none" stroke="#F4EFE3" stroke-width="14" stroke-miterlimit="8">
+    <path d="M0 7H52A17 17 0 0 1 52 41H33L74 112"/>
+    <path d="M134 -6L86 51L134 108"/>
+  </g>
+</svg>

@@ -385,6 +385,7 @@
 .lc-aside--flow + .lc-aside { margin-top: var(--s-2); }
 .lc-outc__lead { margin-top: var(--s-6); max-width: 62ch; font-family: var(--display); font-size: var(--t-sub); line-height: 1.4; color: var(--ivory); }
 .lc-outc { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s-8); margin-top: var(--s-7); }
+.lc-outc > div:only-child { grid-column: 1 / -1; }
 .lc-outc__h { padding-bottom: var(--s-3); border-bottom: 1px solid rgba(244, 239, 227, 0.3); font-family: var(--mono); font-size: var(--t-mono); letter-spacing: var(--ls-mono); color: var(--lc-artist); }
 .lc-outc ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3) var(--s-6); margin-top: var(--s-4); }
 .lc-outc li { position: relative; padding-left: 1.1em; line-height: 1.5; }

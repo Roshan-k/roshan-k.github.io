@@ -163,3 +163,5 @@
 .eg-more summary .mono { font-size: var(--t-mono); color: var(--eg-yellow); }
 .eg-more summary:focus-visible { outline: 2px solid var(--eg-yellow); outline-offset: 4px; }
 .eg-more .eg-flow:first-of-type { margin-top: var(--s-5); }
+.eg .cs-brief .mono { color: var(--eg-yellow); }
+.eg .cs-brief__jump:hover { color: var(--eg-yellow); }

@@ -29,9 +29,9 @@
 <link rel="stylesheet" href="../../css/base.css?v=lc-01">
 <link rel="stylesheet" href="../../css/layout.css?v=lc-02">
 <link rel="stylesheet" href="../../css/components.css?v=lc-04">
-<link rel="stylesheet" href="../../css/record.css?v=lc-01">
+<link rel="stylesheet" href="../../css/record.css?v=lc-02">
 <link rel="stylesheet" href="../../css/responsive.css?v=lc-01">
-<link rel="stylesheet" href="../../css/lc.css?v=lc-30">
+<link rel="stylesheet" href="../../css/lc.css?v=lc-31">
 <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
@@ -81,7 +81,7 @@
         <dl class="lc-facts rv" data-d="1">
           <div class="is-wide"><dt>Role</dt><dd>Product designer &middot; wireframes, visual design and survey research</dd></div>
           <div><dt>Platforms</dt><dd>iOS &middot; Android</dd></div>
-          <div><dt>Status</dt><dd>Shipped as a private app</dd></div>
+          <div><dt>Status</dt><dd>Shipped; now in testing with selected users</dd></div>
         </dl>
       </div>
       <div class="lc-hero__art rv" data-d="1">
@@ -89,6 +89,15 @@
         <figure class="lc-shot"><span class="lc-shot__frame"><img src="../../assets/work/lc-contract-overview.webp?v=9" width="750" height="1624" alt="Contract Overview for Low Tide Radio: Mira Solenne and Oskar Veld with a 40% share each, Tallgrass Audio with 20%, start and end dates, and a Download button. The logo is blurred."></span></figure>
       </div>
     </div>
+  </div>
+  <div class="container">
+    <ol class="cs-brief rv" aria-label="The project in brief">
+      <li><span class="mono">My role</span><b>Product designer: wireframes, visual design and survey research.</b></li>
+      <li><span class="mono">Problem</span><b>Signing happened outside the app, people got lost, and uploads repeated work.</b></li>
+      <li><span class="mono">Approach</span><b>Signing in the app, tracks named during upload, a way back from every screen, one system for both sides.</b></li>
+      <li><span class="mono">Outcome</span><b>Shipped to both stores; now in testing with selected users.</b></li>
+    </ol>
+    <a class="cs-brief__jump mono" href="#decisions">Jump to decisions <span aria-hidden="true">&darr;</span></a>
   </div>
 </section>
 
@@ -238,7 +247,7 @@
         <p class="lc-dec__no">02 &middot; Step A</p>
         <h3 class="lc-dec__h">Name tracks during upload.</h3>
         <dl>
-          <div><dt>Problem</dt><dd>Uploading 4&ndash;7 tracks meant filling in every detail for each song.</dd></div>
+          <div><dt>Problem</dt><dd>Uploading an EP or album meant filling in every detail for each song, one at a time.</dd></div>
           <div><dt>Decision</dt><dd>Choose the release type first, upload several sound files at once, and name each one in place.</dd></div>
           <div class="is-why"><dt>Why</dt><dd>Naming tracks during upload removes a separate upload step for each file.</dd></div>
           <div class="is-trade"><dt>Trade-off</dt><dd>Bulk upload and naming every title at once shipped; the rest of each track&rsquo;s details, such as its ISRC code, are still entered one track at a time.</dd></div>
@@ -251,7 +260,7 @@
         <dl>
           <div><dt>Problem</dt><dd>Splits and cost-sharing are financial agreements that are easy to get wrong.</dd></div>
           <div><dt>Decision</dt><dd>The label sets the splits, and chooses whether to add recuperation, while creating a contract or uploading a track or album. Each share sits beside its name.</dd></div>
-          <div class="is-why"><dt>Why</dt><dd>Splits are agreed between two parties, so each share sits beside its name where both sides can check it before approval.</dd></div>
+          <div class="is-why"><dt>Why</dt><dd>Splits are agreed between two parties, so both sides need to see every share before approval.</dd></div>
           <div class="is-trade"><dt>Trade-off</dt><dd>The shares still need approval: they are sent to the artist, and fixed only after a reply.</dd></div>
         </dl>
         <a class="lc-themes__link" href="#ch-contracts">See it in the screens</a>
@@ -262,7 +271,7 @@
         <dl>
           <div><dt>Problem</dt><dd>ISRC codes, publishing royalties, IPI numbers, splits and recuperation. Most artists and many small labels aren&rsquo;t experts in them.</dd></div>
           <div><dt>Decision</dt><dd>Explain each concept on the screen where it&rsquo;s needed, in plain language.</dd></div>
-          <div class="is-why"><dt>Why</dt><dd>Most artists and many small labels aren&rsquo;t experts in these terms, so each one is explained where it&rsquo;s used, like the payout fee shown before requesting.</dd></div>
+          <div class="is-why"><dt>Why</dt><dd>Explaining each term where it&rsquo;s used lets people act without leaving the task, like the payout fee shown before requesting.</dd></div>
           <div class="is-trade"><dt>Trade-off</dt><dd>More text on screens that were already dense.</dd></div>
         </dl>
       </article>
@@ -286,7 +295,8 @@
           <dl>
             <div><dt>Problem</dt><dd>People got stuck on a screen with no way back. Screens were overcrowded.</dd></div>
             <div><dt>Decision</dt><dd>Every part of the app went into one main navigation menu, and every screen got a back button.</dd></div>
-            <div class="is-why"><dt>Why</dt><dd>&ldquo;Sometime I stuck navigation around the screens, unable to go back or explore any feature.&rdquo; <cite>Survey response</cite></dd></div>
+            <div class="is-why"><dt>Why</dt><dd>A release moves through many screens, so people need a known way out of each one.<br>&ldquo;Sometime I stuck navigation around the screens, unable to go back or explore any feature.&rdquo; <cite>Survey response</cite></dd></div>
+            <div><dt>Trade-off</dt><dd>Sections moved behind one menu, so reaching them takes an extra tap instead of being on screen.</dd></div>
           </dl>
         </div>
         <div class="lc-board lc-dec__shots">
@@ -419,8 +429,8 @@
 <section class="lc-sec lc-sec--label lc-sec--short" id="outcome" aria-labelledby="outcome-h">
   <div class="container">
     <p class="lc-tag">08 &middot; Outcome</p>
-    <h2 class="big lc-h2 rv" id="outcome-h">The redesign went live as a private app.</h2>
-    <p class="lc-lede rv" data-d="1">Access was given to approved accounts only. The app isn&rsquo;t listed publicly in the stores.</p>
+    <h2 class="big lc-h2 rv" id="outcome-h">Shipped, now in testing.</h2>
+    <p class="lc-lede rv" data-d="1">The redesign shipped to the App Store and Google Play. It is now in A/B testing with selected users, so it isn&rsquo;t publicly listed.</p>
     <p class="lc-outc__lead rv" data-d="1">The redesign brought the core release workflow into one product experience: adding music, agreeing splits, signing, publishing information and getting paid. It also set up one visual and interaction system for both sides of the label&ndash;artist relationship.</p>
     <div class="lc-outc rv" data-d="1">
       <div><p class="lc-outc__h">What shipped</p><ul>
@@ -488,6 +498,7 @@
     <a class="onward" href="../eagl/index.html">
       <div class="onward__row"><span class="mono">Next project</span><span class="mono mono--key">04 / 04</span></div>
       <div class="onward__row"><span class="onward__name mid">Eagl</span><span class="onward__arrow mono mono--key" aria-hidden="true">&rarr;</span></div>
+      <p class="cs-next__say">A golf cart rental app: scan a cart to ride now, or book one ahead.</p>
     </a>
   </div>
 </section>
